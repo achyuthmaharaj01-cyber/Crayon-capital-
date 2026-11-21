@@ -158,19 +158,19 @@
 | 116 | 7:04.5 | 7:06.3 | 6.1 | A stockholder stands empty-handed, worried |
 | 117 | 7:06.3 | 7:13.5 | 6.2 | Cosy living room (lamp, plant, night window): gamer on couch, controller, TV glow on face, grin |
 | 118 | 7:13.5 | 7:18.2 | 6.3 | Clerk and the two console boxes eating pizza slices, grins |
-| 119 | 7:18.2 | 7:21.7 | 6.4 | Exec in a vault, coins pouring in |
-| 120 | 7:21.7 | 7:25.1 | 6.4 | Counter '$3.79B - ONE DAY' |
-| 121 | 7:25.1 | 7:28.6 | 6.4 | Film-reel character with sign 'BIGGEST MOVIE EVER ~ $2.9B', shock face |
-| 122 | 7:28.6 | 7:32.3 | 6.5 | Hedge-fund trader counts cash, smug |
-| 123 | 7:32.3 | 7:36.1 | 6.5 | Board behind him 'PEOPLE: PREDICTABLE' |
-| 124 | 7:36.1 | 7:41.3 | 6.6 | Calendar flips 2013 -> 2026 |
-| 125 | 7:41.3 | 7:46.5 | 6.6 | Cash register dings again and again, label 'ONLINE MODE' |
-| 126 | 7:46.5 | 7:52.0 | 6.7 | Exec holds clipboard '$8B - $8.2B THIS FISCAL YEAR' |
-| 127 | 7:52.0 | 7:57.6 | 6.7 | Giant game box balanced on one finger, everything else stacked on top |
-| 128 | 7:57.6 | 8:03.2 | 6.8 | Grid-paper seesaw, stock bar wobbling up and down |
-| 129 | 8:03.2 | 8:08.8 | 6.8 | Meanwhile the vault fills steadily, exec smiling |
-| 130 | 8:08.8 | 8:11.7 | 6.9 | HOOK CALLBACK: giant $3.79B game box looming over the worried exec, red '-3.7%' glow, slow push in |
-| 131 | 8:11.7 | 8:14.6 | 6.9 | Pull back: whole city skyline, billboard still glowing |
-| 132 | 8:14.6 | 8:17.5 | 6.9 | BLACK CARD types: 'if everyone saw it coming.' -> fade |
+| 119 | 7:18.2 | 7:22.3 | 6.4 | Exec in a vault, coins pouring in |
+| 120 | 7:22.3 | 7:26.4 | 6.4 | Counter '$3.79B - ONE DAY' |
+| 121 | 7:26.4 | 7:30.6 | 6.4 | Film-reel character with sign 'BIGGEST MOVIE EVER ~ $2.9B', shock face |
+| 122 | 7:30.6 | 7:34.3 | 6.5 | Hedge-fund trader counts cash, smug |
+| 123 | 7:34.3 | 7:38.1 | 6.5 | Board behind him 'PEOPLE: PREDICTABLE' |
+| 124 | 7:38.1 | 7:43.3 | 6.6 | Calendar flips 2013 -> 2026 |
+| 125 | 7:43.3 | 7:48.5 | 6.6 | Cash register dings again and again, label 'ONLINE MODE' |
+| 126 | 7:48.5 | 7:54.0 | 6.7 | Exec holds clipboard '$8B - $8.2B THIS FISCAL YEAR' |
+| 127 | 7:54.0 | 7:59.6 | 6.7 | Giant game box balanced on one finger, everything else stacked on top |
+| 128 | 7:59.6 | 8:05.2 | 6.8 | Grid-paper seesaw, stock bar wobbling up and down |
+| 129 | 8:05.2 | 8:10.8 | 6.8 | Meanwhile the vault fills steadily, exec smiling |
+| 130 | 8:10.8 | 8:13.7 | 6.9 | HOOK CALLBACK: giant $3.79B game box looming over the worried exec, red '-3.7%' glow, slow push in |
+| 131 | 8:13.7 | 8:16.6 | 6.9 | Pull back: whole city skyline, billboard still glowing |
+| 132 | 8:16.6 | 8:19.5 | 6.9 | BLACK CARD types: 'if everyone saw it coming.' -> fade |
 
-**Total: 1193 words, about 8 min 18 s, 132 shots (avg 3.8 s per shot).**
+**Total: 1198 words, about 8 min 20 s, 132 shots (avg 3.8 s per shot).**

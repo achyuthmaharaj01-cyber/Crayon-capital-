@@ -188,7 +188,7 @@ CHAPTERS = [
    ["Cosy living room (lamp, plant, night window): gamer on couch, controller, TV glow on face, grin"]),
   ("6.3", "Stores and console makers took their slice of every single copy.",
    ["Clerk and the two console boxes eating pizza slices, grins"]),
-  ("6.4", "And Take-Two the company, not the stock, pulled in more in one day than the biggest movie of all time made in its entire run.",
+  ("6.4", "And Take-Two the company, not the stock, just watched players spend more on its game in one day than the biggest movie of all time made in its entire run.",
    ["Exec in a vault, coins pouring in",
     "Counter '$3.79B - ONE DAY'",
     "Film-reel character with sign 'BIGGEST MOVIE EVER ~ $2.9B', shock face"]),

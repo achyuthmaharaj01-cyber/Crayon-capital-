@@ -94,7 +94,7 @@ _Set / mood: night green glow tech set -> crypto basement -> grid paper_
 | H.4 | In August 2024, Nvidia, the company selling the chips behind AI, beat Wall Street's forecasts, and its stock still fell about six percent the next day. | 26 | 10.8 | 6:41.7 |
 | H.5 | Same story every time, when the whole world is already cheering, the good news is used up before it lands. | 20 | 8.3 | 6:52.4 |
 
-## CHAPTER 7: WHO ACTUALLY WON  (184 words)
+## CHAPTER 7: WHO ACTUALLY WON  (189 words)
 _Set / mood: warm living room glow -> vault -> night green city -> final spotlight_
 
 | # | Line | Words | Sec | Starts |
@@ -102,11 +102,11 @@ _Set / mood: warm living room glow -> vault -> night green city -> final spotlig
 | 6.1 | So who won? Almost everyone, except the people holding the stock that week. | 13 | 5.5 | 7:00.8 |
 | 6.2 | Players got a game critics called close to perfect, after waiting more than twelve years for it. | 17 | 7.1 | 7:06.3 |
 | 6.3 | Stores and console makers took their slice of every single copy. | 11 | 4.8 | 7:13.5 |
-| 6.4 | And Take-Two the company, not the stock, pulled in more in one day than the biggest movie of all time made in its entire run. | 25 | 10.3 | 7:18.2 |
-| 6.5 | The traders who bet on a drop got paid for being right about people, not about the game. | 18 | 7.5 | 7:28.6 |
-| 6.6 | And what comes next is something GTA 5 already taught us, that game kept earning for more than a decade, mostly through its online mode. | 25 | 10.3 | 7:36.1 |
-| 6.7 | Take-Two is guiding for eight to eight point two billion dollars in bookings this fiscal year, a record, and most of that rides on this one game. | 27 | 11.2 | 7:46.5 |
-| 6.8 | Morgan Stanley even warned that every new sales announcement could turn into another sell-the-news day, so the stock may keep wobbling while the company keeps cashing in. | 27 | 11.2 | 7:57.6 |
-| 6.9 | Because on Wall Street, the biggest day in entertainment history can still be a losing day, if everyone saw it coming. | 21 | 8.8 | 8:08.8 |
+| 6.4 | And Take-Two the company, not the stock, just watched players spend more on its game in one day than the biggest movie of all time made in its entire run. | 30 | 12.3 | 7:18.2 |
+| 6.5 | The traders who bet on a drop got paid for being right about people, not about the game. | 18 | 7.5 | 7:30.6 |
+| 6.6 | And what comes next is something GTA 5 already taught us, that game kept earning for more than a decade, mostly through its online mode. | 25 | 10.3 | 7:38.1 |
+| 6.7 | Take-Two is guiding for eight to eight point two billion dollars in bookings this fiscal year, a record, and most of that rides on this one game. | 27 | 11.2 | 7:48.5 |
+| 6.8 | Morgan Stanley even warned that every new sales announcement could turn into another sell-the-news day, so the stock may keep wobbling while the company keeps cashing in. | 27 | 11.2 | 7:59.6 |
+| 6.9 | Because on Wall Street, the biggest day in entertainment history can still be a losing day, if everyone saw it coming. | 21 | 8.8 | 8:10.8 |
 
-**Total: 1193 words, about 8 min 18 s, 132 shots (avg 3.8 s per shot).**
+**Total: 1198 words, about 8 min 20 s, 132 shots (avg 3.8 s per shot).**
