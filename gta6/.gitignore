@@ -1,0 +1,11 @@
+build/
+contact/
+voice/lines/
+voice/narration.wav
+sound/sfx/
+sound/music/
+sound/events.json
+out/*.mp4
+*.tmp
+*.log
+__pycache__/
