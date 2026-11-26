@@ -37,10 +37,13 @@ function chip(c, x, y, r, expr, t, held) { for (let i = -2; i <= 2; i++) { line(
 function star(c, x, y, r, expr, t, o = {}) {
   c.save(); c.translate(x, y + Math.sin(t * 2.2) * 2); reg(c, -r * 1.05, -r * 1.05, r * 1.05, r * 1.6);
   shadow(c, 0, r * 1.55, r * .8);
-  line(c, -r * .3, r * .7, -r * .36, r * 1.5, 9); line(c, r * .3, r * .7, r * .36, r * 1.5, 9); ell(c, -r * .45, r * 1.52, 18, 8, INK, 0); ell(c, r * .45, r * 1.52, 18, 8, INK, 0);
-  const arm = o.arms || [[-1.25, .1], [1.25, .1]]; arm.forEach(([ax, ay]) => { line(c, ax * r * .62, r * .05, ax * r, ay * r, 8); circ(c, ax * r, ay * r, 11, '#f2c49b', 3); });
-  c.beginPath(); for (let i = 0; i < 10; i++) { const a = -Math.PI / 2 + i * Math.PI / 5, rr_ = i % 2 ? r * .48 : r; i ? c.lineTo(Math.cos(a) * rr_, Math.sin(a) * rr_) : c.moveTo(Math.cos(a) * rr_, Math.sin(a) * rr_); } c.closePath(); fs(c, '#f6c443');
-  c.save(); c.clip(); c.globalAlpha = .1; circ(c, r * .5, r * .25, r * .75, '#7a4b00', 0); c.restore();
+  tube(c, [[-r * .3, r * .7], [-r * .36, r * 1.42]], 17, '#7a4a22'); tube(c, [[r * .3, r * .7], [r * .36, r * 1.42]], 17, '#7a4a22');
+  shoe(c, -r * .42, r * 1.5, -1, '#c2412d'); shoe(c, r * .42, r * 1.5, 1, '#c2412d');
+  const arm = o.arms || [[-1.25, .1], [1.25, .1]]; arm.forEach(([ax, ay]) => { tube(c, [[ax * r * .62, r * .05], [ax * r, ay * r]], 10, '#f6c443', 4); hand(c, ax * r, ay * r, '#fff3d6', ax < 0 ? -.4 : .4); });
+  const pts = []; for (let i = 0; i < 10; i++) { const a = -Math.PI / 2 + i * Math.PI / 5, q = i % 2 ? r * .5 : r; pts.push([Math.cos(a) * q, Math.sin(a) * q]); }
+  const sp = () => { c.beginPath(); for (let i = 0; i < 10; i++) { const p0 = pts[(i + 9) % 10], p1 = pts[i], p2 = pts[(i + 1) % 10]; const m0 = [(p0[0] + p1[0]) / 2, (p0[1] + p1[1]) / 2], m1 = [(p1[0] + p2[0]) / 2, (p1[1] + p2[1]) / 2]; i ? c.lineTo(m0[0] + (p1[0] - m0[0]) * .0, m0[1]) : c.moveTo(m0[0], m0[1]); c.quadraticCurveTo(p1[0], p1[1], m1[0], m1[1]); } c.closePath(); };
+  sp(); const g = c.createLinearGradient(-r, -r, r, r); g.addColorStop(0, '#ffe27a'); g.addColorStop(1, '#eeaa22'); fs(c, g);
+  c.save(); sp(); c.clip(); c.globalAlpha = .14; circ(c, r * .55, r * .3, r * .8, '#7a4b00', 0); c.globalAlpha = .5; ell(c, -r * .42, -r * .38, r * .08, r * .26, '#fff7c8', 0, .6); c.restore(); sp(); fs(c, null);
   face(c, 0, r * .08, r * .42, expr, t, { noNose: true, seed: 21, skin: '#f6c443', sweat: o.sweat, talk: o.talk });
   if (o.finger) line(c, 0, r * .2, 0, r * .42, 7);
   if (o.name) label(c, o.name, 0, r * 1.85, Math.max(24, r * .26), '#fff');

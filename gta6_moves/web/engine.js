@@ -95,6 +95,13 @@ function camFor(def, T) {
   return { fx, fy, z, sx, sy, roll };
 }
 window.camReport = () => TL.shots.map(s => { const d = SHOTS[s.key]; return d && !d.card ? [s.key + '/' + s.sub, ...solveCam(d, s).map(v => +v.toFixed(3))] : null; }).filter(Boolean);
+// printed-poster finish: warm/cool grade + fine paper grain (generated once, tiled)
+let GRAIN = null;
+function finishLook(c) {
+  if (!GRAIN) { const g = document.createElement('canvas'); g.width = g.height = 256; const x = g.getContext('2d'); const d = x.createImageData(256, 256); const R = rand(77);
+    for (let i = 0; i < d.data.length; i += 4) { const v = 128 + (R() - .5) * 90; d.data[i] = d.data[i + 1] = d.data[i + 2] = v; d.data[i + 3] = 255; } x.putImageData(d, 0, 0); GRAIN = c.createPattern(g, 'repeat'); }
+  c.save(); c.globalCompositeOperation = 'soft-light'; c.globalAlpha = .28; c.fillStyle = GRAIN; c.fillRect(0, 0, W, H);
+  c.globalCompositeOperation = 'soft-light'; c.globalAlpha = .14; const gr = c.createLinearGradient(0, 0, 0, H); gr.addColorStop(0, '#ffd9a0'); gr.addColorStop(1, '#6a86c8'); c.fillStyle = gr; c.fillRect(0, 0, W, H); c.restore(); }
 function renderFrame(i) {
   const t = i / TL.fps; const shot = TL.shots.find(s => t >= s.start && t < s.end) || TL.shots[TL.shots.length - 1];
   const def = SHOTS[shot.key]; const T = mkT(shot, t);
@@ -106,7 +113,7 @@ function renderFrame(i) {
     ctx.save(); ctx.translate(W / 2 + k.sx, H / 2 + k.sy); ctx.scale(k.z, k.z); ctx.rotate(k.roll); ctx.translate(-k.fx, -k.fy);
     def.draw(ctx, T); ctx.restore();
     if (def.overlay) def.overlay(ctx, T);
-    vignette(ctx, def.vig ?? .55);
+    vignette(ctx, def.vig ?? .55); finishLook(ctx);
   }
   // fade from black at the very top, fade out at the end
   if (t < .25) { ctx.fillStyle = `rgba(0,0,0,${1 - t / .25})`; ctx.fillRect(0, 0, W, H); }

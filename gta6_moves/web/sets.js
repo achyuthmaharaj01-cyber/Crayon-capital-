@@ -1,6 +1,22 @@
 // ---------- sets: each place has one mood, light from inside, always dressed ----------
 const SET = {};
-const FLOOR = (c, y, col, line_) => { c.fillStyle = col; c.fillRect(-400, y, W + 800, H + 400 - y); line(c, -400, y, W + 400, y, LW); if (line_) for (let x = -400; x < W + 400; x += 160) line(c, x, y + 6, x - 200, H + 300, 2.5, line_); };
+const FLOOR = (c, y, col, line_) => {
+  const g = c.createLinearGradient(0, y, 0, H + 300); g.addColorStop(0, lt(col, .16)); g.addColorStop(.5, col); g.addColorStop(1, dk(col, .3));
+  c.fillStyle = g; c.fillRect(-400, y, W + 800, H + 400 - y);
+  if (line_) { for (let x = -400; x < W + 400; x += 160) line(c, x, y + 6, x - 200, H + 300, 2.5, line_); for (let k = 1; k < 4; k++) { const yy = y + (H + 300 - y) * (k * k) / 14; line(c, -400, yy, W + 400, yy, 2, line_); } }
+  // contact shadow on the wall side, sheen, baseboard
+  const ao = c.createLinearGradient(0, y - 90, 0, y); ao.addColorStop(0, 'rgba(20,10,20,0)'); ao.addColorStop(1, 'rgba(20,10,20,.28)'); c.fillStyle = ao; c.fillRect(-400, y - 90, W + 800, 90);
+  if (line_) { c.fillStyle = dk(col, .12); c.fillRect(-400, y - 16, W + 800, 16); line(c, -400, y - 16, W + 400, y - 16, 3); }
+  c.save(); c.globalAlpha = .14; c.globalCompositeOperation = 'screen'; ell(c, 960, y + 150, 900, 70, '#fff', 0); c.restore();
+  line(c, -400, y, W + 400, y, LW); };
+const tower = (c, x, y, w, h, col, seed = 1) => { // flat tower: side shade, rooftop dressing
+  const g = c.createLinearGradient(x, 0, x + w, 0); g.addColorStop(0, lt(col, .14)); g.addColorStop(1, dk(col, .16)); box(c, x, y, w, h, 6, g);
+  c.save(); c.globalAlpha = .12; c.fillStyle = '#10182a'; c.fillRect(x + w * .72, y + 4, w * .26, h); c.restore();
+  const R = rand(seed + Math.round(x)); const k = Math.floor(R() * 3);
+  if (k === 0) { box(c, x + w * .2, y - 26, 46, 26, 4, dk(col, .12), 3.5); line(c, x + w * .2 + 12, y - 26, x + w * .2 + 12, y - 10, 2, INK); }
+  if (k === 1) { line(c, x + w * .7, y, x + w * .7, y - 60, 4); circ(c, x + w * .7, y - 62, 5, '#ff5a4a', 2.5); }
+  if (k === 2) { box(c, x + w * .15, y - 40, 44, 34, 6, '#a8704a', 3.5); poly(c, [[x + w * .15 - 4, y - 40], [x + w * .15 + 22, y - 58], [x + w * .15 + 48, y - 40]], '#7a4b2e', 3.5); line(c, x + w * .15 + 8, y - 6, x + w * .15 + 8, y, 3.5); line(c, x + w * .15 + 36, y - 6, x + w * .15 + 36, y, 3.5); } };
+
 
 SET.trading = (c, t, o = {}) => { // red panic trading floor
   bg(c, '#3a0d12', '#6e1a1f');
@@ -25,7 +41,7 @@ SET.street = (c, t, o = {}) => { // clean daylight blue
   lightPool(c, 1500, 120, 500, '#fff7c2', .6); circ(c, 1500, 130, 70, '#ffe36e', 4);
   cloud(c, (260 + t * 12) % 2300 - 200, 150, 1.1); cloud(c, (1100 + t * 8) % 2300 - 200, 230, .8);
   // back buildings
-  [[-80, 330, 260, '#a9c4dd'], [200, 260, 200, '#93b3cf'], [420, 360, 240, '#b7cde0'], [1280, 300, 220, '#9fbbd5'], [1520, 240, 260, '#b2c9de'], [1800, 330, 240, '#a2bfd8']].forEach(([x, y, w, col]) => { box(c, x, y, w, 900 - y, 6, col); for (let yy = y + 30; yy < 820; yy += 70) for (let xx = x + 24; xx < x + w - 40; xx += 60) windowRect(c, xx, yy, 34, 42, '#e8f6ff'); });
+  [[-80, 330, 260, '#a9c4dd'], [200, 260, 200, '#93b3cf'], [420, 360, 240, '#b7cde0'], [1280, 300, 220, '#9fbbd5'], [1520, 240, 260, '#b2c9de'], [1800, 330, 240, '#a2bfd8']].forEach(([x, y, w, col]) => { tower(c, x, y, w, 900 - y, col); for (let yy = y + 30; yy < 820; yy += 70) for (let xx = x + 24; xx < x + w - 40; xx += 60) windowRect(c, xx, yy, 34, 42, '#e8f6ff'); });
   if (!o.noHQ) { // company HQ
     box(c, 680, 200, 560, 700, 10, '#e9e2d0');
     for (let yy = 260; yy < 800; yy += 90) for (let xx = 720; xx < 1200; xx += 90) windowRect(c, xx, yy, 56, 60, '#cfe9ff');
@@ -61,7 +77,7 @@ SET.night = (c, t, o = {}) => { // night city with billboard glow
   bg(c, '#0b1026', '#1d1846');
   const R = rand(4); for (let i = 0; i < 70; i++) { const x = R() * W * 1.3 - 200, y = R() * 400; circ(c, x, y, R() * 2 + 1, `rgba(255,255,255,${.4 + .4 * Math.sin(t * 2 + i)})`, 0); }
   circ(c, 260, 140, 50, '#fff6d6', 4);
-  [[-100, 380, 240], [150, 300, 180], [1500, 320, 220], [1720, 260, 300]].forEach(([x, y, w], k) => { box(c, x, y, w, 900 - y, 6, '#252a4a'); for (let yy = y + 30; yy < 860; yy += 60) for (let xx = x + 20; xx < x + w - 30; xx += 50) if ((xx + yy + k) % 3) windowRect(c, xx, yy, 28, 36, '#ffd36e'); });
+  [[-100, 380, 240], [150, 300, 180], [1500, 320, 220], [1720, 260, 300]].forEach(([x, y, w], k) => { tower(c, x, y, w, 900 - y, '#2a3058', k); for (let yy = y + 30; yy < 860; yy += 60) for (let xx = x + 20; xx < x + w - 30; xx += 50) if ((xx + yy + k) % 3) windowRect(c, xx, yy, 28, 36, '#ffd36e'); });
   FLOOR(c, 900, '#1a1a2e'); lamp(c, 380, 905, 330, true); lamp(c, 1540, 905, 330, true);
 };
 SET.store = (c, t, o = {}) => { // games store interior
@@ -128,7 +144,7 @@ SET.stadium = (c, t, o = {}) => {
 };
 SET.exchange = (c, t) => { // New York exchange building, daylight
   bg(c, '#8ecdf5', '#d6efff'); cloud(c, 300 + t * 8, 140, 1); cloud(c, 1500 - t * 6, 200, .8);
-  [[-120, 260, 300], [1720, 220, 320]].forEach(([x, y, w]) => { box(c, x, y, w, 700, 6, '#a7bfd6'); for (let yy = y + 30; yy < 860; yy += 70) for (let xx = x + 20; xx < x + w - 30; xx += 60) windowRect(c, xx, yy, 34, 42, '#e8f6ff'); });
+  [[-120, 260, 300], [1720, 220, 320]].forEach(([x, y, w]) => { tower(c, x, y, w, 700, '#a7bfd6'); for (let yy = y + 30; yy < 860; yy += 70) for (let xx = x + 20; xx < x + w - 30; xx += 60) windowRect(c, xx, yy, 34, 42, '#e8f6ff'); });
   poly(c, [[360, 300], [960, 120], [1560, 300]], '#f1ead8'); label(c, 'STOCK EXCHANGE', 960, 245, 54, INK, { stroke: false, maxW: 760 });
   box(c, 380, 300, 1160, 60, 4, '#e6dcc4');
   for (let i = 0; i < 6; i++) { const x = 460 + i * 200; box(c, x - 34, 360, 68, 480, 6, '#f6f0e2'); line(c, x - 12, 380, x - 12, 820, 2.5, '#cbbf9f'); line(c, x + 12, 380, x + 12, 820, 2.5, '#cbbf9f'); }
