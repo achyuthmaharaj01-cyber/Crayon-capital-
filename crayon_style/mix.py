@@ -30,7 +30,7 @@ for e in json.load(open(f"{H}/sound/events.json")):
     if n in SKIP: continue
     if n not in cache: cache[n] = load(f"{H}/sound/sfx/{n}.mp3")
     s = cache[n].copy(); L = e.get("len")
-    if L: s = s[: int(L * SR)]; s[-int(.3 * SR):] *= np.linspace(1, 0, int(.3 * SR))
+    if L: s = s[: int(L * SR)]; f = min(int(.3 * SR), len(s)); s[-f:] *= np.linspace(1, 0, f)
     s = s / (np.max(np.abs(s)) + 1e-9) * v_rms * 2.2 * db(e.get("g", -10))   # effect peak relative to voice level
     st = int(max(0, e["t"]) * SR); en = min(N, st + len(s)); fx[st:en] += s[: en - st]
 fx *= (1 - env * (1 - db(-6)))                             # effects duck 6 dB under speech

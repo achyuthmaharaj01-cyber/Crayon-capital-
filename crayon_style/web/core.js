@@ -1,5 +1,5 @@
 // ---------- core: constants, palette, easing, ink primitives, light, texture, type (see DESIGN_BIBLE.md) ----------
-const W = 1920, H = 1080, TAU = Math.PI * 2, FPS = 30;
+const W = 1920, H = 1080, TAU = Math.PI * 2, FPS = 60;
 const INK = '#1b1819', LW = 4.6, LW_S = 2.6;
 const P = {
   paper: '#efe6cf', cream: '#f3dfb2', parch: '#e6e1c6',
