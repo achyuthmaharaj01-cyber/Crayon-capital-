@@ -1,0 +1,20 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:Kalam;font-weight:700;src:url(fonts/kalam-latin-700-normal.woff2)}@font-face{font-family:Caveat;font-weight:700;src:url(fonts/caveat-latin-700-normal.woff2)}
+body{margin:0;background:#000}</style></head><body><canvas id="c" width="1920" height="1080"></canvas>
+<script src="core.js"></script><script src="rig.js"></script><script>
+const c=document.getElementById('c').getContext('2d');
+window.drawCast=()=>{vgrad(c,0,0,W,H,'#3c3a62','#8e5f7a');rect(c,-10,760,W+20,330,P.wood,LW);pool(c,960,780,900,160,P.glow,.25);
+const t=1.3;
+person(c,{x:220,y:820,t,skin:P.skin2,coat:'#2c2a33',collar:'dutch',hat:'capotain',hair:'side',expr:'neutral',seed:2});
+person(c,{x:480,y:820,t,skin:P.skin2,coat:'#2c2a33',collar:'dutch',hat:'capotain',hair:'side',expr:'grin',seed:2,arms:{r:[2.3,.2]}});
+person(c,{x:740,y:820,t,skin:P.skin2,coat:'#2c2a33',collar:'dutch',hat:'capotain',hair:'side',expr:'shock',seed:2,arms:{l:[2.6,-.1],r:[2.6,-.1]}});
+person(c,{x:1000,y:820,t,skin:P.skin1,coat:'#5b4334',collar:'dutch',hair:'tufts',wrinkles:1,expr:'serious',mustache:'#e9e6df',seed:4});
+person(c,{x:1250,y:820,t,skin:P.skin1,coat:'#6d3b3b',apron:'#e8e2d0',hat:'cap',hair:'bun',hairCol:'#6a4a2e',expr:'worried',blush:1,seed:5,talk:.7});
+person(c,{x:1500,y:820,t,blank:1,coat:'#4a5368',collar:'dutch',hat:'capotain',seed:6});
+person(c,{x:1720,y:820,t:2,legs:'walk',walk:1.2,skin:P.skin3,coat:'#3f4f3a',hat:'beret',hatCol:'#7a2e2e',expr:'sad',noseCol:'#c9707a',seed:7});
+dog(c,{x:330,y:1000,t,s:1.2});dog(c,{x:650,y:1000,t,s:1.2,sit:1,mood:'sad',tilt:.2});
+person(c,{x:1100,y:1060,t,s:.6,legs:'sit',skin:P.skin2,coat:'#2c2a33',collar:'dutch',hat:'capotain',hair:'side',expr:'sad',seed:2});
+hand(c,'Haarlem, 1636',60,70,76,'#fff',{align:'left'});bubble(c,'Tulips!',1250,360,1250,470,1);
+hand(c,'Pieter',300,330,60);arrow(c,300,360,250,430,30,1);finish(c,1);}
+window.READY=document.fonts.load('700 40px Kalam').then(()=>document.fonts.load('700 40px Caveat'));
+</script></body></html>
