@@ -1,0 +1,8 @@
+build/
+contact/
+sound/sfx/
+sound/music/
+sound/events.json
+out/*.mp4
+*.tmp
+*.log
