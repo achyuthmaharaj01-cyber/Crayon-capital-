@@ -14,11 +14,16 @@ The engine and its rules live in `crayon_style/`. **Read `crayon_style/DESIGN_BI
 4. Run the quality gate before you render:
    - `node contact.js DIR`: stills of every shot. Check that characters fill 45–60% of the frame height, that subtitles stay off faces, and that nothing is clipped.
    - `node strips.js DIR`: 9 frames across every transition. Check for no ghosting, no grey or black mush, and that anchors line up.
-5. Run `./make_video.sh` to render at 60 fps (resumable), mix to −14 LUFS and encode. It never overwrites an older video.
+5. Run `./make_video.sh` to render at 60 fps with 180° shutter motion blur (4 sub-frames per frame, resumable), mix to −14 LUFS and encode. It never overwrites an older video. Do not drop to 30 fps or turn the blur off to save time; that is what makes motion look like an animated film.
 6. Log what failed and what you changed in the bible's §10 generation log, and fix it in the engine (rig, sets, transitions) rather than per shot, so the next video starts better.
+
+## Rules users have asked for (do not regress)
+- No hard cuts unless the bible's §7 table calls for one. Keep the camera tracking and the transition styles as they are.
+- Teeth: clip to the mouth, use exactly 4 gap-centred tooth lines, re-ink the lip on top, and drop the grin below a mustache. Check any grin at 3x zoom (`node snap.js`).
+- Smoothness: 60 fps, `SHUTTER = .5`, `SAMPLES = 4`, `SMEAR_K = .5`, and interpolated `VOENV`.
 
 ## Where things are
 - `web/rig.js`: `person()` and `dog()`. `web/sets.js`: props and sets. `web/core.js`: palette, ink, light, type, `FPS`.
-- `web/film.js`: cues, camera (`camNat`), compositor, subtitles, `panel()` (split screens and collages).
+- `web/film.js`: cues, camera (`camNat`), compositor, subtitles, `panel()` (split screens and collages), and the shutter motion blur in `frameJPG`.
 - `web/transitions.js`: `TRANS.*` (cut, jump, smash, match, morph, dip, dissolve, additive, whip, crossZoom, slide, push, windowPush, wipe, iris, pageTurn, passing, glitch, lightLeak, paperTear, handDrawn, split).
 - Setup: `pip install kokoro-onnx faster-whisper soundfile pyloudnorm`, the Kokoro models in `~/models`, then `sound/fetch.sh`.

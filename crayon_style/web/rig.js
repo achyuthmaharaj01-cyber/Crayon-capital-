@@ -110,15 +110,16 @@ function face(c, o, r, t, seed) {
   if (o.mustache) { c.beginPath(); c.moveTo(0, r * .26); c.quadraticCurveTo(-r * .22, r * .18, -r * .36, r * .34); c.quadraticCurveTo(-r * .18, r * .4, 0, r * .3); c.quadraticCurveTo(r * .18, r * .4, r * .36, r * .34); c.quadraticCurveTo(r * .22, r * .18, 0, r * .26); ink(c, o.mustache, 2.4); }
   if (o.beard) { c.beginPath(); c.moveTo(-r * .16, r * .5); c.quadraticCurveTo(0, r * .9, r * .16, r * .5); c.quadraticCurveTo(0, r * .58, -r * .16, r * .5); ink(c, o.beard, 2.4); }
   // mouth
-  const my = r * .4 + (o.mustache ? r * .06 : 0), tk = clamp(o.talk || 0);
+  const my = r * .4 + (o.mustache ? (o.expr === 'grin' ? r * .14 : r * .06) : 0), tk = clamp(o.talk || 0);
   if (tk > .12 && expr !== 'shock') { ell(c, 0, my, r * .1 + tk * r * .03, r * .03 + tk * r * .1, '#5a1e22', 3); }
   else if (expr === 'shock') ell(c, 0, my + r * .04, r * .1, r * .13 + tk * r * .05, '#5a1e22', 3);
   else if (expr === 'grin') { // teeth: fill, CLIP to the mouth, draw tooth lines inside only, then re-ink the lip on top (bible §4)
     const mouth = () => { c.beginPath(); c.moveTo(-r * .28, my - r * .06); c.quadraticCurveTo(0, my + r * .3, r * .28, my - r * .06); c.quadraticCurveTo(0, my - r * .01, -r * .28, my - r * .06); c.closePath(); };
     mouth(); ink(c, '#fbfaf4', 0);
     c.save(); mouth(); c.clip();
-    ln(c, -r * .3, my + r * .045, r * .3, my + r * .045, 1.5, '#9c948a');
-    for (let i = -2; i <= 2; i++) ln(c, i * r * .085, my - r * .08, i * r * .085, my + r * .2, 1.5, '#9c948a');
+    // gum line + 4 tooth lines: centred on a gap (two front teeth), kept away from the narrow corners
+    ln(c, -r * .3, my + r * .05, r * .3, my + r * .05, 1.4, '#a39b90');
+    for (const x of [-.17, -.06, .06, .17]) { const lim = .3 - Math.abs(x) * 1.4; ln(c, x * r, my - r * .02, x * r, my + r * lim * .62, 1.4, '#a39b90'); }
     c.restore(); mouth(); ink(c, null, 3.2); }
   else if (expr === 'happy') curve(c, -r * .2, my - r * .04, 0, my + r * .2, r * .2, my - r * .04, 3.6);
   else if (expr === 'smug' || expr === 'sly') curve(c, -r * .16, my + r * .02, r * .06, my + r * .1, r * .2, my - r * .07, 3.6);

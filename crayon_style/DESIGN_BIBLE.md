@@ -64,7 +64,7 @@ Proportions in head-radius units (r):
 | Hats | Top hat, bowler: drawn last, sitting on the head and slightly tilted. |
 | Extras / crowd | Same rig with a **blank face** (no features), light grey #cfcfd2 or white head; this keeps the eye on named characters. |
 | Glasses | Thin rectangular frames, ink 3 px, with a white glint. |
-| Teeth (grin) | Mouth is a closed lip shape (upper lip curve + lower lip curve). Fill it off-white, **clip to the mouth shape**, then draw the tooth lines (1.5 px, warm grey `#9c948a`, never ink-black): one horizontal gum line and 4–5 verticals. Re-ink the lip outline **on top** (3.2 px). Tooth lines must never cross or poke past the lip line. |
+| Teeth (grin) | Mouth is a closed lip shape (upper lip curve + lower lip curve). Fill it off-white and **clip to the mouth shape**. Inside the clip, draw one gum line plus **exactly 4** tooth lines at ±0.06 r and ±0.17 r. They are centred on a gap (two front teeth, never a line down the middle), 1.4 px, warm grey `#a39b90`, never ink-black. Each line gets shorter toward the corners so nothing crowds the narrow ends. Re-ink the lip outline **on top** (3.2 px) so it covers where the lines meet it. Tooth lines never cross or poke past the lip line. With a mustache, the grin sits 0.14 r lower so the mustache never overlaps the teeth. Check at 3x zoom before shipping. |
 
 ### Personality through minimal means
 - **Protagonist**: neutral-serious resting face, slightly lowered brows; the expression changes on the key word only.
@@ -131,7 +131,7 @@ Rules:
 2. Camera motion carries through (the outgoing direction = the incoming direction) for `whip`, `push`, `slide`, `crossZoom`, `windowPush` and `match`.
 3. Big effect transitions (`glitch`, `smash`, `lightLeak`, `paperTear`) carry meaning; at most one per minute of video.
 4. Every transition gets its own sound (whoosh, page, paper, tick, glitch burst, hit).
-5. **Render at 60 fps.** Camera tracking stays exactly as designed (keyed framings eased together plus a slow push and drift); 60 fps doubles the motion samples so pans, pushes and whips read smooth.
+5. **Render at 60 fps, with film motion blur.** Camera tracking and transitions stay exactly as designed (keyed framings eased together plus a slow push and drift). Every output frame averages **4 sub-frames over a 180° shutter** (half the frame interval), as a film camera does, so pans, pushes, walks and whips blur naturally and still areas stay crisp. Whip pans halve their built-in smear (`SMEAR_K = .5`), because the shutter supplies the rest. The lip-sync envelope is interpolated, so mouths move on every frame, not every other. Settings: `FPS` in `web/core.js`, and `SHUTTER`/`SAMPLES` in `web/film.js`.
 
 ## 8. Sound
 Voice first. Music bed ~20 dB under the voice and ducked during speech. Soft whooshes on whips and pushes, pops on prop arrivals, room tone in interiors. Final mix at −14 LUFS with a −1 dBFS ceiling.
@@ -150,4 +150,5 @@ Voice first. Music bed ~20 dB under the voice and ducked during speech. Soft who
 | v3 result | `out/tulip_mania_v1.mp4` 50.7 s 1080p30. ffmpeg scene detection: **0 hard cuts** (max frame-to-frame score 0.145; threshold 0.25; refs had 210 and 314). −14.0 LUFS | |
 | v4 | Teeth clipped inside the lip line (rule in §4). Transition library: 21 types in `web/transitions.js`, chosen by scene (table in §7); split screen and photo collage via `panel()`. Render at **60 fps**. Fixed a v1 cue bug (`cue('L4','one',1)` never existed, so the pot handoff fired at line start). Mixer: fade length clamps to short effects | user notes on v3 |
 | v4 result | `out/tulip_mania_v2.mp4` 50.7 s, 1080p, **60 fps**, 17 shots, 16 transitions of 15 kinds, −14.0 LUFS | |
+| v5 | **Teeth**: 4 gap-centred tooth lines that shorten toward the corners, clipped, lip re-inked on top; grin drops below a mustache (§4). **Smoothness**: 60 fps plus 180° shutter motion blur (4 sub-frames per frame), whip smear halved to match, interpolated lip sync (§7.5). Camera and transitions unchanged | user: teeth lines poked out of the mouth; keep camera and transitions, make it look like a 60 fps animated film |
 | next | Chart labels should pop when the line reaches the point, not on the word; make the "missing buyer" ghost outline stronger; add a foreground-wipe transition type; add room tone | v3 review |

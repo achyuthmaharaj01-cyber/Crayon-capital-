@@ -54,13 +54,14 @@ function panel(c, s, t, cam, x, y, w, h, o = {}) {
   c.restore();
 }
 function toScreen(cam, x, y) { cam = clampCam(cam); return [(x - cam.x) * cam.z + W / 2, (y - cam.y) * cam.z + H / 2]; }
-function smear(c, img, dx, vx, alpha = 1) { // proper averaged smear: draw n copies at decreasing alpha 1/(k+1)
+function smear(c, img, dx, vx, alpha = 1) { vx *= SMEAR_K; // shutter blur already adds half the streak
+  // proper averaged smear: draw n copies at decreasing alpha 1/(k+1)
   const n = Math.max(1, Math.min(16, Math.ceil(Math.abs(vx) / 24)));
   c.globalAlpha = alpha; c.drawImage(img, dx - vx / 2, 0);
   for (let k = 1; k < n; k++) { c.globalAlpha = alpha / (k + 1); c.drawImage(img, dx - vx / 2 + vx * k / (n - 1), 0); }
   c.globalAlpha = 1;
 }
-const SFX = [];
+const SFX = []; const SMEAR_K = .5;
 // ---- the compositor
 function render(t) {
   const c = document.getElementById('c').getContext('2d'); c.setTransform(1, 0, 0, 1, 0, 0); c.globalAlpha = 1;
@@ -105,5 +106,16 @@ function subtitles(c, t) {
   const a = smooth((t - ch.s + .05) / .14) * (1 - smooth((t - ch.e + .12) / .12));
   c.save(); c.globalAlpha = a; hand(c, ch.words.join(' '), W / 2, y + (1 - a) * 6, 60, '#fbf8ef', { stroke: 7, strokeCol: 'rgba(22,16,22,.82)' }); c.restore();
 }
-window.frameJPG = (i, q = .92) => { render(i / FPS); return document.getElementById('c').toDataURL('image/jpeg', q); };
+// 180-degree shutter motion blur (bible §7): each output frame averages SAMPLES sub-frames spread over half the
+// frame interval, like a film camera. Camera moves, whips and walks get real blur; still areas are unchanged.
+const SHUTTER = .5, SAMPLES = 4, ACC = document.createElement('canvas'); ACC.width = W; ACC.height = H;
+window.frameJPG = (i, q = .92) => {
+  const main = document.getElementById('c'), a = ACC.getContext('2d');
+  for (let k = 0; k < SAMPLES; k++) {
+    render((i + (SAMPLES > 1 ? (k / (SAMPLES - 1) - .5) * SHUTTER : 0)) / FPS);
+    a.globalAlpha = 1 / (k + 1); a.drawImage(main, 0, 0);   // running average
+  }
+  a.globalAlpha = 1; const m = main.getContext('2d'); m.setTransform(1, 0, 0, 1, 0, 0); m.globalAlpha = 1; m.drawImage(ACC, 0, 0);
+  return main.toDataURL('image/jpeg', q);
+};
 window.frameAt = t => render(t);
