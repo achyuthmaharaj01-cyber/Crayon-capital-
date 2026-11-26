@@ -1,4 +1,4 @@
-// ---------- film: word cues, shot timeline, camera, compositor (transitions live in transitions.js) ----------
+// ---------- film: word cues, shot timeline, camera, transition compositor (bible §7: no hard cuts) ----------
 const LINES = {}; VO.lines.forEach(l => LINES[l.id] = l);
 const normW = s => String(s).toLowerCase().replace(/[^a-z0-9]/g, '');
 const MISSING = new Set();
@@ -32,26 +32,15 @@ function lerpCam(a, b, u) { // zoom interpolated in log space so zoom-throughs f
   return { x: lerp(a.x, b.x, u), y: lerp(a.y, b.y, u), z: Math.exp(lerp(Math.log(a.z), Math.log(b.z), u)) };
 }
 // ---- offscreen buffers
-const BUF = [0, 1, 2, 3, 4].map(() => { const b = document.createElement('canvas'); b.width = W; b.height = H; return b; });
+const BUF = [0, 1, 2].map(() => { const b = document.createElement('canvas'); b.width = W; b.height = H; return b; });
 function mkT(s, t) { const lt = t - s.start; return { t, lt, s, at: (tt, d = .5) => clamp((t - tt) / d), since: tt => t - tt }; }
 function drawShot(buf, s, t, cam) {
   const c = buf.getContext('2d'); c.setTransform(1, 0, 0, 1, 0, 0); c.globalAlpha = 1; c.globalCompositeOperation = 'source-over';
   c.fillStyle = '#000'; c.fillRect(0, 0, W, H);
   cam = clampCam(cam); c.translate(W / 2, H / 2); c.scale(cam.z, cam.z); c.translate(-cam.x, -cam.y);
-  if (s.custom) { c.setTransform(1, 0, 0, 1, 0, 0); s.custom(c, mkT(s, t), cam); } else s.set(c, mkT(s, t));
-  c.setTransform(1, 0, 0, 1, 0, 0);
-  if (s.overlay && !drawShot.bare) s.overlay(c, mkT(s, t), cam);
+  s.set(c, mkT(s, t)); c.setTransform(1, 0, 0, 1, 0, 0);
+  if (s.overlay) s.overlay(c, mkT(s, t), cam);
   finish(c, s.seed); return cam;
-}
-// render shot s with camera cam into a panel rect of canvas c (used by split screens and collages)
-function panel(c, s, t, cam, x, y, w, h, o = {}) {
-  const buf = BUF[o.buf ?? 3]; drawShot.bare = true; drawShot(buf, s, t, cam); drawShot.bare = false;
-  c.save(); c.translate(x + w / 2, y + h / 2); c.rotate(o.rot || 0);
-  if (o.photo) { c.shadowColor = 'rgba(0,0,0,.55)'; c.shadowBlur = 30; c.shadowOffsetY = 10; c.fillStyle = '#f3ecdc'; c.fillRect(-w / 2 - 14, -h / 2 - 14, w + 28, h + 28 + (o.caption ? 60 : 0)); c.shadowColor = 'transparent'; }
-  const sw = W * h / H > w ? w * H / h : W, sh = sw * h / w; c.drawImage(buf, (W - sw) / 2, (H - sh) / 2, sw, sh, -w / 2, -h / 2, w, h);
-  c.lineWidth = o.photo ? 3 : 8; c.strokeStyle = o.photo ? 'rgba(60,45,35,.6)' : '#f3ecdc'; c.strokeRect(-w / 2, -h / 2, w, h);
-  if (o.caption) hand(c, o.caption, 0, h / 2 + 44, 50, INK, { shadow: false });
-  c.restore();
 }
 function toScreen(cam, x, y) { cam = clampCam(cam); return [(x - cam.x) * cam.z + W / 2, (y - cam.y) * cam.z + H / 2]; }
 function smear(c, img, dx, vx, alpha = 1) { vx *= SMEAR_K; // shutter blur already adds half the streak
@@ -81,8 +70,43 @@ function render(t) {
   if (t < .5) { c.fillStyle = `rgba(0,0,0,${1 - smooth(t / .5)})`; c.fillRect(0, 0, W, H); }
 }
 function composite(c, tr, t) {
-  const X = { ...tr, t, cA0: camNat(tr.A, tr.t0), cB1: camNat(tr.B, tr.t1) };
-  (TRANS[tr.o.type] || TRANS.dissolve)(c, X); c.globalAlpha = 1; c.globalCompositeOperation = 'source-over'; c.filter = 'none';
+  const { A, B, o, u, t0, t1 } = tr;
+  const cA0 = camNat(A, t0), cB1 = camNat(B, t1);
+  if (o.type === 'push') { // fly into a window in A; B is mapped to the window's width so it lands exactly full-frame (no fade, no ghost)
+    const win = o.win, fz = W / win.w, tgt = { x: win.x + win.w / 2, y: win.y + win.h / 2, z: fz };
+    const k = ease(u); const cam = lerpCam(cA0, tgt, k);
+    const cA = drawShot(BUF[0], A, t, cam); c.drawImage(BUF[0], 0, 0);
+    const [x0, y0] = toScreen(cA, win.x, win.y), [x1, y1] = toScreen(cA, win.x + win.w, win.y + win.h);
+    const bw = x1 - x0, bh = bw * H / W, bx = x0, by = (y0 + y1) / 2 - bh / 2;
+    drawShot(BUF[1], B, t, lerpCam({ ...cB1, z: cB1.z * .9 }, cB1, k));
+    c.save(); c.beginPath(); c.rect(x0, y0, x1 - x0, y1 - y0); c.clip(); c.globalAlpha = smooth(clamp(u * 3 - .3)); c.drawImage(BUF[1], bx, by, bw, bh); c.restore();
+    // warm window light blooms as we pass through it
+    const bl = Math.sin(clamp((u - .55) / .45) * Math.PI) * .35; if (bl > 0) { c.save(); c.globalAlpha = bl; c.globalCompositeOperation = 'screen'; c.fillStyle = '#ffd98a'; c.fillRect(0, 0, W, H); c.restore(); }
+    return;
+  }
+  if (o.type === 'match') { // ease into anchor a, hold both shapes in register through the blend, ease out of anchor b
+    const S = o.size || 420; const ta = frameOn(o.a[0], o.a[1], o.a[2], S), tb = frameOn(o.b[0], o.b[1], o.b[2], S);
+    const h0 = .4, h1 = .6, hold = k => 1 + .06 * k;      // shared slow push while held in register
+    const hk = clamp((u - h0) / (h1 - h0));
+    let camA, camB;
+    if (u < h0) camA = lerpCam(cA0, ta, ease(u / h0)); else camA = { ...ta, z: ta.z * hold(hk) };
+    if (u > h1) camB = lerpCam({ ...tb, z: tb.z * hold(1) }, cB1, ease((u - h1) / (1 - h1))); else camB = { ...tb, z: tb.z * hold(hk) };
+    if (u < h1) drawShot(BUF[0], A, t, camA); if (u > h0) drawShot(BUF[1], B, t, camB);
+    if (u <= h0) c.drawImage(BUF[0], 0, 0); else if (u >= h1) c.drawImage(BUF[1], 0, 0);
+    else { c.drawImage(BUF[0], 0, 0); c.globalAlpha = smooth(hk); c.drawImage(BUF[1], 0, 0); c.globalAlpha = 1; }
+    return;
+  }
+  if (o.type === 'whip') { // real whip pan: A and B sit side by side on one strip; blur scales with speed but is capped
+    const dir = o.dir || 1, k = ease(u), dk = ease(Math.min(1, u + .04)) - ease(Math.max(0, u - .04));
+    const v = Math.min(170, dk / .08 * W * .05);
+    drawShot(BUF[0], A, t, camNat(A, Math.min(t, A.end))); drawShot(BUF[1], B, t, camNat(B, t));
+    c.fillStyle = '#000'; c.fillRect(0, 0, W, H);
+    smear(c, BUF[0], -dir * k * W, -dir * v); smear(c, BUF[1], dir * (1 - k) * W, -dir * v);
+    return;
+  }
+  // dissolve: both keep moving the same way; long and soft
+  drawShot(BUF[0], A, t, camNat(A, t)); drawShot(BUF[1], B, t, camNat(B, t));
+  c.drawImage(BUF[0], 0, 0); c.globalAlpha = smooth(u); c.drawImage(BUF[1], 0, 0); c.globalAlpha = 1;
 }
 function irisOut(c, t, o) {
   if (t < o.t0) return; const u = clamp((t - o.t0) / o.d); const R = lerp(Math.hypot(W, H) / 2 + 40, 0, ease(u));

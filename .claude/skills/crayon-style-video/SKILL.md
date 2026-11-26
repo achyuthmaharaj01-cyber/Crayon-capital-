@@ -10,7 +10,8 @@ The engine and its rules live in `crayon_style/`. **Read `crayon_style/DESIGN_BI
 ## Make a new video
 1. Put the narration lines in `crayon_style/script.json`. Run `python3 voice/tts.py && python3 build_data.py` to get the voice, word times and lip-sync envelope.
 2. Write `web/shots.js`. Build one scene function per set and one `shot()` per beat. Several shots can share a scene with different `cams`. Key every beat and every `out` transition to a spoken word with `cue(line, word)`.
-3. Pick each transition from the bible's §7 table by what the scene is doing. Do not repeat one back to back. Give each a sound in `SFX`.
+3. Use only the bible's §7 transitions (`push`, `match`, `whip`, `dissolve`, plus the iris ending). No hard cuts, split screens or inset panels. Give each one a sound in `SFX`.
+   - When a line names something already in the frame ("a loyal dog"), push the camera in on it on that word, in the same shot. Do not add a panel. Frame the subject alone, with nobody cut by the edge.
 4. Run the quality gate before you render:
    - `node contact.js DIR`: stills of every shot. Check that characters fill 45–60% of the frame height, that subtitles stay off faces, and that nothing is clipped.
    - `node strips.js DIR`: 9 frames across every transition. Check for no ghosting, no grey or black mush, and that anchors line up.
@@ -18,12 +19,12 @@ The engine and its rules live in `crayon_style/`. **Read `crayon_style/DESIGN_BI
 6. Log what failed and what you changed in the bible's §10 generation log, and fix it in the engine (rig, sets, transitions) rather than per shot, so the next video starts better.
 
 ## Rules users have asked for (do not regress)
-- No hard cuts unless the bible's §7 table calls for one. Keep the camera tracking and the transition styles as they are.
+- Camera tracking and transitions are the ones from the first render (`out/tulip_mania_v1.mp4`, commit `b9f8faa`): no hard cuts, no split screens or panels, no extra transition types.
+- Small details matter: when the script names something on screen, the camera goes to it. Check every named beat in the contact sheet.
 - Teeth: clip to the mouth, use exactly 4 gap-centred tooth lines, re-ink the lip on top, and drop the grin below a mustache. Check any grin at 3x zoom (`node snap.js`).
 - Smoothness: 60 fps, `SHUTTER = .5`, `SAMPLES = 4`, `SMEAR_K = .5`, and interpolated `VOENV`.
 
 ## Where things are
 - `web/rig.js`: `person()` and `dog()`. `web/sets.js`: props and sets. `web/core.js`: palette, ink, light, type, `FPS`.
-- `web/film.js`: cues, camera (`camNat`), compositor, subtitles, `panel()` (split screens and collages), and the shutter motion blur in `frameJPG`.
-- `web/transitions.js`: `TRANS.*` (cut, jump, smash, match, morph, dip, dissolve, additive, whip, crossZoom, slide, push, windowPush, wipe, iris, pageTurn, passing, glitch, lightLeak, paperTear, handDrawn, split).
+- `web/film.js`: cues, camera (`camNat`), the transition compositor (`push`, `match`, `whip`, `dissolve`, and `irisEnd`), subtitles, and the shutter motion blur in `frameJPG`.
 - Setup: `pip install kokoro-onnx faster-whisper soundfile pyloudnorm`, the Kokoro models in `~/models`, then `sound/fetch.sh`.

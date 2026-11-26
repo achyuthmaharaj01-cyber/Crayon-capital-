@@ -1,4 +1,4 @@
-# Crayon Capital — Design Bible (v4)
+# Crayon Capital — Design Bible (v6)
 
 Reverse-engineered from two reference videos:
 - **REF-A** "J.P. Morgan: The Most Powerful Man in America" (16:40, 1280x720, 30 fps)
@@ -99,39 +99,19 @@ Proportions in head-radius units (r):
 ## 7. Camera and editing
 Measured shot lengths: **REF-A** median 4.1 s (p10 1.9 s, p90 7.7 s), 210 shots; **REF-B** median 2.6 s (p10 1.5 s, p90 4.2 s), 314 shots. Both use **hard cuts** almost everywhere, a slow 3–5% push on most shots, an occasional pan across a wide set, and short black text cards.
 
-### ⟶ OURS: transitions are chosen by what the scene is doing
-Instant cuts are allowed only when they are the joke or the beat: **jump** (to punch in) and **smash** (for the punchline). Everything else moves. Each transition lives in `web/transitions.js` as `TRANS.<name>`. A shot picks one with `out: { type, d, ... }`, and it fires on a spoken word.
+### ⟶ OURS: no hard cuts. Every shot change is one of:
+1. **Match cut (shape)**: the outgoing shot pushes into an anchor shape (a bulb, a coin, a clock face, a head). The incoming shot starts framed on a shape of the same size, position and silhouette, then blends across ~8 frames while both cameras keep moving.
+2. **Push-through**: the camera flies into a window, door or frame. The window's shape becomes a mask that grows to reveal the next scene.
+3. **Whip pan**: a 10–12 frame directional move, with motion blur from accumulated offset copies, that carries the same direction into the next shot.
+4. **Foreground wipe**: a character or object crosses the lens; the next shot is revealed behind its trailing edge.
+5. **Iris / light-out**: a circle closes on the subject (chapter ends only).
+6. **Morph-dissolve**: a slow 18–24 frame blend while both shots move the same way (used rarely, for time skips).
 
-| Type (`TRANS.*`) | What it does | Use it when | Tulip Mania |
-|---|---|---|---|
-| `cut` | Instant switch | Rarely, when a beat needs a dry beat | (in library) |
-| `jump` | Same scene, framing jumps tighter, then settles over 0.2 s | Several people talking: punch in on the key word | gossip, on "talking" |
-| `smash` | Hard cut with a white flash, a camera kick and a decaying shake | The punchline or a reveal | bulb → **onion** |
-| `match` | Ease into shape A, hold A and B in register through the blend, ease out of B | Two shapes rhyme (bulb ↔ bulb, face ↔ face) | bubble bulb → stage bulb |
-| `morph` | 0.35 s blend while each camera eases toward the other | Hiding a cut between two near-identical framings | chalkboard, on "then" |
-| `dip` (`col`) | Dip to black or white | Mood or time shift. White = cold or clean, black = ending | chart → winter (white) |
-| `dissolve` | Cross dissolve | Soft passage of time | (in library) |
-| `additive` | Film dissolve: the two images add, so the middle blooms | A warm "coming back" moment | collage → final bench |
-| `whip` | Side-by-side pan with blur capped at 170 px | Energy, "meanwhile", going out into the world | home → town |
-| `crossZoom` | Radial zoom blur in, arrives from the same rush | Diving into a detail or a number | bulb → the scale |
-| `slide` / `push` | B slides over A / B pushes A out | Lists, "next", side-by-side ideas | (in library) |
-| `windowPush` | Fly into a window or frame; B lands exactly full-frame | Entering a building or a screen | street → Pieter's room |
-| `wipe` (`shape: line/barn/clock`) | Line wipe with an ink edge, barn doors, or a clock sweep | `clock` = hours pass. `barn` = a reveal. `line` = a neutral move | winter: the hours of waiting (clock) |
-| `iris` (`shape: circle/diamond/box`) | Shape closes A and opens B | Chapter ends, a spotlight on one subject | final iris on Pieter |
-| `pageTurn` | The frame peels from a corner like a book page | "So…", a new chapter of the story | scale → the sale |
-| `passing` | A big blurred foreground passer-by crosses the lens; B is revealed behind them | Changing angle within a busy street scene | the sale → the trader |
-| `glitch` | Pixelate + RGB split + slipping slices | Something breaks: a crash, a hack, a lie | winter → "Overnight" (the crash) |
-| `lightLeak` | Warm film flare and edge burn sweep across under a dissolve | Euphoria, nostalgia, success | the sale → "he is a genius" |
-| `paperTear` | Frame tears down a jagged line; the halves fall away | Collapse, the story breaking | onion → the bench |
-| `handDrawn` | B is painted in with ink-brush zigzags led by a nib | Recaps, notes, "the lesson" | bench → collage |
-| `split` + `panel()` | Split screen / collage: any shot rendered into a panel or a pinned photo | Showing two things at once, or a recap | "a loyal dog" split; the recap collage |
+Rules: camera motion is continuous across every transition (the outgoing direction = the incoming direction). Easing is cubic in-out, and no shot is fully static (min push 2%, drift 8 px/s). Every transition fires on a spoken word.
 
-Rules:
-1. Never use the same transition twice in a row, and never more than three times in a video, except `match` and `jump`.
-2. Camera motion carries through (the outgoing direction = the incoming direction) for `whip`, `push`, `slide`, `crossZoom`, `windowPush` and `match`.
-3. Big effect transitions (`glitch`, `smash`, `lightLeak`, `paperTear`) carry meaning; at most one per minute of video.
-4. Every transition gets its own sound (whoosh, page, paper, tick, glitch burst, hit).
-5. **Render at 60 fps, with film motion blur.** Camera tracking and transitions stay exactly as designed (keyed framings eased together plus a slow push and drift). Every output frame averages **4 sub-frames over a 180° shutter** (half the frame interval), as a film camera does, so pans, pushes, walks and whips blur naturally and still areas stay crisp. Whip pans halve their built-in smear (`SMEAR_K = .5`), because the shutter supplies the rest. The lip-sync envelope is interpolated, so mouths move on every frame, not every other. Settings: `FPS` in `web/core.js`, and `SHUTTER`/`SAMPLES` in `web/film.js`.
+**Camera follows the words, inside the frame.** When the narration names something that is already in the scene (the dog, the house, a prop), the camera **pushes in on it** in that same shot, on that word. Never add a split screen, inset or extra panel to show something the frame already holds. Frame the subject alone: everyone else is fully in frame or fully out, never cut by the edge, and nothing pokes in from outside (a stray arm, a half head). When the camera moves back, it settles where the subject that just left is fully out of frame.
+
+**Render at 60 fps, with film motion blur.** This does not change the camera tracking or the transitions above. Every output frame averages **4 sub-frames over a 180° shutter** (half the frame interval), as a film camera does, so pans, pushes, walks and whips blur naturally and still areas stay crisp. Whip pans halve their built-in smear (`SMEAR_K = .5`), because the shutter supplies the rest. The lip-sync envelope is interpolated, so mouths move on every frame. Settings: `FPS` in `web/core.js`, and `SHUTTER`/`SAMPLES` in `web/film.js`.
 
 ## 8. Sound
 Voice first. Music bed ~20 dB under the voice and ducked during speech. Soft whooshes on whips and pushes, pops on prop arrivals, room tone in interiors. Final mix at −14 LUFS with a −1 dBFS ceiling.
@@ -148,7 +128,8 @@ Voice first. Music bed ~20 dB under the voice and ducked during speech. Soft who
 | v2 | Cameras ~1.5x tighter (characters now 45–60% of frame height); date card hides its duplicate subtitle; pot arrives *with* the trader; scale counts to 10; chart label moved off the title; chalk smudge cut to 3.5% | gen-1 stills: characters at ~30% of frame read as tiny next to the refs |
 | v3 | **Match cut** now eases into anchor A, holds both shapes in register for the blend, then eases out of anchor B (was crossfading mid-move = ghosting). **Push-through** maps the next shot to the window's width so it lands exactly full-frame (no fade). **Whip** is a true side-by-side pan with blur capped at 170 px (was a grey smear for ~6 frames). Chart→winter time-skip uses a dissolve. Subtitles get a soft dark stroke so they read on snow | gen-2 transition strips |
 | v3 result | `out/tulip_mania_v1.mp4` 50.7 s 1080p30. ffmpeg scene detection: **0 hard cuts** (max frame-to-frame score 0.145; threshold 0.25; refs had 210 and 314). −14.0 LUFS | |
-| v4 | Teeth clipped inside the lip line (rule in §4). Transition library: 21 types in `web/transitions.js`, chosen by scene (table in §7); split screen and photo collage via `panel()`. Render at **60 fps**. Fixed a v1 cue bug (`cue('L4','one',1)` never existed, so the pot handoff fired at line start). Mixer: fade length clamps to short effects | user notes on v3 |
-| v4 result | `out/tulip_mania_v2.mp4` 50.7 s, 1080p, **60 fps**, 17 shots, 16 transitions of 15 kinds, −14.0 LUFS | |
+| v4 | Teeth clipped inside the lip line (rule in §4). Render at 60 fps. Fixed a v1 cue bug (`cue('L4','one',1)` never existed, so the pot handoff fired at line start). Mixer: fade length clamps to short effects | user notes on v3 |
 | v5 | **Teeth**: 4 gap-centred tooth lines that shorten toward the corners, clipped, lip re-inked on top; grin drops below a mustache (§4). **Smoothness**: 60 fps plus 180° shutter motion blur (4 sub-frames per frame), whip smear halved to match, interpolated lip sync (§7.5). Camera and transitions unchanged | user: teeth lines poked out of the mouth; keep camera and transitions, make it look like a 60 fps animated film |
+| v6 | **Camera and transitions restored to v3 (the first render)**: the transition library, split screens and panels were removed (`web/transitions.js` deleted, `film.js`/`shots.js` back to the v3 compositor). Kept: teeth (§4), 60 fps + shutter blur, interpolated lip sync, pot-handoff cue fix. **Dog beat**: on "a loyal dog" the camera pushes in to 2.6x on the dog, which is already in the room (no inset). The dog moved right so the close-up holds the dog alone; Pieter keeps his arm down so nothing pokes into the shot; the "bad idea" framing settles with the dog fully out of frame. Rule added to §7 | user: zoom into the dog, don't add a panel; transitions should match the first render |
+| v6 result | `out/tulip_mania_v4.mp4` 50.7 s, 1080p, 60 fps with motion blur, the same 10 shots and transitions as v3, −14 LUFS | |
 | next | Chart labels should pop when the line reaches the point, not on the word; make the "missing buyer" ghost outline stronger; add a foreground-wipe transition type; add room tone | v3 review |
