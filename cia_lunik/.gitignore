@@ -6,3 +6,4 @@ sound/events.json
 out/*.mp4
 *.tmp
 *.log
+__pycache__/
