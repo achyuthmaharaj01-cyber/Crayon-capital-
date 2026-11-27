@@ -1,0 +1,10 @@
+build/
+contact/
+sound/sfx/
+sound/music/
+sound/events.json
+out/*.mp4
+*.tmp
+*.log
+voice/narration.wav
+voice/transcribe.log

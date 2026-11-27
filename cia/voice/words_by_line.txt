@@ -1,0 +1,332 @@
+S001 [0.00-7.10] Late in 1959, a flatbed truck crawled through evening traffic, most likely in Mexico City.
+   Late@0.00 in@0.32 1959,@0.58 a@1.98 flatbed@2.06 truck@2.58 crawled@3.06 through@3.58 evening@4.00 traffic,@4.40 most@5.36 likely@5.58 in@6.00 Mexico@6.34 City.@6.66
+S002 [8.02-11.12] On its back was a wooden crate nearly twenty feet long.
+   On@8.02 its@8.18 back@8.38 was@8.68 a@8.90 wooden@9.06 crate@9.30 nearly@9.68 20@10.06 feet@10.50 long.@10.74
+S003 [12.48-14.30] Inside was a Soviet moon rocket.
+   Inside@12.48 was@12.48 a@12.90 Soviet@13.12 moon@13.56 rocket.@13.94
+S004 [15.18-17.56] The driver thought he was heading to a rail yard.
+   The@15.18 driver@15.34 thought@15.66 he@16.08 was@16.30 heading@16.42 to@16.64 a@16.90 rail@17.08 yard.@17.28
+S005 [18.32-19.44] He never got there.
+   He@18.32 never@18.56 got@18.86 there.@19.10
+S006 [20.30-22.74] At the last turn-off, the truck pulled over.
+   At@20.30 the@20.50 last@20.64 turnoff,@20.92 the@21.68 truck@21.84 pulled@22.10 over.@22.40
+S007 [23.38-25.20] A canvas was thrown over the crate.
+   A@23.38 canvas@23.56 was@23.94 thrown@24.16 over@24.48 the@24.78 crate.@24.96
+S008 [25.75-27.52] A new man climbed behind the wheel.
+   A@25.75 new@26.00 man@26.20 climbed@26.46 behind@26.76 the@27.10 wheel,@27.24
+S009 [28.28-32.38] And the original driver was led away to a hotel room, where he would spend the night.
+   and@28.28 the@28.36 original@28.46 driver@28.84 was@29.30 led@29.52 away@29.74 to@29.98 a@30.20 hotel@30.32 room,@30.66 where@31.28 he@31.46 would@31.62 spend@31.76 the@32.00 night.@32.16
+S010 [33.20-36.38] The CIA had just stolen a piece of the Soviet space program.
+   The@33.20 CIA@33.40 had@33.78 just@34.16 stolen@34.36 a@34.64 piece@34.86 of@35.06 the@35.28 Soviet@35.38 space@35.68 program.@35.94
+S011 [37.00-46.32] Now it had one night to take it apart, photograph every piece, and put it all back, before a Soviet official arrived at seven the next morning to check it in.
+   Now@37.00 it@37.26 had@37.46 one@37.62 night@37.98 to@38.24 take@38.46 it@38.66 apart,@38.80 photograph@39.56 every@39.92 piece@40.42 and@40.80 put@41.12 it@41.28 all@41.40 back,@41.62 before@42.38 a@42.78 Soviet@43.02 official@43.36 arrived@43.82 at@44.34 7@44.58 the@44.86 next@45.04 morning@45.28 to@45.54 check@45.78 it@45.96 in.@46.10
+S012 [47.00-49.02] This is the story of how they did it.
+   This@47.00 is@47.28 the@47.50 story@47.68 of@47.98 how@48.32 they@48.48 did@48.62 it.@48.78
+S013 [49.80-54.34] To understand why the CIA would take that risk, you have to go back two years.
+   To@49.80 understand@49.96 why@50.40 the@50.78 CIA@50.96 would@51.32 take@51.64 that@51.86 risk,@52.08 you@52.40 have@52.98 to@53.18 go@53.34 back@53.46 two@53.66 years.@53.92
+S014 [55.08-61.12] In October 1957, the Soviet Union launched Sputnik, the first artificial satellite.
+   In@55.08 October@55.10 1957,@55.46 the@57.20 Soviet@57.20 Union@57.58 launched@57.94 Sputnik,@58.40 the@59.48 first@59.60 artificial@59.94 satellite.@60.50
+S015 [61.68-67.38] Then the race moved to the Moon, and in 1959 the Soviets won almost every round.
+   Then@61.68 the@61.88 race@62.06 moved@62.28 to@62.56 the@62.82 moon,@62.94 and@63.54 in@63.70 1959,@63.84 the@65.22 Soviets@65.32 won@65.64 almost@66.02 every@66.50 round.@67.02
+S016 [68.02-72.82] In January, Luna 1 became the first spacecraft to escape Earth's gravity.
+   In@68.02 January,@68.20 Luna@69.12 1@69.30 became@69.60 the@69.96 first@70.18 spacecraft@70.48 to@71.14 escape@71.56 Earth's@72.00 gravity.@72.48
+S017 [73.34-82.58] In March, America's Pioneer 4 tried to photograph the Moon, but it passed about 37,000 miles away, too far for its camera to work.
+   In@73.34 March,@73.62 America's@74.32 Pioneer@74.92 4@75.24 tried@75.66 to@76.16 photograph@76.42 the@76.84 moon,@77.08 but@77.36 it@77.86 passed@78.00 about@78.28 37@78.56 ,000@79.30 miles@79.84 away,@80.06 too@81.00 far@81.10 for@81.38 its@81.62 camera@81.76 to@82.06 work.@82.30
+S018 [83.18-89.38] In September, Luna 2 crashed into the lunar surface, the first human-made object ever to reach it.
+   In@83.18 September,@83.32 Luna@84.34 2@84.46 crashed@84.68 into@85.08 the@85.42 lunar@85.56 surface,@85.78 the@86.70 first@86.76 human@87.08 -made@87.46 object@87.74 ever@88.24 to@88.56 reach@88.84 it.@89.04
+S019 [89.82-98.08] And on October 4th, exactly two years after Sputnik, Luna 3 lifted off and sent back the first images of the Moon's far side.
+   And@89.82 on@90.00 October@90.14 4,@90.46 exactly@91.22 two@91.60 years@92.08 after@92.42 Sputnik,@92.78 Luna@93.48 3@93.66 lifted@93.98 off@94.38 and@94.70 sent@95.18 back@95.48 the@95.70 first@95.92 images@96.20 of@96.64 the@96.96 moon's@97.12 far@97.52 side.@97.68
+S020 [99.06-101.74] Western newspapers called these Soviet probes "Lunik."
+   Western@99.06 newspapers@99.06 called@99.48 these@99.90 Soviet@100.22 probes@100.78 Lunik.@101.20
+S021 [102.40-106.18] American intelligence could track the launches and intercept the radio signals.
+   American@102.40 intelligence@102.84 could@103.36 track@103.64 the@103.94 launches@104.26 and@104.46 intercept@104.74 the@105.20 radio@105.44 signals.@105.74
+S022 [106.90-109.58] But no American had ever laid hands on the hardware.
+   But@106.90 no@107.00 American@107.28 had@107.70 ever@107.98 laid@108.34 hands@108.54 on@108.86 the@109.06 hardware.@109.16
+S023 [110.28-114.70] Nobody knew which factories built it, how it was put together, or how many existed.
+   Nobody@110.28 knew@110.46 which@110.78 factories@111.04 built@111.50 it,@111.86 how@112.36 it@112.62 was@112.76 put@112.90 together,@113.08 or@113.62 how@113.78 many@113.96 existed.@114.18
+S024 [115.62-118.18] Then the Soviets did something no one expected.
+   Then@115.62 the@115.82 Soviets@116.02 did@116.28 something@116.58 no@117.02 one@117.46 expected.@117.66
+S025 [118.76-120.30] They sent one on a world tour.
+   They@118.76 sent@119.02 one@119.22 on@119.42 a@119.60 world@119.72 tour.@119.96
+S026 [120.92-127.78] In 1959, Moscow sent a huge exhibition of its industrial and economic achievements to several countries.
+   In@120.92 1959,@121.08 Moscow@122.66 sent@122.86 a@123.22 huge@123.44 exhibition@123.82 of@124.42 its@124.74 industrial@124.90 and@125.46 economic@125.72 achievements@126.20 to@126.72 several@127.00 countries.@127.36
+S027 [128.46-135.48] There was heavy machinery, displays on power stations and nuclear equipment, and a version even came to New York that summer.
+   There@128.46 was@128.62 heavy@128.76 machinery,@129.12 displays@130.14 on@130.48 power@130.76 stations@131.06 and@131.52 nuclear@131.80 equipment,@132.14 and@132.58 a@133.10 version@133.22 even@133.56 came@133.96 to@134.24 New@134.46 York@134.62 that@134.90 summer.@135.12
+S028 [136.20-140.24] The star attractions were the space vehicles: a Sputnik, and a Lunik.
+   The@136.20 star@136.32 attractions@136.64 were@137.18 the@137.44 space@137.62 vehicles,@137.94 a@138.74 Sputnik,@138.82 and@139.56 a@139.80 Lunik.@139.98
+S029 [140.86-143.16] Technically, the Lunik wasn't a satellite.
+   Technically,@140.86 the@141.60 Lunik@141.78 wasn't@142.10 a@142.60 satellite.@142.80
+S030 [143.82-152.20] It was the upper stage of a moon rocket, freshly painted, set on a pedestal, with three small windows cut into its nose so visitors could look inside.
+   It@143.82 was@143.90 the@144.02 upper@144.16 stage@144.44 of@144.76 a@145.04 moon@145.16 rocket,@145.36 freshly@146.06 painted,@146.30 set@147.00 on@147.24 a@147.38 pedestal,@147.52 with@148.24 three@148.42 small@148.76 windows@149.14 cut@149.64 into@149.92 its@150.22 nose@150.44 so@150.72 visitors@150.98 could@151.32 look@151.60 inside.@151.78
+S031 [152.94-155.62] Most American analysts assumed it was a mock-up.
+   Most@152.94 American@153.18 analysts@153.58 assumed@154.04 it@154.62 was@154.92 a@155.08 mock@155.22 -up.@155.42
+S032 [156.14-160.00] No government would parade its real space hardware in front of foreign spies.
+   No@156.14 government@156.36 would@156.72 parade@157.10 its@157.46 real@157.68 space@157.92 hardware@158.24 in@158.66 front@158.96 of@159.16 foreign@159.38 spies.@159.64
+S033 [160.00-162.26] But a few analysts weren't convinced.
+   But@160.00 a@160.78 few@160.92 analysts@161.08 weren't@161.48 convinced.@161.78
+S034 [162.76-172.26] So at one stop on the tour, after the exhibition closed, a group of U.S. intelligence officers quietly got access to the Lunik for about 24 hours.
+   So@162.76 at@162.94 one@163.02 stop@163.26 on@163.50 the@163.68 tour,@163.80 after@164.28 the@164.52 exhibition@164.68 closed,@165.06 a@166.16 group@166.20 of@166.42 US@166.62 intelligence@166.94 officers@167.92 quietly@168.58 got@169.06 access@169.52 to@169.98 the@170.20 Lunik@170.36 for@170.70 about@170.94 24@171.24 hours.@171.84
+S035 [172.90-176.16] They measured it, traced its wiring, and studied its structure.
+   They@172.90 measured@173.02 it,@173.36 traced@173.82 its@174.10 wiring,@174.34 and@174.96 studied@175.12 its@175.48 structure.@175.72
+S036 [176.78-179.58] The engine and most of the electronics had been removed.
+   The@176.78 engine@176.94 and@177.30 most@177.58 of@177.84 the@178.04 electronics@178.14 had@178.70 been@178.98 removed.@179.14
+S037 [180.26-182.24] But what remained was no prop.
+   But@180.26 what@180.48 remained@180.70 was@181.18 no@181.58 prop.@181.92
+S038 [183.00-186.98] It was a real, production-built Soviet space vehicle.
+   It@183.00 was@183.20 a@183.46 real,@183.70 production@184.22 -built@184.84 Soviet@185.22 space@186.00 vehicle.@186.48
+S039 [187.78-190.06] The problem was that one day wasn't enough.
+   The@187.78 problem@187.80 was@188.18 that@188.44 one@188.64 day@188.92 wasn't@189.22 enough.@189.68
+S040 [190.64-194.88] The officers had copied some markings, but not enough to work out who built it.
+   The@190.64 officers@190.78 had@191.14 copied@191.48 some@191.88 markings,@192.16 but@192.84 not@193.04 enough@193.30 to@193.60 work@193.78 out@193.98 who@194.18 built@194.40 it.@194.60
+S041 [195.46-197.84] They needed a second, much longer look.
+   They@195.46 needed@195.66 a@195.90 second,@196.08 much@196.88 longer@197.14 look.@197.52
+S042 [198.50-201.04] And the next time, the Soviets would be watching.
+   And@198.50 the@198.66 next@198.78 time,@199.00 the@199.74 Soviets@199.88 would@200.26 be@200.52 watching.@200.68
+S043 [201.86-206.42] The CIA tracked the Lunik the way it tracked most things: through paperwork.
+   The@201.86 CIA@202.12 tracked@202.44 the@203.06 Lunik@203.34 the@203.64 way@203.82 it@204.00 tracked@204.16 most@204.44 things,@204.80 through@205.74 paperwork.@205.92
+S044 [207.06-214.60] An intercepted shipping manifest listed a crate of "models of astronomic apparatus," with dimensions almost identical to the Lunik's.
+   An@207.06 intercepted@207.22 shipping@207.72 manifest@208.18 listed@208.76 a@209.20 crate@209.42 of@209.62 models@209.92 of@210.30 astronomic@210.54 apparatus,@211.18 with@212.16 dimensions@212.36 almost@212.84 identical@213.26 to@213.70 the@214.00 Lunik's.@214.14
+S045 [215.08-217.74] The station nearest its next stop was told to get ready.
+   The@215.08 station@215.26 nearest@215.60 its@215.94 next@216.22 stop@216.44 was@216.74 told@216.92 to@217.14 get@217.32 ready.@217.44
+S046 [218.26-221.64] The CIA has never officially confirmed where that was.
+   The@218.26 CIA@218.38 has@218.76 never@219.20 officially@219.60 confirmed@220.18 where@220.74 that@221.04 was.@221.24
+S047 [222.10-229.14] But the most detailed reporting on the operation, by journalist Jeff Maysh in MIT Technology Review, places it in Mexico City.
+   But@222.10 the@222.34 most@222.46 detailed@222.62 reporting@223.00 on@223.40 the@223.56 operation,@223.64 by@224.40 journalist@224.60 Jeff@224.94 Maich@225.28 in@225.64 MIT@225.86 Technology@226.32 Review,@226.78 places@227.66 it@228.02 in@228.24 Mexico@228.42 City.@228.72
+S048 [229.74-234.98] There, the station was run by Winston Scott, a former FBI cryptographer from Alabama.
+   There,@229.74 the@230.28 station@230.36 was@230.68 run@230.92 by@231.18 Winston@231.44 Scott,@231.76 a@232.72 former@232.88 FBI@233.18 cryptographer@233.68 from@234.28 Alabama.@234.60
+S049 [235.72-244.20] According to Maysh, in late October 1959 Scott called a 30-year-old officer from Mexico's secret police into the U.S. Embassy.
+   According@235.72 to@235.96 Maich,@236.26 in@236.82 late@236.90 October@237.16 1959,@237.78 Scott@238.90 called@239.58 a@239.94 30@240.10 -year@240.44 -old@240.58 officer@240.78 from@241.16 Mexico's@241.56 secret@242.22 police@242.42 into@242.86 the@243.32 U@243.50 .S.@243.60 embassy.@243.96
+S050 [244.78-246.48] His name was Eduardo Díaz Silveti.
+   His@244.78 name@244.86 was@245.14 Eduardo@245.32 Díaz@245.90
+S051 [246.48-255.68] By Silveti's own telling, Scott described the mission as vital to the United States, and warned that if it went wrong, it could start World War Three.
+   Silvetti.@246.48 By@247.56 Silvetti's@247.74 own@248.30 telling,@248.48 Scott@249.54 described@249.58 the@250.02 mission@250.24 as@250.54 vital@250.76 to@251.12 the@251.38 United@251.48 States@251.74 and@252.22 warned@252.48 that@252.76 if@253.06 it@253.30 went@253.44 wrong,@253.64 it@254.44 could@254.54 start@254.70 World@255.04 War@255.34
+S052 [255.68-267.04] On November 19th, two of Scott's officers, his deputy Warren Dean and a case officer named Robert Zambernardi, reportedly watched a Soviet ship unload at the port of Tampico.
+   III.@255.68 On@256.68 November@256.84 19,@257.10 two@258.00 of@258.18 Scott's@258.34 officers,@258.76 his@259.58 deputy@259.70 Warren@260.04 Dean@260.36 and@260.60 a@260.94 case@261.12 officer@261.28 named@261.72 Robert@261.96 Zambranardi,@262.38 reportedly@263.60 watched@263.98 a@264.46 Soviet@264.72 ship@265.04 unload@265.36 at@265.88 the@266.08 port@266.20 of@266.40 Tampico.@266.56
+S053 [267.76-270.82] The crates went onto a train under guard, bound for the capital.
+   The@267.76 crates@268.04 went@268.28 on@268.52 to@268.66 a@268.82 train@268.94 under@269.22 guard@269.52 bound@269.80 for@270.10 the@270.34 capital.@270.44
+S054 [271.60-276.96] Two days later, on November 21st, the Soviet exhibition opened at the Auditorio Nacional.
+   Two@271.60 days@271.62 later,@271.84 on@272.50 November@272.58 21,@272.84 the@273.98 Soviet@274.12 exhibition@274.50 opened@275.02 at@275.46 the@275.64 auditorio@275.80 Nacional.@276.44
+S055 [278.14-281.48] According to Maysh, more than a million people came through its doors.
+   According@278.14 to@278.22 Maich,@278.66 more@279.38 than@279.46 a@279.64 million@279.80 people@280.04 came@280.48 through@280.74 its@281.00 doors.@281.18
+S056 [282.42-285.12] But this time, the Soviets weren't taking chances.
+   But@282.42 this@282.56 time,@282.76 the@283.54 Soviets@283.66 weren't@283.98 taking@284.36 chances.@284.64
+S057 [285.84-289.06] They posted their own guards on the exhibit twenty-four hours a day.
+   They@285.84 posted@286.00 their@286.34 own@286.58 guards@286.84 on@287.14 the@287.32 exhibit@287.42 24@287.80 hours@288.28 a@288.58 day.@288.82
+S058 [289.74-298.72] The man reportedly responsible for protecting the Lunik was a Soviet diplomat named Boris Kolomyakov, who, according to Maysh, was also a KGB officer.
+   The@289.74 man@289.90 reportedly@290.10 responsible@290.64 for@291.18 protecting@291.56 the@291.98 was@292.26 a@292.60 Soviet@292.74 diplomat@293.10 named@293.64 Boris@294.00 Kolomiyakov,@294.36 who,@295.72 according@295.98 to@296.26 Maich,@296.58 was@297.04 also@297.10 a@297.54 KGB@297.70 officer.@298.10
+S059 [299.64-301.70] Breaking into the hall at night was impossible.
+   Breaking@299.64 into@299.64 the@299.90 hall@300.04 at@300.26 night@300.50 was@300.74 impossible.@301.02
+S060 [302.50-307.44] So the Americans stopped looking at the exhibition, and started looking at what would happen after it closed.
+   So@302.50 the@302.60 Americans@302.74 stopped@303.06 looking@303.54 at@303.90 the@304.08 exhibition@304.20 and@304.66 started@305.12 looking@305.44 at@305.70 what@305.92 would@306.10 happen@306.28 after@306.58 it@306.92 closed.@307.08
+S061 [308.12-310.52] They found the weak spot at the end of the line.
+   They@308.12 found@308.22 the@308.60 weak@308.84 spot@309.04 at@309.34 the@309.56 end@309.70 of@309.92 the@310.08 line.@310.18
+S062 [311.22-316.40] When the show ended, every exhibit would be crated, loaded onto trucks, and driven to a rail yard.
+   When@311.22 the@311.32 show@311.46 ended,@311.66 every@312.28 exhibit@312.52 would@312.92 be@313.18 crated,@313.36 loaded@314.02 onto@314.30 trucks,@314.58 and@315.14 driven@315.30 to@315.52 a@315.78 rail@315.90 yard.@316.10
+S063 [317.02-320.52] There, a single Soviet checker would log each crate as it arrived.
+   There,@317.02 a@317.38 single@317.48 Soviet@317.78 checker@318.28 would@318.68 log@318.84 each@319.06 crate@319.40 as@319.74 it@320.00 arrived.@320.12
+S064 [320.52-326.06] The CIA learned that this man had no way to contact his colleagues back at the exhibition grounds.
+   The@320.52 CIA@321.14 learned@321.44 that@321.92 this@322.22 man@322.40 had@322.64 no@322.84 way@323.14 to@323.32 contact@323.48 his@323.90 colleagues@324.14 back@324.48 at@324.84 the@325.00 exhibition@325.10 grounds,@325.52
+S065 [326.48-329.42] And he had no schedule telling him when each truck should arrive.
+   and@326.48 he@326.58 had@326.74 no@326.90 schedule@327.10 telling@327.54 him@327.86 when@328.08 each@328.24 truck@328.54 should@328.82 arrive.@329.02
+S066 [330.54-335.24] Intercepting the train was ruled out; the station had no good way to quietly divert a freight car.
+   Intercepting@330.54 the@330.74 train@330.86 was@331.10 ruled@331.28 out.@331.52 The@332.24 station@332.40 had@332.64 no@332.92 good@333.20 way@333.40 to@333.60 quietly@333.82 divert@334.14 a@334.54 freight@334.78 car.@334.96
+S067 [335.90-336.72] That left the truck.
+   That@335.90 left@336.08 the@336.28 truck.@336.46
+S068 [337.32-341.10] The plan was simple to describe and nearly impossible to pull off.
+   The@337.32 plan@337.48 was@337.74 simple@337.92 to@338.28 describe@338.48 and@338.96 nearly@339.40 impossible@339.74 to@340.24 pull@340.64 off.@340.82
+S069 [341.62-344.00] Make sure the Lunik was the last truck to leave.
+   Make@341.62 sure@341.84 the@342.06 Lunik@342.28 was@342.60 the@342.80 last@343.00 truck@343.24 to@343.52 leave.@343.74
+S070 [344.60-346.04] Take it on the way to the rail yard.
+   Take@344.60 it@344.76 on@344.88 the@344.98 way@345.12 to@345.26 the@345.42 rail@345.54 yard.@345.72
+S071 [346.04-347.64] Hide it somewhere overnight.
+   Hide@346.04 it@346.66 somewhere@346.84 overnight.@347.14
+S072 [348.62-355.06] Take it apart, photograph everything, put it back together, and deliver it before the checker returned in the morning.
+   Take@348.62 it@348.72 apart.@348.86 Photograph@350.10 everything.@350.10 Put@351.32 it@351.52 back@351.64 together@351.86 and@352.20 deliver@352.80 it@353.12 before@353.34 the@353.62 checker@353.80 returned@354.18 in@354.54 the@354.70 morning.@354.80
+S073 [355.64-362.04] For the job, the CIA flew in four specialists from what Finer's report calls the Factory Markings Center.
+   For@355.64 the@355.78 job,@355.96 the@356.56 CIA@356.60 flew@356.96 in@357.36 four@357.52 specialists,@357.82 from@358.96 what@359.06 Finer's@359.26 report@359.74 calls@360.02 the@360.52 factory@360.80 marking@361.24 center.@361.60
+S074 [362.82-367.18] Their expertise was reading the stamps, labels and serial numbers on enemy equipment.
+   Their@362.82 expertise@362.94 was@363.46 reading@363.78 the@364.04 stamps,@364.24 labels,@364.88 and@365.32 serial@365.44 numbers@365.80 on@366.10 enemy@366.38 equipment.@366.68
+S075 [368.04-371.40] According to Maysh, they arrived posing as vacationers.
+   According@368.04 to@368.30 Maich,@368.66 they@369.34 arrived@369.44 posing@369.80 as@370.28 vacationers.@370.56
+S076 [371.98-376.50] One of them was a 29-year-old Russian speaker named Sydney Wesley Finer.
+   One@371.98 of@372.18 them@372.32 was@372.52 a@372.72 29@372.88 -year@373.40 -old@373.60 Russian@373.82 speaker@374.28 named@374.76 Sidney@375.08 Wesley@375.54 Finer.@375.98
+S077 [377.20-382.72] Zambernardi worked out what the photographers would need, including a flash that could recharge fast.
+   Zamburnardi@377.20 worked@377.76 out@378.14 what@378.40 the@378.62 photographers@378.78 would@379.26 need,@379.66 including@380.38 a@380.76 flash@380.98 that@381.36 could@381.66 recharge@381.82 fast.@382.24
+S078 [383.42-385.98] The team bought local clothes so they wouldn't stand out.
+   The@383.42 team@383.50 bought@383.78 local@384.02 clothes@384.38 so@384.74 they@385.00 wouldn't@385.14 stand@385.40 out.@385.64
+S079 [386.48-392.12] Then they bought ladders, ropes, drop lights, a pinch bar, metric wrenches and a nail puller.
+   Then@386.48 they@386.66 bought@386.80 ladders,@387.02 ropes,@387.84 droplets,@388.58 a@389.30 pinch@389.40 bar,@389.62 metric@390.40 wrenches,@390.56 and@391.20 a@391.34 nail@391.48 puller.@391.68
+S080 [392.66-395.92] Station officers photographed the crate to work out how it was built.
+   Station@392.66 officers@392.88 photographed@393.36 the@393.94 crate@394.22 to@394.42 work@394.64 out@394.82 how@395.02 it@395.26 was@395.44 built.@395.62
+S081 [396.26-400.04] It was bolted from the inside, so the only way in would be through the roof.
+   It@396.26 was@396.44 bolted@396.56 from@396.86 the@397.14 inside,@397.28 so@397.74 the@398.18 only@398.32 way@398.56 in@398.84 would@399.02 be@399.16 through@399.36 the@399.60 roof.@399.74
+S082 [400.78-406.70] On the day the exhibits were moved, the Lunik was held back until it was the last truckload to leave the grounds.
+   On@400.78 the@400.90 day@401.06 the@401.26 exhibits@401.44 were@401.80 moved,@402.10 the@402.94 Lunik@403.02 was@403.30 held@403.46 back@403.68 until@404.02 it@404.44 was@404.60 the@404.72 last@404.92 truckload@405.20 to@405.76 leave@405.98 the@406.14 grounds.@406.34
+S083 [407.54-410.34] Silveti later claimed his men had helped make sure of that.
+   Silvetti@407.54 later@407.78 claimed@408.12 his@408.48 men@408.70 had@408.94 helped@409.12 make@409.42 sure@409.66 of@409.94 that.@410.10
+S084 [410.86-418.82] In his account, they had filed down a part in the truck's engine, so it wouldn't start until a replacement arrived around five in the evening.
+   In@410.86 his@411.02 account,@411.34 they@412.18 had@412.28 filed@412.42 down@412.78 a@413.12 part@413.30 in@413.52 the@413.74 truck's@413.88 engine,@414.22 so@414.92 it@415.30 wouldn't@415.56 start@415.92 until@416.22 a@416.60 replacement@416.72 arrived@417.10 around@417.60 five@417.88 in@418.24 the@418.42 evening.@418.52
+S085 [419.56-423.88] That detail comes only from Silveti, and some of his story has been disputed.
+   That@419.56 detail@419.78 comes@420.14 only@420.40 from@420.78 Silvetti,@421.02 and@422.00 some@422.18 of@422.42 his@422.56 story@422.68 has@423.06 been@423.30 disputed.@423.48
+S086 [424.50-429.86] When the truck finally pulled out, one CIA car drove ahead of it and another followed behind.
+   When@424.50 the@424.66 truck@424.80 finally@425.02 pulled@425.42 out,@425.68 one@426.30 CIA@426.56 car@426.96 drove@427.46 ahead@427.74 of@428.06 it,@428.18 and@428.52 another@428.68 followed@429.00 behind.@429.42
+S087 [430.78-433.70] Their job was to see whether the Soviets were escorting their rocket.
+   Their@430.78 job@431.02 was@431.30 to@431.52 see@431.70 whether@431.86 the@432.08 Soviets@432.28 were@432.54 escorting@432.78 their@433.20 rocket.@433.42
+S088 [434.48-435.06] They weren't.
+   They@434.48 weren't.@434.68
+S089 [435.98-439.52] At the last possible turn-off before the rail yard, the truck stopped.
+   At@435.98 the@436.06 last@436.20 possible@436.52 turnoff@437.00 before@437.46 the@437.82 rail@438.00 yard,@438.16 the@438.74 truck@438.92 stopped.@439.10
+S090 [440.24-441.66] A canvas went over the crate.
+   A@440.24 canvas@440.38 went@440.80 over@441.08 the@441.28 crate.@441.42
+S091 [442.18-443.66] A new driver took the wheel.
+   A@442.18 new@442.38 driver@442.58 took@442.90 the@443.20 wheel.@443.44
+S092 [444.28-448.24] The original driver was escorted to a hotel room and kept there for the night.
+   The@444.28 original@444.42 driver@444.76 was@445.14 escorted@445.36 to@445.86 a@446.14 hotel@446.26 room@446.60 and@446.92 kept@447.24 there@447.44 for@447.70 the@447.90 night.@448.04
+S093 [448.98-451.76] From that moment on, the operation was on borrowed time.
+   From@448.98 that@449.10 moment@449.30 on,@449.46 the@450.02 operation@450.16 was@450.58 on@450.84 borrowed@451.12 time.@451.36
+S094 [452.76-457.18] If anyone on the Soviet side went looking for that truck, there would be nothing to find.
+   If@452.76 anyone@452.92 on@453.22 the@453.44 Soviet@453.58 side@453.86 went@454.16 looking@454.36 for@454.62 that@454.82 truck,@455.00 there@455.82 would@456.02 be@456.12 nothing@456.26 to@456.56 find.@456.86
+S095 [457.18-460.90] At the rail yard, the Soviet checker waited for more trucks.
+   At@457.18 the@457.86 rail@458.02 yard,@458.24 the@458.84 Soviet@458.90 checker@459.32 waited@459.74 for@459.94 more@460.26 trucks.@460.46
+S096 [461.68-462.16] None came.
+   None@461.68 came.@461.70
+S097 [462.98-467.16] Eventually he packed up his papers, went to supper, and went back to his hotel.
+   Eventually,@462.98 he@463.52 packed@463.70 up@463.96 his@464.16 papers,@464.36 went@464.98 to@465.16 supper,@465.36 and@465.84 went@465.96 back@466.14 to@466.44 his@466.64 hotel.@466.78
+S098 [468.32-471.46] CIA officers watched him all night, in case he came back.
+   CIA@468.32 officers@468.32 watched@468.84 him@469.30 all@469.54 night@469.86 in@470.20 case@470.52 he@470.74 came@470.94 back.@471.12
+S099 [472.06-475.60] By early evening, a Soviet moon rocket was in American hands.
+   By@472.06 early@472.28 evening,@472.60 a@473.22 Soviet@473.38 moon@473.72 rocket@474.00 was@474.32 in@474.60 American@474.76 hands,@475.10
+S100 [476.14-478.72] And no one on the Soviet side knew it was missing.
+   and@476.14 no@476.42 one@476.64 on@476.76 the@476.90 Soviet@477.06 side@477.40 knew@477.74 it@478.06 was@478.22 missing.@478.36
+S101 [479.08-483.24] The truck was driven to a yard surrounded by a ten-foot solid wooden fence.
+   The@479.08 truck@479.18 was@479.40 driven@479.62 to@479.90 a@480.12 yard@480.26 surrounded@480.52 by@481.00 a@481.32 10@481.46 -foot@481.74 solid@481.98 wooden@482.48 fence.@482.82
+S102 [484.18-487.06] Finer described it as a salvage yard rented for the night.
+   Feiner@484.18 described@484.26 it@484.74 as@484.98 a@485.26 salvage@485.42 yard@485.68 rented@486.06 for@486.34 the@486.64 night.@486.78
+S103 [487.72-490.34] Silveti later said it belonged to his brother-in-law.
+   Silvetti@487.72 later@488.20 said@488.52 it@488.84 belonged@489.00 to@489.28 his@489.54 brother@489.68 -in@489.92 -law.@490.12
+S104 [491.10-494.28] At about 7:30 p.m., the four specialists arrived.
+   At@491.10 about@491.18 7@491.40 .30@491.76 p@492.10 .m.,@492.36 the@492.78 four@492.94 specialists@493.18 arrived.@493.70
+S105 [494.92-498.72] A two-man team was already there, handling security and radios.
+   A@494.92 two@495.04 -man@495.26 team@495.46 was@495.78 already@496.00 there,@496.34 handling@496.96 security@497.30 and@497.90 radios.@498.30
+S106 [499.36-505.00] Before anyone touched the crate, everyone waited for half an hour, to make sure no one had followed the truck.
+   Before@499.36 anyone@499.62 touched@499.98 the@500.30 crate,@500.58 everyone@501.24 waited@501.56 for@501.88 half@502.24 an@502.50 hour@502.66 to@502.90 make@503.20 sure@503.34 no@503.56 one@503.84 had@504.06 followed@504.28 the@504.56 truck.@504.76
+S107 [505.50-511.48] Then they climbed onto the roof and started pulling up planks: two-inch boards, held down with five-inch spikes.
+   Then@505.50 they@505.74 climbed@505.92 onto@506.16 the@506.52 roof@506.68 and@506.90 started@507.18 pulling@507.48 up@507.88 planks,@508.10 two@508.80 -inch@508.92 boards,@509.08 held@509.86 down@510.22 with@510.48 five@510.68 -inch@510.94 spikes.@511.12
+S108 [512.28-515.86] Partway through, the street lamps around the yard suddenly came on.
+   Partway@512.28 through,@512.66 the@513.02 street@513.38 lamps@513.70 around@514.06 the@514.36 yard@514.50 suddenly@514.76 came@515.12 on.@515.48
+S109 [516.32-517.02] The men froze.
+   The@516.32 men@516.40 froze.@516.62
+S110 [517.68-519.78] For a few seconds, it looked like an ambush.
+   For@517.68 a@517.90 few@518.06 seconds,@518.18 it@518.66 looked@518.90 like@519.08 an@519.32 ambush.@519.42
+S111 [520.34-521.14] But no one came.
+   But@520.34 no@520.54 one@520.70 came.@520.84
+S112 [522.04-524.48] It was just the city's lights coming on for the night.
+   It@522.04 was@522.24 just@522.38 the@522.68 city's@522.90 lights@523.26 coming@523.42 on@523.72 for@523.98 the@524.16 night.@524.26
+S113 [525.26-527.94] Two men lowered themselves into the nose of the rocket.
+   Two@525.26 men@525.48 lowered@525.72 themselves@526.06 into@526.58 the@526.92 nose@527.12 of@527.34 the@527.50 rocket.@527.62
+S114 [528.50-535.34] They took off their shoes, so they wouldn't scuff the metal, and began photographing the payload sphere and every marking they could find.
+   They@528.50 took@528.70 off@528.88 their@529.06 shoes@529.28 so@529.62 they@530.02 wouldn't@530.16 scuff@530.40 the@530.66 metal@530.86 and@531.12 began@531.54 photographing@531.80 the@532.62 payload@532.78 sphere@533.12 and@533.52 every@534.02 marking@534.30 they@534.60 could@534.82 find.@535.00
+S115 [536.22-541.86] According to Maysh, a tarp was stretched over the open roof so the camera flashes wouldn't light up the sky.
+   According@536.22 to@536.50 Maich,@536.90 a@537.40 tarp@537.52 was@537.82 stretched@537.98 over@538.32 the@538.64 open@538.80 roof@539.06 so@539.38 the@539.78 camera@539.92 flashes@540.24 wouldn't@540.66 light@541.02 up@541.24 the@541.38 sky.@541.50
+S116 [542.38-546.82] To make sure the camera was working, a test roll was rushed out by car to be developed.
+   To@542.38 make@542.56 sure@542.70 the@542.92 camera@543.08 was@543.34 working,@543.54 a@544.26 test@544.34 roll@544.58 was@544.82 rushed@545.04 out@545.28 by@545.52 car@545.74 to@546.02 be@546.26 developed.@546.40
+S117 [547.56-552.12] According to Maysh, it went to a darkroom at the U.S. Embassy, and it came back good.
+   According@547.56 to@547.84 Maich,@548.24 it@548.82 went@548.84 to@549.00 a@549.16 dark@549.38 room@549.50 at@549.70 the@549.88 U@550.00 .S.@550.12 Embassy,@550.46 and@551.24 it@551.32 came@551.44 back@551.58 good.@551.86
+S118 [552.82-558.02] At the other end, two more men took off the base cap, held on by about 130 bolts.
+   At@552.82 the@552.94 other@553.08 end,@553.28 two@553.84 more@553.98 men@554.20 took@554.44 off@554.68 the@554.88 base@555.06 cap,@555.30 held@556.00 on@556.12 by@556.30 about@556.52 130@556.78 bolts.@557.64
+S119 [558.64-564.66] The engine was gone, but its mounting brackets were still in place, along with the fuel and oxidizer tanks.
+   The@558.64 engine@558.86 was@559.18 gone,@559.44 but@560.02 its@560.20 mounting@560.34 brackets@560.74 were@561.24 still@561.46 in@561.76 place,@562.00 along@562.58 with@562.82 the@563.04 fuel@563.16 and@563.46 oxidizer@563.72 tanks.@564.30
+S120 [565.20-566.84] Then they ran into a problem.
+   Then@565.20 they@565.50 ran@565.76 into@566.00 a@566.28 problem.@566.48
+S121 [567.40-573.18] The payload sphere was held by a rod, secured with a wire and a Soviet-stamped plastic seal.
+   The@567.40 payload@567.62 sphere@568.00 was@568.38 held@568.62 by@568.82 a@569.12 rod@569.28 secured@569.60 with@570.26 a@570.52 wire@570.68 and@570.98 a@571.30 Soviet@571.48 stamped@571.78 plastic@572.24 seal.@572.82
+S122 [574.00-576.44] To free the sphere, the wire had to be cut.
+   To@574.00 free@574.20 the@574.50 sphere,@574.68 the@575.30 wire@575.34 had@575.66 to@575.90 be@576.06 cut,@576.22
+S123 [577.02-580.64] And a broken seal was exactly the kind of thing a checker would notice.
+   and@577.02 a@577.16 broken@577.30 seal@577.64 was@578.02 exactly@578.32 the@578.72 kind@579.00 of@579.20 thing@579.36 a@579.56 checker@579.76 would@580.12 notice.@580.28
+S124 [581.38-582.10] They cut it.
+   They@581.38 cut@581.56 it.@581.78
+S125 [582.78-587.44] Station officers had already said they could reproduce the plastic, the stamp and the wire.
+   Station@582.78 officers@583.00 had@583.50 already@583.78 said@584.20 they@584.54 could@584.72 reproduce@584.86 the@585.30 plastic,@585.54 the@586.38 stamp,@586.46 and@586.92 the@587.02 wire.@587.16
+S126 [588.34-591.94] Before the night was over, a duplicate seal was delivered to the yard.
+   Before@588.34 the@588.72 night@588.88 was@589.04 over,@589.22 a@589.84 duplicate@590.00 seal@590.30 was@590.70 delivered@590.94 to@591.30 the@591.56 yard.@591.68
+S127 [592.48-597.46] While they worked, they also found two couplings the Soviets had forgotten to remove.
+   While@592.48 they@592.74 worked,@592.94 they@593.52 also@593.70 found@594.04 two@594.38 couplings@594.80 the@595.26 Soviets@595.74 had@596.10 forgotten@596.36 to@596.78 remove.@597.04
+S128 [598.02-600.46] Those went into a bag, bound for Washington.
+   Those@598.02 went@598.30 into@598.62 a@598.88 bag,@599.06 bound@599.74 for@599.78 Washington.@600.04
+S129 [601.18-603.14] Taking the rocket apart was the easy part.
+   Taking@601.18 the@601.36 rocket@601.60 apart@601.86 was@602.16 the@602.40 easy@602.56 part.@602.82
+S130 [603.76-606.40] Now everything had to go back exactly as it was.
+   Now@603.76 everything@603.90 had@604.30 to@604.60 go@604.72 back@604.86 exactly@605.12 as@605.60 it@605.96 was.@606.08
+S131 [607.08-609.90] Reattaching the payload sphere took nearly an hour.
+   Reattaching@607.08 the@607.64 payload@607.84 sphere@608.16 took@608.58 nearly@609.02 an@609.40 hour.@609.66
+S132 [610.40-614.68] A metal plate blocked the men's view, so they had to work largely by feel.
+   A@610.40 metal@610.60 plate@610.84 blocked@611.20 the@611.56 men's@611.80 view,@612.10 so@612.64 they@612.86 had@612.98 to@613.16 work@613.34 largely@613.58 by@614.08 feel.@614.36
+S133 [615.38-618.40] Then the wire was rewrapped and the forged seal fitted.
+   Then@615.38 the@615.64 wire@615.82 was@616.08 rewrapped@616.30 and@616.94 the@617.12 forged@617.28 seal@617.64 fitted.@618.04
+S134 [618.94-622.78] The team went through every compartment, checking for anything they might have left behind.
+   The@618.94 team@619.18 went@619.40 through@619.62 every@619.86 compartment,@620.18 checking@620.84 for@621.04 anything@621.32 they@621.64 might@621.88 have@622.06 left@622.16 behind.@622.38
+S135 [623.44-626.36] According to Silveti's account, there was one more scare.
+   According@623.44 to@623.76 Silvetti's@624.08 account,@624.58 there@624.88 was@625.22 one@625.38 more@625.68 scare.@625.94
+S136 [627.18-629.34] Around four in the morning, the yard went dark.
+   Around@627.18 four@627.28 in@627.64 the@627.74 morning,@627.86 the@628.40 yard@628.48 went@628.76 dark.@628.98
+S137 [630.04-632.60] It turned out to be an ordinary Mexico City blackout.
+   It@630.04 turned@630.16 out@630.34 to@630.54 be@630.66 an@630.80 ordinary@630.94 Mexico@631.38 City@631.84 blackout.@632.20
+S138 [633.30-634.72] The roof planks went back on.
+   The@633.30 roof@633.40 planks@633.62 went@633.98 back@634.14 on.@634.42
+S139 [635.04-637.48] At around 4 a.m., the specialists left.
+   At@635.04 around@635.18 four@635.42 a@635.76 .m.,@635.96 the@636.38 specialists@636.56 left.@637.02
+S140 [638.08-641.00] At five, the truck was taken to a prearranged spot.
+   At@638.08 five,@638.24 the@638.86 truck@638.98 was@639.22 taken@639.44 to@639.68 a@639.96 prearranged@640.08 spot.@640.60
+S141 [641.56-648.20] There, the original driver, after a night in a hotel room, got back behind the wheel and drove the rest of the way to the rail yard.
+   There,@641.56 the@642.06 original@642.16 driver,@642.52 after@643.20 a@643.40 night@643.58 in@643.72 a@643.90 hotel@644.00 room,@644.34 got@644.86 back@645.02 behind@645.34 the@645.70 wheel@645.86 and@646.12 drove@646.42 the@646.66 rest@646.86 of@647.02 the@647.22 way@647.30 to@647.48 the@647.62 rail@647.76 yard.@647.90
+S142 [648.80-656.44] According to Maysh's sources, he had a cover story ready: he had arrived after the yard closed and waited with the cargo all night.
+   According@648.80 to@649.04 Maesch's@649.42 sources,@649.86 he@650.76 had@650.86 a@651.00 cover@651.14 story@651.34 ready.@651.60 He@651.96 had@652.52 arrived@652.62 after@653.04 the@653.42 yard@653.60 closed@653.86 and@654.36 waited@654.76 with@655.02 the@655.28 cargo@655.42 all@655.74 night.@656.06
+S143 [657.26-659.86] At seven, the Soviet checker arrived for work.
+   At@657.26 seven,@657.26 the@657.98 Soviet@658.06 checker@658.42 arrived@658.86 for@659.28 work.@659.58
+S144 [660.74-662.02] A crate was waiting for him.
+   A@660.74 crate@660.82 was@661.04 waiting@661.26 for@661.50 him.@661.74
+S145 [662.90-665.54] According to Finer's report, he "showed no surprise."
+   According@662.90 to@662.94 Feiner's@663.22 report,@663.62 he@664.42 showed@664.48 no@664.76 surprise.@665.06
+S146 [666.44-669.38] He checked it in, and watched it loaded onto the train.
+   He@666.44 checked@666.58 it@666.80 in@666.98 and@667.22 watched@667.56 it@667.88 loaded@668.12 onto@668.44 the@668.80 train.@669.06
+S147 [669.96-673.88] For one night, the Soviet moon rocket had been in American hands.
+   For@669.96 one@670.18 night,@670.46 the@671.00 Soviet@671.08 moon@671.54 rocket@671.82 had@672.20 been@672.50 in@672.74 American@672.92 hands,@673.36
+S148 [674.30-678.10] And the man responsible for it signed it back in without a second look.
+   and@674.30 the@674.76 man@674.86 responsible@675.04 for@675.54 it@675.96 signed@676.14 it@676.40 back@676.58 in@676.80 without@677.06 a@677.36 second@677.56 look.@677.78
+S149 [678.70-682.52] Back in Washington, analysts went through the photographs and markings.
+   Back@678.70 in@678.98 Washington,@679.14 analysts@680.48 went@680.50 through@680.78 the@681.08 photographs@681.28 and@681.80 markings.@682.12
+S150 [683.28-686.20] They identified the probable factory that built the rocket stage.
+   They@683.28 identified@683.34 the@683.80 probable@684.04 factory@684.40 that@684.92 built@685.12 the@685.34 rocket@685.54 stage.@685.74
+S151 [686.92-689.82] They named three companies that supplied its electrical parts.
+   They@686.92 named@687.02 three@687.28 companies@687.56 that@687.98 supplied@688.24 its@688.72 electrical@688.92 parts.@689.34
+S152 [690.46-694.90] They uncovered a system used in this vehicle, and possibly in other Soviet space hardware.
+   They@690.46 uncovered@690.72 a@690.98 system@691.20 used@691.48 in@691.76 this@691.94 vehicle,@692.10 and@692.64 possibly@692.76 in@693.18 other@693.46 Soviet@693.78 space@694.18 hardware.@694.46
+S153 [695.46-700.18] And they learned one more thing: this was the fifth stage of its kind ever produced.
+   And@695.46 they@695.62 learned@695.76 one@696.00 more@696.32 thing.@696.56 This@697.48 was@697.66 the@697.86 fifth@698.06 stage@698.30 of@698.72 its@698.94 kind@699.08 ever@699.40 produced.@699.70
+S154 [700.70-702.50] It wasn't a one-off showpiece.
+   It@700.70 wasn't@700.84 a@701.28 one@701.52 -off@701.72 showpiece.@701.90
+S155 [703.22-704.50] It had come off a production line.
+   It@703.22 had@703.40 come@703.52 off@703.72 a@703.94 production@704.08
+S156 [704.50-712.82] The CIA later said that knowing how the Lunik was built helped its analysts judge the rocket's weight, power and payload limits.
+   mine.@704.50 The@705.46 CIA@705.74 later@706.14 said@706.56 that@706.90 knowing@707.08 how@707.38 a@707.58 lunatic@707.70 was@707.98 built@708.16 helped@708.56 its@709.04 analysts@709.22 judge@709.66 the@710.04 rocket's@710.28 weight,@710.72 power,@711.44 and@711.92 payload@712.06 limits.@712.36
+S157 [713.54-718.20] In his report, Finer wrote that there was no sign the Soviets had ever discovered what happened.
+   In@713.54 his@713.60 reports,@713.76 Feiner@714.66 wrote@714.74 that@714.96 there@715.14 was@715.24 no@715.40 sign@715.66 the@716.06 Soviets@716.24 had@716.58 ever@716.82 discovered@717.12 what@717.54 happened.@717.78
+S158 [718.96-723.78] Maysh's reporting suggests they may have found out later, but no one has established how or when.
+   Maesch's@718.96 reporting@719.24 suggests@719.60 they@720.12 may@720.44 have@720.66 found@720.84 out@721.06 later,@721.30 but@721.94 no@722.10 one@722.34 has@722.44 established@722.60 how@723.10 or@723.38 when.@723.54
+S159 [724.34-729.88] The operation stayed secret until 1995, when Finer's report was declassified.
+   The@724.34 operation@724.58 stayed@725.06 secret@725.50 until@725.94 1995,@726.28 when@727.86 Feiner's@727.98 report@728.48 was@728.80 declassified.@729.06
+S160 [730.50-734.06] Some of its lines remained blacked out for another twenty-five years.
+   Some@730.50 of@730.70 its@730.84 lines@730.98 remained@731.30 blacked@731.68 out@732.30 for@732.46 another@732.70 25@732.96 years.@733.58
+S161 [734.60-735.96] Silveti's fate was harder.
+   Silvetti's@734.60 fate@735.02 was@735.20 harder.@735.52
+S162 [736.62-741.96] In 1964, Mexico's new president branded him a traitor, and he fled to Texas.
+   In@736.62 1964,@736.64 Mexico's@738.16 new@738.58 president@738.74 branded@739.12 him@739.58 a@739.94 traitor,@740.12 and@740.82 he@740.90 fled@741.04 to@741.36 Texas.@741.64
+S163 [742.74-747.48] And to this day, the CIA has never officially confirmed which country it all happened in.
+   And@742.74 to@742.84 this@742.94 day,@743.14 the@743.56 CIA@743.62 has@743.96 never@744.30 officially@744.64 confirmed@745.20 which@745.76 country@746.08 it@746.54 all@746.68 happened@746.84 in.@747.16
+S164 [748.04-750.62] Borrowing a Soviet rocket for a single night was bold.
+   Borrowing@748.04 a@748.30 Soviet@748.46 rocket@748.74 for@749.08 a@749.38 single@749.54 night@749.80 was@750.06 bold.@750.24
+S165 [751.16-760.32] But a few years later, the CIA tried something even more extreme: it went after a sunken Soviet submarine nearly three miles beneath the Pacific.
+   But@751.16 a@751.32 few@751.42 years@751.62 later,@751.84 the@752.56 CIA@752.68 tried@753.08 something@753.50 even@753.90 more@754.30 extreme.@754.60 It@755.54 went@755.74 after@755.94 a@756.36 sunken@756.58 Soviet@756.96 submarine@757.38 nearly@757.96 three@758.40 miles@758.82 beneath@759.36 the@759.80 Pacific.@760.00
+S166 [761.04-762.18] That story is next.
+   That@761.04 story@761.32 is@761.62 next.@761.86

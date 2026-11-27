@@ -1,0 +1,166 @@
+S001     0.00-   7.10  Late in 1959, a flatbed truck crawled through evening traffic, most likely in Mexico City.
+S002     8.02-  11.12  On its back was a wooden crate nearly twenty feet long.
+S003    12.48-  14.30  Inside was a Soviet moon rocket.
+S004    15.18-  17.56  The driver thought he was heading to a rail yard.
+S005    18.32-  19.44  He never got there.
+S006    20.30-  22.74  At the last turn-off, the truck pulled over.
+S007    23.38-  25.20  A canvas was thrown over the crate.
+S008    25.75-  27.52  A new man climbed behind the wheel.
+S009    28.28-  32.38  And the original driver was led away to a hotel room, where he would spend the night.
+S010    33.20-  36.38  The CIA had just stolen a piece of the Soviet space program.
+S011    37.00-  46.32  Now it had one night to take it apart, photograph every piece, and put it all back, before a Soviet official arrived at seven the next morning to check it in.
+S012    47.00-  49.02  This is the story of how they did it.
+S013    49.80-  54.34  To understand why the CIA would take that risk, you have to go back two years.
+S014    55.08-  61.12  In October 1957, the Soviet Union launched Sputnik, the first artificial satellite.
+S015    61.68-  67.38  Then the race moved to the Moon, and in 1959 the Soviets won almost every round.
+S016    68.02-  72.82  In January, Luna 1 became the first spacecraft to escape Earth's gravity.
+S017    73.34-  82.58  In March, America's Pioneer 4 tried to photograph the Moon, but it passed about 37,000 miles away, too far for its camera to work.
+S018    83.18-  89.38  In September, Luna 2 crashed into the lunar surface, the first human-made object ever to reach it.
+S019    89.82-  98.08  And on October 4th, exactly two years after Sputnik, Luna 3 lifted off and sent back the first images of the Moon's far side.
+S020    99.06- 101.74  Western newspapers called these Soviet probes "Lunik."
+S021   102.40- 106.18  American intelligence could track the launches and intercept the radio signals.
+S022   106.90- 109.58  But no American had ever laid hands on the hardware.
+S023   110.28- 114.70  Nobody knew which factories built it, how it was put together, or how many existed.
+S024   115.62- 118.18  Then the Soviets did something no one expected.
+S025   118.76- 120.30  They sent one on a world tour.
+S026   120.92- 127.78  In 1959, Moscow sent a huge exhibition of its industrial and economic achievements to several countries.
+S027   128.46- 135.48  There was heavy machinery, displays on power stations and nuclear equipment, and a version even came to New York that summer.
+S028   136.20- 140.24  The star attractions were the space vehicles: a Sputnik, and a Lunik.
+S029   140.86- 143.16  Technically, the Lunik wasn't a satellite.
+S030   143.82- 152.20  It was the upper stage of a moon rocket, freshly painted, set on a pedestal, with three small windows cut into its nose so visitors could look inside.
+S031   152.94- 155.62  Most American analysts assumed it was a mock-up.
+S032   156.14- 160.00  No government would parade its real space hardware in front of foreign spies.
+S033   160.00- 162.26  But a few analysts weren't convinced.
+S034   162.76- 172.26  So at one stop on the tour, after the exhibition closed, a group of U.S. intelligence officers quietly got access to the Lunik for about 24 hours.
+S035   172.90- 176.16  They measured it, traced its wiring, and studied its structure.
+S036   176.78- 179.58  The engine and most of the electronics had been removed.
+S037   180.26- 182.24  But what remained was no prop.
+S038   183.00- 186.98  It was a real, production-built Soviet space vehicle.
+S039   187.78- 190.06  The problem was that one day wasn't enough.
+S040   190.64- 194.88  The officers had copied some markings, but not enough to work out who built it.
+S041   195.46- 197.84  They needed a second, much longer look.
+S042   198.50- 201.04  And the next time, the Soviets would be watching.
+S043   201.86- 206.42  The CIA tracked the Lunik the way it tracked most things: through paperwork.
+S044   207.06- 214.60  An intercepted shipping manifest listed a crate of "models of astronomic apparatus," with dimensions almost identical to the Lunik's.
+S045   215.08- 217.74  The station nearest its next stop was told to get ready.
+S046   218.26- 221.64  The CIA has never officially confirmed where that was.
+S047   222.10- 229.14  But the most detailed reporting on the operation, by journalist Jeff Maysh in MIT Technology Review, places it in Mexico City.
+S048   229.74- 234.98  There, the station was run by Winston Scott, a former FBI cryptographer from Alabama.
+S049   235.72- 244.20  According to Maysh, in late October 1959 Scott called a 30-year-old officer from Mexico's secret police into the U.S. Embassy.
+S050   244.78- 246.48  His name was Eduardo Díaz Silveti.
+S051   246.48- 255.68  By Silveti's own telling, Scott described the mission as vital to the United States, and warned that if it went wrong, it could start World War Three.
+S052   255.68- 267.04  On November 19th, two of Scott's officers, his deputy Warren Dean and a case officer named Robert Zambernardi, reportedly watched a Soviet ship unload at the port of Tampico.
+S053   267.76- 270.82  The crates went onto a train under guard, bound for the capital.
+S054   271.60- 276.96  Two days later, on November 21st, the Soviet exhibition opened at the Auditorio Nacional.
+S055   278.14- 281.48  According to Maysh, more than a million people came through its doors.
+S056   282.42- 285.12  But this time, the Soviets weren't taking chances.
+S057   285.84- 289.06  They posted their own guards on the exhibit twenty-four hours a day.
+S058   289.74- 298.72  The man reportedly responsible for protecting the Lunik was a Soviet diplomat named Boris Kolomyakov, who, according to Maysh, was also a KGB officer.
+S059   299.64- 301.70  Breaking into the hall at night was impossible.
+S060   302.50- 307.44  So the Americans stopped looking at the exhibition, and started looking at what would happen after it closed.
+S061   308.12- 310.52  They found the weak spot at the end of the line.
+S062   311.22- 316.40  When the show ended, every exhibit would be crated, loaded onto trucks, and driven to a rail yard.
+S063   317.02- 320.52  There, a single Soviet checker would log each crate as it arrived.
+S064   320.52- 326.06  The CIA learned that this man had no way to contact his colleagues back at the exhibition grounds.
+S065   326.48- 329.42  And he had no schedule telling him when each truck should arrive.
+S066   330.54- 335.24  Intercepting the train was ruled out; the station had no good way to quietly divert a freight car.
+S067   335.90- 336.72  That left the truck.
+S068   337.32- 341.10  The plan was simple to describe and nearly impossible to pull off.
+S069   341.62- 344.00  Make sure the Lunik was the last truck to leave.
+S070   344.60- 346.04  Take it on the way to the rail yard.
+S071   346.04- 347.64  Hide it somewhere overnight.
+S072   348.62- 355.06  Take it apart, photograph everything, put it back together, and deliver it before the checker returned in the morning.
+S073   355.64- 362.04  For the job, the CIA flew in four specialists from what Finer's report calls the Factory Markings Center.
+S074   362.82- 367.18  Their expertise was reading the stamps, labels and serial numbers on enemy equipment.
+S075   368.04- 371.40  According to Maysh, they arrived posing as vacationers.
+S076   371.98- 376.50  One of them was a 29-year-old Russian speaker named Sydney Wesley Finer.
+S077   377.20- 382.72  Zambernardi worked out what the photographers would need, including a flash that could recharge fast.
+S078   383.42- 385.98  The team bought local clothes so they wouldn't stand out.
+S079   386.48- 392.12  Then they bought ladders, ropes, drop lights, a pinch bar, metric wrenches and a nail puller.
+S080   392.66- 395.92  Station officers photographed the crate to work out how it was built.
+S081   396.26- 400.04  It was bolted from the inside, so the only way in would be through the roof.
+S082   400.78- 406.70  On the day the exhibits were moved, the Lunik was held back until it was the last truckload to leave the grounds.
+S083   407.54- 410.34  Silveti later claimed his men had helped make sure of that.
+S084   410.86- 418.82  In his account, they had filed down a part in the truck's engine, so it wouldn't start until a replacement arrived around five in the evening.
+S085   419.56- 423.88  That detail comes only from Silveti, and some of his story has been disputed.
+S086   424.50- 429.86  When the truck finally pulled out, one CIA car drove ahead of it and another followed behind.
+S087   430.78- 433.70  Their job was to see whether the Soviets were escorting their rocket.
+S088   434.48- 435.06  They weren't.
+S089   435.98- 439.52  At the last possible turn-off before the rail yard, the truck stopped.
+S090   440.24- 441.66  A canvas went over the crate.
+S091   442.18- 443.66  A new driver took the wheel.
+S092   444.28- 448.24  The original driver was escorted to a hotel room and kept there for the night.
+S093   448.98- 451.76  From that moment on, the operation was on borrowed time.
+S094   452.76- 457.18  If anyone on the Soviet side went looking for that truck, there would be nothing to find.
+S095   457.18- 460.90  At the rail yard, the Soviet checker waited for more trucks.
+S096   461.68- 462.16  None came.
+S097   462.98- 467.16  Eventually he packed up his papers, went to supper, and went back to his hotel.
+S098   468.32- 471.46  CIA officers watched him all night, in case he came back.
+S099   472.06- 475.60  By early evening, a Soviet moon rocket was in American hands.
+S100   476.14- 478.72  And no one on the Soviet side knew it was missing.
+S101   479.08- 483.24  The truck was driven to a yard surrounded by a ten-foot solid wooden fence.
+S102   484.18- 487.06  Finer described it as a salvage yard rented for the night.
+S103   487.72- 490.34  Silveti later said it belonged to his brother-in-law.
+S104   491.10- 494.28  At about 7:30 p.m., the four specialists arrived.
+S105   494.92- 498.72  A two-man team was already there, handling security and radios.
+S106   499.36- 505.00  Before anyone touched the crate, everyone waited for half an hour, to make sure no one had followed the truck.
+S107   505.50- 511.48  Then they climbed onto the roof and started pulling up planks: two-inch boards, held down with five-inch spikes.
+S108   512.28- 515.86  Partway through, the street lamps around the yard suddenly came on.
+S109   516.32- 517.02  The men froze.
+S110   517.68- 519.78  For a few seconds, it looked like an ambush.
+S111   520.34- 521.14  But no one came.
+S112   522.04- 524.48  It was just the city's lights coming on for the night.
+S113   525.26- 527.94  Two men lowered themselves into the nose of the rocket.
+S114   528.50- 535.34  They took off their shoes, so they wouldn't scuff the metal, and began photographing the payload sphere and every marking they could find.
+S115   536.22- 541.86  According to Maysh, a tarp was stretched over the open roof so the camera flashes wouldn't light up the sky.
+S116   542.38- 546.82  To make sure the camera was working, a test roll was rushed out by car to be developed.
+S117   547.56- 552.12  According to Maysh, it went to a darkroom at the U.S. Embassy, and it came back good.
+S118   552.82- 558.02  At the other end, two more men took off the base cap, held on by about 130 bolts.
+S119   558.64- 564.66  The engine was gone, but its mounting brackets were still in place, along with the fuel and oxidizer tanks.
+S120   565.20- 566.84  Then they ran into a problem.
+S121   567.40- 573.18  The payload sphere was held by a rod, secured with a wire and a Soviet-stamped plastic seal.
+S122   574.00- 576.44  To free the sphere, the wire had to be cut.
+S123   577.02- 580.64  And a broken seal was exactly the kind of thing a checker would notice.
+S124   581.38- 582.10  They cut it.
+S125   582.78- 587.44  Station officers had already said they could reproduce the plastic, the stamp and the wire.
+S126   588.34- 591.94  Before the night was over, a duplicate seal was delivered to the yard.
+S127   592.48- 597.46  While they worked, they also found two couplings the Soviets had forgotten to remove.
+S128   598.02- 600.46  Those went into a bag, bound for Washington.
+S129   601.18- 603.14  Taking the rocket apart was the easy part.
+S130   603.76- 606.40  Now everything had to go back exactly as it was.
+S131   607.08- 609.90  Reattaching the payload sphere took nearly an hour.
+S132   610.40- 614.68  A metal plate blocked the men's view, so they had to work largely by feel.
+S133   615.38- 618.40  Then the wire was rewrapped and the forged seal fitted.
+S134   618.94- 622.78  The team went through every compartment, checking for anything they might have left behind.
+S135   623.44- 626.36  According to Silveti's account, there was one more scare.
+S136   627.18- 629.34  Around four in the morning, the yard went dark.
+S137   630.04- 632.60  It turned out to be an ordinary Mexico City blackout.
+S138   633.30- 634.72  The roof planks went back on.
+S139   635.04- 637.48  At around 4 a.m., the specialists left.
+S140   638.08- 641.00  At five, the truck was taken to a prearranged spot.
+S141   641.56- 648.20  There, the original driver, after a night in a hotel room, got back behind the wheel and drove the rest of the way to the rail yard.
+S142   648.80- 656.44  According to Maysh's sources, he had a cover story ready: he had arrived after the yard closed and waited with the cargo all night.
+S143   657.26- 659.86  At seven, the Soviet checker arrived for work.
+S144   660.74- 662.02  A crate was waiting for him.
+S145   662.90- 665.54  According to Finer's report, he "showed no surprise."
+S146   666.44- 669.38  He checked it in, and watched it loaded onto the train.
+S147   669.96- 673.88  For one night, the Soviet moon rocket had been in American hands.
+S148   674.30- 678.10  And the man responsible for it signed it back in without a second look.
+S149   678.70- 682.52  Back in Washington, analysts went through the photographs and markings.
+S150   683.28- 686.20  They identified the probable factory that built the rocket stage.
+S151   686.92- 689.82  They named three companies that supplied its electrical parts.
+S152   690.46- 694.90  They uncovered a system used in this vehicle, and possibly in other Soviet space hardware.
+S153   695.46- 700.18  And they learned one more thing: this was the fifth stage of its kind ever produced.
+S154   700.70- 702.50  It wasn't a one-off showpiece.
+S155   703.22- 704.50  It had come off a production line.
+S156   704.50- 712.82  The CIA later said that knowing how the Lunik was built helped its analysts judge the rocket's weight, power and payload limits.
+S157   713.54- 718.20  In his report, Finer wrote that there was no sign the Soviets had ever discovered what happened.
+S158   718.96- 723.78  Maysh's reporting suggests they may have found out later, but no one has established how or when.
+S159   724.34- 729.88  The operation stayed secret until 1995, when Finer's report was declassified.
+S160   730.50- 734.06  Some of its lines remained blacked out for another twenty-five years.
+S161   734.60- 735.96  Silveti's fate was harder.
+S162   736.62- 741.96  In 1964, Mexico's new president branded him a traitor, and he fled to Texas.
+S163   742.74- 747.48  And to this day, the CIA has never officially confirmed which country it all happened in.
+S164   748.04- 750.62  Borrowing a Soviet rocket for a single night was bold.
+S165   751.16- 760.32  But a few years later, the CIA tried something even more extreme: it went after a sunken Soviet submarine nearly three miles beneath the Pacific.
+S166   761.04- 762.18  That story is next.
