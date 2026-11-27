@@ -365,22 +365,36 @@ function paper1959(c, x, y, w, h, head, o = {}) { c.save(); c.translate(x, y); c
 
 // ---------- maps ----------
 // stylised Mexico (normalised outline), Tampico on the Gulf coast, Mexico City inland. o.p route draw 0..1, o.pins, o.night
-const MX = [[.02, .05], [.18, .04], [.3, .12], [.42, .14], [.5, .26], [.58, .34], [.6, .46], [.64, .6], [.72, .68], [.82, .66], [.88, .56], [.98, .54], [.97, .7], [.88, .78], [.8, .86], [.7, .86], [.62, .92], [.5, .86], [.42, .8], [.34, .74], [.28, .62], [.22, .5], [.16, .36], [.1, .24], [.04, .16]];
-const MXBAJA = [[.05, .1], [.1, .14], [.14, .26], [.19, .4], [.2, .48], [.16, .44], [.12, .32], [.06, .2]];
+// Mexico outline from real lon/lat (simplified), projected to 0..1: u=(lon+118.5)/33, v=(33.5-lat)/20. Baja is part of the one outline.
+const MXLL = [[-117.1, 32.5], [-114.7, 32.7], [-111, 31.3], [-108.2, 31.3], [-106.5, 31.8], [-104.5, 29.6], [-103, 29], [-101.4, 29.8], [-99.5, 27.5], [-97.2, 25.9], [-97.7, 24], [-97.85, 22.25],
+  [-97.2, 20.5], [-96.1, 19.2], [-94.5, 18.15], [-92.6, 18.6], [-91.5, 18.6], [-90.5, 19.8], [-90.3, 21], [-88.5, 21.5], [-87, 21.5], [-87.5, 19.5], [-88.3, 18.5], [-89.15, 17.8], [-90.9, 17.8], [-91.4, 16.1], [-92.2, 14.5],
+  [-93.9, 15.9], [-95.2, 16.1], [-96.5, 15.7], [-98.5, 16.3], [-99.9, 16.85], [-101.5, 17.6], [-103.5, 18.3], [-105.2, 19.6], [-105.3, 21.5], [-106.4, 23.2], [-108.5, 25.4], [-109.4, 26.7], [-110.9, 27.9], [-112.2, 29.3], [-113.1, 31.2], [-114.6, 31.7],
+  [-114.5, 30.3], [-113.3, 28.6], [-112.2, 27], [-111, 25.5], [-110.3, 24.2], [-109.9, 22.9], [-110.6, 23.6], [-112.1, 24.8], [-114.8, 27.8], [-115.8, 30.4], [-116.6, 31.8]];
+const MXUV = ([lon, lat]) => [(lon + 118.5) / 33, (33.5 - lat) / 20];
+const MX = MXLL.map(MXUV), MXBAJA = []; // MXBAJA kept for compatibility (Baja now lives in MX)
+// US side of the border: border points (west -> east) closed over the top edge
+const USUV = [[-118.5, 32.55], [-117.1, 32.5], [-114.7, 32.7], [-111, 31.3], [-108.2, 31.3], [-106.5, 31.8], [-104.5, 29.6], [-103, 29], [-101.4, 29.8], [-99.5, 27.5], [-97.2, 25.9], [-96.8, 26.5], [-96.5, 28.2], [-94.5, 29.5], [-93.5, 29.8], [-85, 30.2], [-85, 33.6], [-118.5, 33.6]].map(MXUV);
+// o: p (route 0..1), night, tampico, city, cityLabel, showTexas (labels the US side TEXAS / UNITED STATES and inks the border; returns .texas)
 function mapMexico(c, x, y, w, h, o = {}) {
   c.save(); c.translate(x - w / 2, y - h / 2); reg(c, 0, 0, w, h);
+  const P_ = ([u, v]) => [u * w, v * h];
   box(c, 0, 0, w, h, 14, o.night ? '#163049' : '#9fc6d9'); c.save(); rr(c, 0, 0, w, h, 14); c.clip();
   for (let i = 0; i < w; i += 60) line(c, i, 0, i, h, 1.5, 'rgba(255,255,255,.12)'); for (let i = 0; i < h; i += 60) line(c, 0, i, w, i, 1.5, 'rgba(255,255,255,.12)');
-  // USA strip on top
-  poly(c, [[-10, -10], [w + 10, -10], [w + 10, h * .06], [w * .62, h * .3], [w * .4, h * .1], [-10, h * .03]], o.night ? '#2b3a44' : '#d8cfb0', 3);
-  poly(c, MX.map(([a, b]) => [a * w, b * h]), o.night ? '#3d5145' : '#e9dcb3', 4); poly(c, MXBAJA.map(([a, b]) => [a * w, b * h]), o.night ? '#3d5145' : '#e9dcb3', 3.5);
-  label(c, 'GULF OF MEXICO', w * .8, h * .38, Math.max(18, w * .024), o.night ? '#7fa8c8' : '#4a7a95', { stroke: false }); label(c, 'PACIFIC', w * .22, h * .78, Math.max(18, w * .024), o.night ? '#7fa8c8' : '#4a7a95', { stroke: false });
+  poly(c, USUV.map(P_), o.night ? '#2b3a44' : '#d8cfb0', 3);
+  poly(c, MX.map(P_), o.night ? '#3d5145' : '#e9dcb3', 4);
+  const fs_ = Math.max(18, w * .026), sea = o.night ? '#7fa8c8' : '#4a7a95';
+  if (w >= 420 && o.seas !== false) { label(c, 'GULF OF MEXICO', .8 * w, .4 * h, fs_, sea, { stroke: false }); label(c, 'PACIFIC OCEAN', .2 * w, .74 * h, fs_, sea, { stroke: false }); }
+  if (o.showTexas) { c.save(); c.setLineDash([12, 9]); c.beginPath(); USUV.slice(1, 11).map(P_).forEach((p, i) => i ? c.lineTo(p[0], p[1]) : c.moveTo(p[0], p[1])); c.lineWidth = 5; c.strokeStyle = '#ffcf3f'; c.stroke(); c.restore();
+    label(c, 'TEXAS', MXUV([-99.3, 31])[0] * w, MXUV([-99.3, 31])[1] * h, Math.max(20, w * .036), '#fff'); if (w >= 420) label(c, 'UNITED STATES', MXUV([-109, 32.2])[0] * w, MXUV([-109, 32.2])[1] * h, fs_, o.night ? '#c9d6e8' : '#6a6050', { stroke: false }); }
   c.restore();
-  const T_ = [w * .63, h * .52], M_ = [w * .55, h * .72];
-  if (o.p > 0) { c.save(); c.setLineDash([16, 12]); c.lineWidth = 7; c.strokeStyle = o.routeCol || '#d9342b'; c.lineCap = 'round'; c.beginPath(); const N = 30; for (let i = 0; i <= N * clamp(o.p); i++) { const u = i / N; const px = lerp(T_[0], M_[0], u) + Math.sin(u * Math.PI) * w * .04, py = lerp(T_[1], M_[1], u); i ? c.lineTo(px, py) : c.moveTo(px, py); } c.stroke(); c.restore(); }
-  const pin = (p, txt, col, dy) => { circ(c, p[0], p[1], Math.max(8, w * .014), col, 4); label(c, txt, p[0], p[1] + dy * Math.max(26, w * .05), Math.max(20, w * .04), '#fff'); };
-  if (o.tampico !== false) pin(T_, 'TAMPICO', '#ffcf3f', -1); if (o.city !== false) pin(M_, o.cityLabel || 'MEXICO CITY', '#d9342b', 1);
-  rr(c, 0, 0, w, h, 14); fs(c, null, 5); c.restore(); return { tampico: [x - w / 2 + T_[0], y - h / 2 + T_[1]], city: [x - w / 2 + M_[0], y - h / 2 + M_[1]] };
+  const T_ = P_(MXUV([-97.85, 22.25])), M_ = P_(MXUV([-99.13, 19.43]));
+  if (o.p > 0) { c.save(); c.setLineDash([16, 12]); c.lineWidth = 7; c.strokeStyle = o.routeCol || '#d9342b'; c.lineCap = 'round'; c.beginPath(); const N = 30; for (let i = 0; i <= N * clamp(o.p); i++) { const u = i / N; const px = lerp(T_[0], M_[0], u) - Math.sin(u * Math.PI) * w * .015, py = lerp(T_[1], M_[1], u); i ? c.lineTo(px, py) : c.moveTo(px, py); } c.stroke(); c.restore(); }
+  const ls = Math.max(20, w * .036), pr = Math.max(8, w * .014);
+  if (o.tampico !== false) { circ(c, T_[0], T_[1], pr, '#ffcf3f', 4); label(c, 'TAMPICO', T_[0] + pr + 10, T_[1] - 2, ls, '#fff', { align: 'left' }); }
+  if (o.city !== false) { circ(c, M_[0], M_[1], pr, '#d9342b', 4); label(c, o.cityLabel || 'MEXICO CITY', M_[0], M_[1] + pr + ls * .8, ls, '#fff'); }
+  rr(c, 0, 0, w, h, 14); fs(c, null, 5); c.restore();
+  const tx = MXUV([-99.3, 31]);
+  return { tampico: [x - w / 2 + T_[0], y - h / 2 + T_[1]], city: [x - w / 2 + M_[0], y - h / 2 + M_[1]], texas: [x - w / 2 + tx[0] * w, y - h / 2 + tx[1] * h] };
 }
 // stylised world map (blobs), route through named stops [[u,v,'LABEL'],...] in 0..1 coords; o.p draws the dotted route
 const CONT = [ [[.06, .2], [.2, .14], [.3, .2], [.28, .34], [.22, .42], [.2, .5], [.16, .46], [.1, .34]], [[.22, .52], [.3, .56], [.32, .7], [.27, .86], [.24, .74], [.21, .6]],

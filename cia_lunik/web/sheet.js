@@ -18,7 +18,7 @@ window.propsSheet = () => {
   truck59(c, 600, 600, .62, { crate: { state: 'closed' }, driver: 'driver', lights: true }); car59(c, 1080, 600, .55, { col: '#2f3e52', driver: 'dean', lights: true }); crate(c, 1540, 600, 420, { planks: .45, tarp: 0 });
   pressCamera(c, 120, 760, .7, { flash: .3 }); filmCanister(c, 240, 800, .9, { label: 'TEST' }); seal(c, 360, 760, .8); seal(c, 360, 830, .8, { cut: true, keepSeal: true }); couplingBag(c, 520, 860, .6, { open: true, tag: 'WASHINGTON' });
   dossier(c, 790, 820, 330, { who: 'silveti', name: 'E. DÍAZ SILVETI', role: ['MEXICAN SECRET POLICE', 'AGE 30'], source: 'PER MAYSH', stamp: 'CLASSIFIED' });
-  mapMexico(c, 1120, 820, 260, 200, { p: 1, night: true }); manifest(c, 1360, 830, 220, 260, { hl: 1, title: 'MANIFEST' });
+  mapMexico(c, 1105, 800, 300, 194, { p: 1, night: true, showTexas: true }); manifest(c, 1370, 840, 200, 240, { hl: 1, title: 'MANIFEST' });
   sputnik(c, 1540, 760, 26, 1, { beep: 1 }); lunaProbe(c, 1650, 760, 26, 1, 1); lunaProbe(c, 1740, 760, 24, 3, 1); pioneer4(c, 1840, 780, .5); moon(c, 1580, 920, 60, { far: true }); earth(c, 1720, 920, 56, 1); launchRocket(c, 1860, 1040, .3, { fire: 1, t: 1 });
   nightClock(c, 1250, 120, 0, 0, 0, { label: false }); sodiumLamp(c, 40, 640, 220, 1); toolCloth(c, 230, 1000, 340); usFlag(c, 1000, 960, 80, 1); typewriter(c, 960, 1060, .3); rotaryPhone(c, 1060, 1060, .35); roomKey(c, 1120, 990, .5);
 };
