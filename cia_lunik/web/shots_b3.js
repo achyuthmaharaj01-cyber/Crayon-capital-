@@ -92,8 +92,8 @@ S('W2.0', { cams: [[700, 520, 1.25], [1160, 520, 1.25]], sfx: [['creak', 'stoppe
   // chair + scott
   box(c, 790, 760, 160, 20, 6, '#3a2a1e'); line(c, 870, 780, 870, 860, 10); line(c, 820, 860, 920, 860, 8);
   P('scott', { x: 870, y: 860, s: .95, t: T.t, legs: 'sit', expr: face > 0 ? 'focus' : (turn > 0 ? 'neutral' : 'worried'), flip: face <= 0, pose: face > 0 ? 'point' : 'idle', look: face > 0 ? 1 : (turn > 0 ? 0 : -1) });
-  chalkText(c, 'AFTER IT CLOSES?', 1460, 360, 66, T.at('after', 1.0));
-  chalkText(c, 'HALL  →  ?', 1460, 470, 56, T.at('closed', .8), CHALK_Y);
+  chalkText(c, 'AFTER IT CLOSES?', 1460, 360, 66, T.at('started', 1.2));
+  chalkText(c, 'TRUCKS → RAIL YARD?', 1460, 470, 50, T.at('closed', .8), CHALK_Y);
   GRADE.warm(c, .15);
 } });
 S('W3.0', { focus: [1240, 540, 1.15], sfx: [['pencil', 'weak', -10, { len: 1 }], ['ding', 'line', -14]], draw(c, T) {
@@ -103,13 +103,13 @@ S('W3.0', { focus: [1240, 540, 1.15], sfx: [['pencil', 'weak', -10, { len: 1 }],
   hallFacade(c, 330, 640, 380, { banner: 'EXHIBITION' }); label(c, 'HALL', 330, 700, 40, INK, { stroke: false });
   c.save(); c.setLineDash([22, 16]); line(c, 540, 600, 1440, 600, 8, '#5a6a80'); c.restore();
   for (let i = 0; i < 3; i++) truckTop(c, 640 + ((T.lt * 120 + i * 300) % 760), 600, .9);
-  freightTrain(c, 1700, 660, .38, { cars: ['box', 'crate'], t: T.t, smoke: false }); label(c, 'RAIL YARD', 1600, 720, 40, INK, { stroke: false });
+  freightTrain(c, 1700, 660, .38, { cars: ['box', 'crate'], t: T.t, smoke: false }); label(c, 'RAIL YARD', 1640, 770, 40, INK, { stroke: false });
   const m = easeOut(T.at('found', 1.0)); magnifier(c, lerp(760, 1560, m), 560, 130, () => { SET.paper(c, T.t); freightTrain(c, 1700, 660, .38, { cars: ['box', 'crate'], t: T.t, smoke: false }); P('checker', { x: 1480, y: 650, s: .32, t: T.t, expr: 'neutral', pose: 'clipboard' }); });
   redRing(c, 1560, 600, 250, 190, T.at('weak', .8));
   if (T.since('spot') > 0) label(c, 'WEAK SPOT', 1560, 340, 60, '#d9342b', { stroke: false });
   if (T.since('line') > -.1) label(c, 'END OF THE LINE', 1560, 860, 40, INK, { stroke: false });
 } });
-S('W4.0', { cams: [[700, 520, 1.3], [1250, 520, 1.3]], sfx: [['paper', 'crated', -12], ['truck', 'trucks', -16, { len: 1.6 }], ['train2', 'rail', -18, { len: 1.6 }]], draw(c, T) {
+S('W4.0', { cams: [[960, 540, 1.0], [1200, 540, 1.2]], sfx: [['paper', 'crated', -12], ['truck', 'trucks', -16, { len: 1.6 }], ['train2', 'rail', -18, { len: 1.6 }]], draw(c, T) {
   SET.paper(c, T.t);
   const st = [['EXHIBIT', 'ended', 300], ['CRATED', 'crated', 740], ['TRUCKED', 'trucks', 1180], ['RAIL YARD', 'rail', 1620]];
   st.forEach(([lab, w, x], i) => { const on = T.since(w) > 0, p = T.at(w, .5);
@@ -194,7 +194,7 @@ S('W9.0', { focus: [960, 470, 1.25], shakes: [['truck']], sfx: [['hit', 'truck',
   c.save(); c.translate(1000, 650); c.scale(.36, .36); c.globalAlpha = clamp(T.since('truck') * 2); truck59(c, 100, 60, 1, { crate: true }); c.restore();
   GRADE.warm(c, .12);
 } });
-S('W10.0', { cams: [[880, 520, 1.25], [1000, 460, 1.45]], shakes: [['impossible']], sfx: [['pencil', 'simple', -12, { len: 1 }], ['hammer', 'impossible', -8]], draw(c, T) {
+S('W10.0', { cams: [[880, 520, 1.25], [1040, 520, 1.3]], shakes: [['impossible']], sfx: [['pencil', 'simple', -12, { len: 1 }], ['hammer', 'impossible', -8]], draw(c, T) {
   SET.embassyOffice(c, T.t, { night: true, noDesk: true }); chalkboard(c, 360, 160, 1200, 620);
   chalkText(c, 'THE PLAN', 960, 240, 70, 1);
   chalkText(c, 'SIMPLE', 1200, 420, 90, T.at('simple', .6), '#fff');
@@ -240,15 +240,15 @@ S('W12.0', { cams: [[960, 540, 1.15], [960, 540, 1.15]], sfx: [['creak', 'hide',
     label(c, 'HIDE IT', 920, 420, 50, m > .5 ? '#fff' : INK, { stroke: false }); if (m > .3) label(c, 'OVERNIGHT', 920, 840, 40, '#ffe58a', { stroke: false });
   });
   else planBoard(c, T, 4, () => {
-    const a = easeOut(T.at('apart', .9)); lunik(c, 960, 560, 820, { blueprint: true, capOff: a, sphereOut: a * .8, labels: false });
-    label(c, 'TAKE IT APART', 960, 820, 44, INK, { stroke: false });
+    c.fillStyle = '#123a63'; c.fillRect(430, 180, 1080, 720); const a = easeOut(T.at('apart', .9)); lunik(c, 960, 560, 820, { blueprint: true, capOff: a, sphereOut: a * .8, labels: false });
+    label(c, 'TAKE IT APART', 960, 820, 44, '#e8f1ff', { stroke: false });
   });
 } });
 S('W12.1', { focus: [960, 540, 1.15], sfx: [['camflash2', 'photograph', -8], ['camshutter', 'everything', -10], ['wrench', 'together', -14, { len: 1 }]], draw(c, T) {
   planBoard(c, T, 4, () => {
-    const back = easeOut(T.at('together', .9)); const a = 1 - back; lunik(c, 960, 560, 820, { blueprint: true, capOff: a, sphereOut: a * .8, labels: false });
+    c.fillStyle = '#123a63'; c.fillRect(430, 180, 1080, 720); const back = easeOut(T.at('together', .9)); const a = 1 - back; lunik(c, 960, 560, 820, { blueprint: true, capOff: a, sphereOut: a * .8, labels: false });
     const f = T.since('photograph'); if (f > 0 && f < .6) flashBurst(c, 960, 520, 300, f / .6); const f2 = T.since('everything') - .3; if (f2 > 0 && f2 < .6) flashBurst(c, 1220, 500, 260, f2 / .6);
-    label(c, back > .5 ? 'PUT IT BACK' : 'PHOTOGRAPH EVERYTHING', 960, 820, 44, INK, { stroke: false });
+    label(c, back > .5 ? 'PUT IT BACK' : 'PHOTOGRAPH EVERYTHING', 960, 820, 44, '#e8f1ff', { stroke: false });
   });
   const f = T.since('photograph'); if (f > 0 && f < .5) GRADE.flash(c, 960, 540, f / .5);
 } });
@@ -285,7 +285,7 @@ S('M1.2', { focus: [960, 520, 1.25], sfx: [['door', 0, -18], ['ding', 'factory',
   hedge(c, "PER FINER'S REPORT", 960, 760, T.at('report', .6), { size: 30 });
   lightPool(c, 960, 520, 500, '#fff2cc', .3);
 } });
-S('M2.0', { cams: [[900, 540, 1.2], [1180, 640, 1.5]], sfx: [['ding', 'stamps', -16], ['ding', 'labels', -16], ['ding', 'serial', -14]], draw(c, T) {
+S('M2.0', { cams: [[960, 560, 1.1], [960, 640, 1.3]], sfx: [['ding', 'stamps', -16], ['ding', 'labels', -16], ['ding', 'serial', -14]], draw(c, T) {
   SET.grid(c, T.t);
   // a metal equipment plate: rivets, a stamp, a label, a serial strip (unreadable on purpose)
   box(c, 420, 260, 1080, 640, 18, '#9aa4ae', 5); c.save(); rr(c, 420, 260, 1080, 640, 18); c.clip(); for (let i = 0; i < 14; i++) line(c, 420, 280 + i * 46, 1500, 300 + i * 46, 3, 'rgba(255,255,255,.12)'); c.restore();
@@ -295,7 +295,8 @@ S('M2.0', { cams: [[900, 540, 1.2], [1180, 640, 1.5]], sfx: [['ding', 'stamps', 
   glow(1100, 440, 260, 'labels'); box(c, 900, 360, 400, 170, 8, '#efe6c8', 4); label(c, 'CCCP', 1100, 410, 54, '#7a2a24', { stroke: false, raw: true }); for (let i = 0; i < 2; i++) line(c, 940, 470 + i * 30, 1260 - i * 80, 470 + i * 30, 6, '#9a917c');
   glow(960, 740, 300, 'serial'); box(c, 620, 690, 680, 100, 10, '#2b2f36', 4); label(c, 'No.', 680, 740, 40, '#e9e4d6', { stroke: false, raw: true }); for (let i = 0; i < 9; i++) box(c, 740 + i * 58, 712, 42, 56, 6, '#5a6470', 0);
   [['STAMPS', 640, 640, 'stamps'], ['LABELS', 1100, 580, 'labels'], ['SERIAL NUMBERS', 960, 850, 'serial']].forEach(([s, x, y, w]) => { if (T.since(w) > 0) label(c, s, x, y, 40, '#fff'); });
-  const m = T.lt; magnifier(c, 640 + 460 * clamp((T.since('labels')) / .5) - 140 * clamp(T.since('serial') / .5), 470 + 270 * clamp(T.since('serial') / .5), 150, null);
+  const lx = 640 + 460 * easeOut(clamp(T.since('labels') / .5)) - 140 * easeOut(clamp(T.since('serial') / .5)), ly = 470 - 30 * easeOut(clamp(T.since('labels') / .5)) + 300 * easeOut(clamp(T.since('serial') / .5));
+  c.save(); c.globalCompositeOperation = 'screen'; c.globalAlpha = .25; circ(c, lx, ly, 150, '#cfe8ff', 0); c.restore(); circ(c, lx, ly, 150, null, 12); c.save(); c.globalAlpha = .5; c.beginPath(); c.arc(lx, ly, 120, 3.6, 4.4); c.lineWidth = 10; c.strokeStyle = '#fff'; c.stroke(); c.restore(); c.save(); c.translate(lx, ly); c.rotate(.8); box(c, 146, -18, 170, 36, 14, '#5d4037'); c.restore();
   if (T.since('enemy') > 0) hedge(c, 'ENEMY EQUIPMENT', 1240, 200, T.at('enemy', .5), { size: 34 });
 } });
 S('M3.0', { cams: [[960, 560, 1.15], [960, 520, 1.35]], sfx: [['pop', 'vacationers', -12]], draw(c, T) {
@@ -327,15 +328,16 @@ S('M4.1', { cams: [[960, 540, 1.15], [1080, 500, 1.4]], sfx: [['paper', 0, -14],
   filmCanister(c, 360, 900, .9, { label: 'TEAM' }); pressCamera(c, 1640, 880, .9, {});
 } });
 S('M5.0', { focus: [960, 560, 1.2], sfx: [['pencil', 'worked', -12, { len: .5 }], ['pencil', 'photographers', -12, { len: .5 }], ['pencil', 'need', -12, { len: .5 }]], draw(c, T) {
-  const L = SET.embassyOffice(c, T.t, {});
-  P('zambernardi', { x: 640, y: 900, s: 1.0, t: T.t, expr: 'focus', pose: 'point', hands: [[-60, -130], [210, -200]] });
+  const L = SET.embassyOffice(c, T.t, { noDesk: true });
+  box(c, 380, 760, 560, 30, 8, '#6d4428'); line(c, 410, 790, 410, 900, 10); line(c, 910, 790, 910, 900, 10); pressCamera(c, 470, 760, .7, {}); filmCanister(c, 600, 760, .7, {});
+  P('zambernardi', { x: 760, y: 940, s: 1.1, t: T.t, expr: 'focus', pose: 'point', hands: [[-60, -130], [210, -200]] });
   clipboard(c, 1200, 520, 520, 600, ['FOR THE PHOTOGRAPHERS', 'CAMERAS', 'FILM', 'FAST FLASH'], { cols: [INK, INK, INK, '#d9342b'], size: 40 });
   ['worked', 'photographers', 'need'].forEach((w, i) => { const k = T.at(w, .35); if (k <= 0) return; const y = 520 - 300 + 50 + (i + 1) * (600 - 80) / 3; c.save(); c.lineWidth = 8; c.strokeStyle = '#1d6fb8'; c.lineCap = 'round'; c.beginPath(); c.moveTo(1000, y); c.lineTo(1000 + 14 * clamp(k * 2), y + 14); c.lineTo(1014 + 30 * clamp(k * 2 - 1), y - 20); c.stroke(); c.restore(); });
-  label(c, 'ZAMBERNARDI', 640, 210, 44, '#fff');
+  hedge(c, 'ZAMBERNARDI · CASE OFFICER', 760, 520, clamp(T.lt * 2), { size: 30 });
 } });
-S('M5.1', { cams: [[960, 540, 1.15], [1300, 560, 1.5]], sfx: [['camflash2', 'flash', -6], ['elec', 'recharge', -12], ['camflash2', 'fast', -6]], draw(c, T) {
+S('M5.1', { cams: [[960, 540, 1.05], [1080, 560, 1.25]], sfx: [['camflash2', 'flash', -6], ['elec', 'recharge', -12], ['camflash2', 'fast', -6]], draw(c, T) {
   SET.darkroom(c, T.t);
-  pressCamera(c, 760, 620, 2.4, { flash: clamp(T.since('flash') / .5) * (T.since('flash') < .5 ? 1 : 0) || clamp(T.since('fast') / .5) * (T.since('fast') > 0 && T.since('fast') < .5 ? 1 : 0) });
+  pressCamera(c, 680, 640, 1.7, { flash: clamp(T.since('flash') / .5) * (T.since('flash') < .5 ? 1 : 0) || clamp(T.since('fast') / .5) * (T.since('fast') > 0 && T.since('fast') < .5 ? 1 : 0) });
   // recharge meter: drains on the flash, refills instantly on 'recharge'
   const f1 = T.since('flash'), r = T.since('recharge'), f2 = T.since('fast');
   let lvl = 1; if (f1 > 0) lvl = 0; if (r > 0) lvl = easeOut(clamp(r / .35)); if (f2 > 0) lvl = clamp(f2 / .3);
@@ -359,27 +361,28 @@ const SHOP = ['LADDERS', 'ROPES', 'DROP LIGHTS', 'PINCH BAR', 'METRIC WRENCHES',
 function hardware(c, T, upto, receipt) {
   bg(c, '#8a6a48', '#6d5034'); for (let r = 0; r < 4; r++) { box(c, -400, 140 + r * 150, W + 800, 16, 0, '#5a412a', 3); for (let i = 0; i < 22; i++) { const R = rand(r * 30 + i); box(c, -300 + i * 110, 70 + r * 150, 70, 70, 6, ['#c9a14a', '#9aa1a8', '#b8322a', '#4a6a8a'][Math.floor(R() * 4)], 3); } }
   sign(c, 960, 80, 420, 76, 'FERRETERÍA', { bg: '#e9e4d6', size: 46 });
-  P('clerkMx', { x: 1640, y: 800, s: .8, t: T.t, expr: 'grin', pose: 'idle', flip: true });
+  P('clerkMx', { x: 1660, y: 800, s: .8, t: T.t, expr: 'grin', pose: 'idle', flip: true });
+  P('finer', { x: 150, y: 820, s: .8, t: T.t, expr: 'focus', pose: 'hold', body: '#6a7a8a', trench: null, tie: null, hat: 'workcap', hatCol: '#5a5048', item: (cc, h) => { box(cc, h[1][0] - 20, h[1][1] - 90, 90, 120, 3, '#fbf8ee', 3); for (let i = 0; i < 5; i++) line(cc, h[1][0] - 8, h[1][1] - 70 + i * 20, h[1][0] + 56, h[1][1] - 70 + i * 20, 2.5, '#9a917c'); } });
   box(c, 120, 700, 1680, 60, 10, '#b98a5a', 5); box(c, 140, 760, 1640, 320, 6, '#8a5a3b', 4);
   const items = [
-    (x, y) => { c.save(); c.translate(x, y); c.rotate(-1.45); ladder(c, 0, 0, 380); c.restore(); },
+    (x, y) => { c.save(); c.translate(x - 190, y - 20); c.rotate(Math.PI / 2); ladder(c, 0, 0, 360); c.restore(); },
     (x, y) => ropeCoil(c, x, y - 40, 70),
     (x, y) => { dropLight(c, x, y - 140, 1, 60); },
     (x, y) => pinchBar(c, x, y - 30, 1.1, -.1),
     (x, y) => { wrench(c, x - 40, y - 30, .9, .2); wrench(c, x + 30, y - 40, .7, -.1); },
     (x, y) => nailPuller(c, x, y - 30, 1.1, -1.4)];
   const words = [['ladders', 0], ['ropes', 0], ['drop', 0], ['pinch', 0], ['metric', 0], ['nail', 0]];
-  const X = [300, 560, 800, 1040, 1270, 1490];
+  const X = [300, 640, 860, 1080, 1300, 1500];
   for (let i = 0; i < upto; i++) { const p = i < upto - 3 || T.since(words[i][0]) > 0 ? clamp(T.since(words[i][0]) / .25) : 0; const full = i < upto - 3 ? 1 : p; if (full <= 0) continue;
     const y = 700 - 160 * (1 - full); c.save(); c.globalAlpha = clamp(full * 3); items[i](X[i], y); c.restore();
     if (full >= 1) { c.save(); c.translate(X[i], 640 - (i % 2) * 40); c.rotate((i % 2 ? .04 : -.04)); box(c, -90, -24, 180, 48, 6, '#fff8e1', 3); label(c, SHOP[i], 0, 0, 24, INK, { stroke: false, maxW: 166 }); c.restore(); } }
   if (receipt > 0) { const h = 420 * easeOut(receipt); c.save(); c.translate(1600, 560); box(c, -70, -h, 140, h, 2, '#fbf8ee', 3); for (let i = 0; i < 6; i++) if (i * 60 < h - 30) line(c, -50, -h + 30 + i * 60, 30, -h + 30 + i * 60, 3, '#9a917c'); c.restore(); }
 }
-S('M7.0', { cams: [[700, 560, 1.25], [880, 560, 1.25]], sfx: [['hit', 'ladders', -14], ['hit', 'ropes', -14], ['switch', 'drop', -10]], draw(c, T) { hardware(c, T, 3, 0); } });
-S('M7.1', { cams: [[1100, 560, 1.25], [1240, 560, 1.25]], sfx: [['hit', 'pinch', -14], ['wrench', 'metric', -12, { len: .6 }], ['hit', 'nail', -14], ['paper', 'puller', -12]], draw(c, T) { hardware(c, T, 6, T.at('puller', .8)); } });
+S('M7.0', { cams: [[560, 560, 1.2], [740, 560, 1.25]], sfx: [['hit', 'ladders', -14], ['hit', 'ropes', -14], ['switch', 'drop', -10]], draw(c, T) { hardware(c, T, 3, 0); } });
+S('M7.1', { cams: [[1060, 560, 1.2], [1200, 560, 1.2]], sfx: [['hit', 'pinch', -14], ['wrench', 'metric', -12, { len: .6 }], ['hit', 'nail', -14], ['paper', 'puller', -12]], draw(c, T) { hardware(c, T, 6, T.at('puller', .8)); } });
 S('M8.0', { cams: [[960, 540, 1.1], [960, 540, 1.15]], sfx: [['camshutter', 'photographed', -6], ['camshutter', 'crate', -8], ['camshutter', 'out', -8], ['paper', 'how', -12]], draw(c, T) {
   if (T.sub === 0) {
-    const L = SET.port(c, T.t, { crane: 0, night: false });
+    bg(c, '#9ab8d6', '#f2d2a8'); FLOOR(c, 860, '#8a7d6c'); hallFacade(c, 1060, 860, 1500, { banner: 'SOVIET EXHIBITION' });
     crate(c, 1240, 840, 520, {}); P('guard', { x: 1580, y: 880, s: .55, t: T.t, expr: 'stern', pose: 'handsBack', flip: true });
     // car interior frame: we're inside a parked sedan with a long lens
     c.save(); c.fillStyle = '#10141a'; c.beginPath(); c.rect(-400, -300, W + 800, H + 600); c.moveTo(260, 180); c.quadraticCurveTo(960, 120, 1700, 180); c.lineTo(1760, 820); c.quadraticCurveTo(960, 860, 200, 820); c.closePath(); c.fill('evenodd'); c.restore();
@@ -463,9 +466,9 @@ S('G3.1', { focus: [900, 560, 1.25], sfx: [['carengine', 'engine', -10, { len: 1
   hedge(c, "SILVETI'S ACCOUNT", 400, 200, 1, { size: 30 });
   GRADE.warm(c, .15);
 } });
-S('G3.2', { cams: [[760, 520, 1.25], [1160, 620, 1.2]], sfx: [['clock', 'until', -14, { len: 1.4 }], ['bell', 'five', -12]], draw(c, T) {
-  bg(c, '#e0a46a', '#b06a48'); hallFacade(c, 960, 820, 1700, { banner: 'SOVIET EXHIBITION' }); FLOOR(c, 820, '#6a625a');
-  const k = easeOut(T.at('until', 1.4)); const hh = 15 + 2 * k, mm = 0; nightClock(c, 600, 420, 170, Math.floor(hh), Math.round((hh % 1) * 60), { label: false }); if (k > .95) label(c, 'AROUND 5 P.M.', 600, 660, 50, '#fff');
+S('G3.2', { cams: [[760, 560, 1.15], [1160, 620, 1.2]], sfx: [['clock', 'until', -14, { len: 1.4 }], ['bell', 'five', -12]], draw(c, T) {
+  bg(c, '#e0a46a', '#b06a48'); hallFacade(c, 1240, 820, 1300, { banner: 'SOVIET EXHIBITION' }); FLOOR(c, 820, '#6a625a');
+  const k = easeOut(T.at('until', 1.4)); const hh = 15 + 2 * k, mm = 0; nightClock(c, 360, 360, 150, Math.floor(hh), Math.round((hh % 1) * 60), { label: false }); if (k > .95) label(c, 'AROUND 5 P.M.', 360, 580, 46, '#fff');
   truck59(c, 1500, 1000, .7, { crate: true, driver: 'driver', t: T.t, driverExpr: T.since('replacement') > 0 ? 'happy' : 'worried' });
   const b = easeOut(clamp(T.since('replacement') / 1.0)); const bx = lerp(-200, 980, b);
   if (b > 0) { bicycle(c, bx, 1000, .9, T.t * (1 - b)); P('visitor3', { x: bx, y: 900, s: .5, t: T.t, legs: 'sit', expr: 'grin', pose: 'hold' }); box(c, bx - 120, 870, 90, 70, 8, '#c9a14a', 3.5); label(c, 'PART', bx - 75, 905, 22, INK, { stroke: false }); }
@@ -478,15 +481,15 @@ S('G4.0', { cams: [[960, 540, 1.1], [1060, 600, 1.35]], shakes: [['disputed']], 
   dossier(c, 960, 560, 1000, { who: 'silveti', expr: 'smug', t: T.t, name: 'E. DÍAZ SILVETI', role: ['MEXICAN SECRET POLICE', 'AGE 30'], source: "SILVETI'S ACCOUNT", p: clamp(T.lt / .5), stamp: 'DISPUTED', sp: T.at('disputed', .4) });
   if (T.since('only') > 0) hedge(c, 'ONLY SOURCE: SILVETI', 960, 140, T.at('only', .5), { size: 38 });
 } });
-S('G5.0', { cams: [[700, 620, 1.2], [960, 620, 1.0]], sfx: [['truck2', 'pulled', -12, { len: 3 }], ['carengine', 'ahead', -14], ['carengine', 'behind', -14]], draw(c, T) {
+S('G5.0', { cams: [[760, 680, 1.2], [960, 620, 1.0]], sfx: [['truck2', 'pulled', -12, { len: 3 }], ['carengine', 'ahead', -14], ['carengine', 'behind', -14]], draw(c, T) {
   const L = SET.nightStreet(c, T.t, { dusk: 1, scroll: T.since('pulled') > 0 ? 260 : 0 });
-  const go = easeOut(clamp(T.since('pulled') / 2.5)); const tx = lerp(300, 900, go);
+  const go = easeOut(clamp(T.since('pulled') / 2.5)); const tx = lerp(560, 940, go);
   const a = easeOut(T.at('ahead', 1.0)), b = easeOut(T.at('behind', 1.0));
-  if (a > 0) car59(c, lerp(2300, tx + 900, a), 990, .8, { lights: true, moving: true, t: T.t, driver: 'dean' });
-  truck59(c, tx, 1010, .95, { crate: true, driver: 'driver', lights: true, moving: go > 0 && go < 1, t: T.t });
-  if (b > 0) car59(c, lerp(-700, tx - 760, b), 990, .8, { lights: true, moving: true, t: T.t, driver: 'zambernardi', col: '#3a2f2a' });
+  if (a > 0) car59(c, lerp(2300, 1480, a), 990, .65, { lights: true, moving: true, t: T.t, driver: 'dean' });
+  truck59(c, tx, 1010, .75, { crate: true, driver: 'driver', lights: true, moving: go > 0, t: T.t });
+  if (b > 0) car59(c, lerp(-500, 320, b), 990, .65, { lights: true, moving: true, t: T.t, driver: 'zambernardi', col: '#3a2f2a' });
   GRADE.night(c, [...L, [tx + 330, 950, 300, '#fff3c0', .4]], .25);
-  if (a > .6) hedge(c, 'CIA CAR', tx + 900, 760, a, { size: 28 }); if (b > .6) hedge(c, 'CIA CAR', tx - 760, 760, b, { size: 28 });
+  if (a > .6) hedge(c, 'CIA CAR', 1480, 820, a, { size: 28 }); if (b > .6) hedge(c, 'CIA CAR', 320, 820, b, { size: 28 });
 } });
 S('G6.0', { cams: [[960, 520, 1.1], [1060, 300, 1.6]], sfx: [['carengine', 0, -22, { len: 3 }]], draw(c, T) {
   // inside the trailing CIA car: windshield, the truck's tail lights ahead, a mirror up top
@@ -522,7 +525,7 @@ S('G8.1', { cams: [[1000, 620, 1.2], [1040, 560, 1.4]], shakes: [['canvas']], sf
   NIGHT_SKY(c, T.t, '#060d1e', '#14284a', 60); skyline(c, 700, '#0c1828', 'rgba(255,200,110,.4)', 8, .8); FLOOR(c, 700, '#2a2e2a'); box(c, -400, 860, W + 800, 400, 0, '#33373d', 0); line(c, -400, 860, W + 400, 860, 4);
   sign(c, 1660, 620, 280, 66, 'ESTACIÓN', { bg: '#e9e4d6', size: 32, post: 150 }); sodiumLamp(c, 300, 870, 420, 1);
   const st = T.since('stopped'), cv = T.at('canvas', .7);
-  truck59(c, 1060, 1000, 1.05, { flip: true, crate: { canvas: cv, stencil: 'CCCP' }, driver: 'driver', lights: true, t: T.t, driverExpr: st > 0 ? 'worried' : 'neutral' });
+  truck59(c, 1060, 1000, 1.05, { flip: true, crate: { canvas: cv, stencil: false }, driver: 'driver', lights: true, t: T.t, driverExpr: st > 0 ? 'worried' : 'neutral' });
   // brake glow (tail is to the right when flipped)
   if (st > 0) { c.save(); c.globalCompositeOperation = 'screen'; lightPool(c, 1060 + 530, 900, 160, '#ff3020', .8 * clamp(st * 3)); c.restore(); }
   if (T.sub === 1) { P('dean', { x: 1720, y: 1030, s: .85, t: T.t, expr: 'focus', pose: 'holdHigh', flip: true }); P('newdriver', { x: 400, y: 1030, s: .85, t: T.t, expr: 'focus', pose: 'holdHigh' }); }
@@ -532,13 +535,13 @@ S('G8.1', { cams: [[1000, 620, 1.2], [1040, 560, 1.4]], shakes: [['canvas']], sf
 S('G9.0', { focus: [760, 600, 1.25], sfx: [['door', 'new', -10], ['steps', 'original', -16, { len: 1.4 }]], draw(c, T) {
   NIGHT_SKY(c, T.t, '#060d1e', '#14284a', 60); skyline(c, 700, '#0c1828', 'rgba(255,200,110,.4)', 8, .8); FLOOR(c, 700, '#2a2e2a'); box(c, -400, 860, W + 800, 400, 0, '#33373d', 0);
   sodiumLamp(c, 300, 870, 420, 1);
-  truck59(c, 1060, 1000, 1.05, { flip: true, crate: { state: 'canvas' }, lights: true, t: T.t, driver: T.since('wheel') > 0 ? 'newdriver' : null });
+  truck59(c, 1060, 1000, 1.05, { flip: true, crate: { state: 'canvas' }, lights: true, t: T.t, driver: T.since('original') > 0 ? 'newdriver' : null });
   const n = easeOut(T.at('new', .9)), o = easeOut(T.at('original', 1.6));
-  if (T.since('wheel') <= 0) P('newdriver', { x: lerp(300, 700, n), y: 1030, s: .9, t: T.t, expr: 'focus', walk: n < 1, look: 1 });
+  if (T.since('original') <= 0) P('newdriver', { x: lerp(300, 700, n), y: 1030, s: .9, t: T.t, expr: 'focus', walk: n < 1, look: 1 });
   P('driver', { x: lerp(820, 1500, o), y: 1030, s: .9, t: T.t, expr: 'worried', walk: o > 0 && o < 1, flip: o <= 0, look: -1 });
   if (o > 0) P('dean', { x: lerp(980, 1660, o), y: 1030, s: .9, t: T.t, expr: 'stern', walk: o < 1, pose: 'handsBack' });
   GRADE.night(c, [[371, 450, 420, '#ffb04a', .45]], .35);
-  if (T.since('driver') > 0) label(c, 'NEW DRIVER', lerp(300, 700, n), 600, 40, '#fff');
+  if (T.since('driver') > 0 && T.since('original') <= 0) hedge(c, 'NEW DRIVER', lerp(300, 700, n), 600, 1, { size: 30 });
 } });
 S('G9.1', { cams: [[900, 560, 1.15], [1160, 560, 1.4]], sfx: [['door', 'hotel', -12], ['paper', 'kept', -14]], draw(c, T) {
   const L = SET.hotel(c, T.t);
@@ -563,8 +566,8 @@ S('G10.0', { cams: [[960, 520, 1.15], [960, 520, 1.45]], sfx: [['clock', 'borrow
 } });
 S('G11.0', { focus: [900, 600, 1.2], sfx: [['crickets2', 0, -22, { len: 1.8 }]], draw(c, T) {
   const L = SET.road(c, T.t, { dusk: 0 });
-  const walk = clamp(T.lt / 1.8); P('kolomyakov', { x: lerp(500, 780, walk), y: 980, s: 1.0, t: T.t, expr: 'stern', walk: true, pose: 'hold', hands: [[-60, -130], [90, -180]] });
-  const hx = lerp(500, 780, walk) + 90, hy = 980 - 180; box(c, hx - 10, hy - 16, 60, 30, 8, '#3a3f46', 3);
+  const walk = clamp(T.lt / 1.8); P('kolomyakov', { x: lerp(500, 780, walk), y: 1000, s: 1.15, t: T.t, expr: 'stern', walk: true, pose: 'hold', hands: [[-60, -130], [90, -180]] });
+  const hx = lerp(500, 780, walk) + 90 * 1.15, hy = 1000 - 180 * 1.15; box(c, hx - 10, hy - 16, 60, 30, 8, '#3a3f46', 3);
   const sw = Math.sin(T.t * 1.6) * .25; c.save(); c.translate(hx + 50, hy); c.rotate(.35 + sw); c.globalCompositeOperation = 'screen'; cone(c, 0, 0, 20, 280, 900, '#fff3c0', .35); c.restore();
   GRADE.night(c, [...L, [hx + 400, hy + 200, 260, '#fff3c0', .35]], .35);
   hedge(c, 'IF ANYONE LOOKED', 1300, 240, 1, { size: 36 });
@@ -608,9 +611,8 @@ S('G13.1', { focus: [960, 540, 1.3], sfx: [['crowdtalk', 0, -22, { len: 1.6 }]],
   const L = SET.nightStreet(c, T.t, {});
   // cantina window: warm interior, the checker eating soup alone
   box(c, 460, 260, 1000, 560, 10, '#5a3a2a', 6); box(c, 500, 300, 920, 480, 6, '#ffcf7a', 4); sign(c, 960, 230, 360, 70, 'CANTINA', { bg: '#8a2a22', fg: '#ffe9a8', size: 40 });
-  c.save(); rr(c, 500, 300, 920, 480, 6); c.clip(); bg(c, '#f6c27a', '#d99a5a'); box(c, 700, 640, 520, 30, 6, '#6d4c41');
-  P('checker', { x: 960, y: 820, s: .75, t: T.t, legs: 'sit', expr: T.since('supper') > 0 ? 'sad' : 'neutral', pose: 'hold', hands: [[-40, -150], [50, -180 + Math.abs(Math.sin(T.t * 3)) * 30]] });
-  ell(c, 1000, 640, 70, 20, '#e9e4d6', 4); ell(c, 1000, 632, 54, 10, '#c9852f', 0); c.restore();
+  c.save(); rr(c, 500, 300, 920, 480, 6); c.clip(); bg(c, '#f6c27a', '#d99a5a'); P('checker', { x: 960, y: 790, s: .7, t: T.t, legs: 'sit', expr: T.since('supper') > 0 ? 'sad' : 'neutral', pose: 'hold', hands: [[-40, -150], [50, -180 + Math.abs(Math.sin(T.t * 3)) * 30]] });
+  box(c, 680, 700, 560, 30, 6, '#6d4c41'); box(c, 700, 730, 520, 60, 0, '#5a3a2a', 0); ell(c, 1040, 694, 70, 20, '#e9e4d6', 4); ell(c, 1040, 686, 54, 10, '#c9852f', 0); c.restore();
   for (let i = 1; i < 4; i++) line(c, 500 + i * 230, 300, 500 + i * 230, 780, 6, '#5a3a2a');
   GRADE.night(c, [...L, [960, 540, 600, '#ffcf7a', .45]], .3);
   if (T.since('supper') > 0) label(c, 'SUPPER, ALONE', 960, 900, 48, '#fff');
