@@ -341,9 +341,9 @@ function faceX(c, x, y, r, expr = 'neutral', t = 0, o = {}) {
 function hatOn(c, kind, hx, hy, col = '#3a3a40', o = {}) {
   const band = o.band || '#1b1b1b';
   if (kind === 'fedora') { ell(c, hx, hy - 40, 92, 17, col, 4); c.beginPath(); c.moveTo(hx - 54, hy - 44); c.bezierCurveTo(hx - 58, hy - 112, hx + 58, hy - 112, hx + 54, hy - 44); c.closePath(); fs(c, col, 4);
-    c.beginPath(); c.moveTo(hx - 22, hy - 96); c.quadraticCurveTo(hx, hy - 82, hx + 22, hy - 96); c.lineWidth = 3.5; c.strokeStyle = INK; c.stroke(); box(c, hx - 55, hy - 62, 110, 16, 3, band, 3.5); }
-  if (kind === 'homburg') { c.beginPath(); c.moveTo(hx - 96, hy - 48); c.quadraticCurveTo(hx, hy - 22, hx + 96, hy - 48); c.quadraticCurveTo(hx + 90, hy - 30, hx, hy - 30); c.quadraticCurveTo(hx - 90, hy - 30, hx - 96, hy - 48); fs(c, col, 4);
-    c.beginPath(); c.moveTo(hx - 52, hy - 38); c.bezierCurveTo(hx - 56, hy - 122, hx + 56, hy - 122, hx + 52, hy - 38); c.closePath(); fs(c, col, 4); line(c, hx, hy - 110, hx, hy - 88, 3.5); box(c, hx - 53, hy - 58, 106, 16, 3, band, 3.5); }
+    c.beginPath(); c.moveTo(hx - 18, hy - 88); c.quadraticCurveTo(hx, hy - 76, hx + 18, hy - 88); c.lineWidth = 3.5; c.strokeStyle = INK; c.stroke(); box(c, hx - 55, hy - 62, 110, 16, 3, band, 3.5); }
+  if (kind === 'homburg') { c.beginPath(); c.moveTo(hx - 80, hy - 56); c.quadraticCurveTo(hx - 74, hy - 34, hx, hy - 34); c.quadraticCurveTo(hx + 74, hy - 34, hx + 80, hy - 56); c.quadraticCurveTo(hx + 70, hy - 44, hx, hy - 44); c.quadraticCurveTo(hx - 70, hy - 44, hx - 80, hy - 56); fs(c, col, 4);
+    c.beginPath(); c.moveTo(hx - 52, hy - 38); c.bezierCurveTo(hx - 56, hy - 122, hx + 56, hy - 122, hx + 52, hy - 38); c.closePath(); fs(c, col, 4); line(c, hx, hy - 98, hx, hy - 80, 3.5); box(c, hx - 53, hy - 58, 106, 16, 3, band, 3.5); }
   if (kind === 'flatcap') { c.beginPath(); c.moveTo(hx - 64, hy - 26); c.bezierCurveTo(hx - 70, hy - 96, hx + 70, hy - 96, hx + 66, hy - 26); c.closePath(); fs(c, col, 4);
     c.beginPath(); c.moveTo(hx - 56, hy - 28); c.quadraticCurveTo(hx, hy - 8, hx + 60, hy - 28); c.quadraticCurveTo(hx, hy - 34, hx - 56, hy - 28); fs(c, col, 4); line(c, hx - 30, hy - 74, hx + 34, hy - 70, 3, 'rgba(0,0,0,.35)'); }
   if (kind === 'ushanka') { [-1, 1].forEach(s => { c.beginPath(); c.moveTo(hx + s * 50, hy - 40); c.quadraticCurveTo(hx + s * 82, hy - 10, hx + s * 70, hy + 34); c.quadraticCurveTo(hx + s * 56, hy + 40, hx + s * 52, hy + 10); c.closePath(); fs(c, o.fur || '#6b5640', 4); });
@@ -367,7 +367,7 @@ const POSE2 = {
   crouch: { hands: [[-74, -132], [74, -132]], legs: 'crouch' }, climb: { hands: [[-70, -360], [64, -250]], legs: 'step' },
   carry: { hands: [[-62, -196], [62, -196]] }, sneak: { hands: [[-40, -214], [52, -226]], legs: 'step', lean: .12 },
   photograph: { hands: [[-38, -286], [44, -290]], camera: true }, wrench: { hands: [[-70, -112], [124, -150]] },
-  shush: { hands: [[-70, -112], [16, -268]], shush: true }, drive: { hands: [[-48, -186], [48, -186]], legs: 'sit', wheel: true },
+  shush: { hands: [[-70, -112], [8, -236]], shush: true }, drive: { hands: [[-48, -186], [48, -186]], legs: 'sit', wheel: true },
   radio: { hands: [[-70, -112], [56, -276]] }, reach: { hands: [[-70, -112], [150, -300]] }, handsBack: { hands: [[-30, -120], [30, -120]], behind: true },
   lean: { hands: [[-70, -112], [70, -112]], lean: .1 },
 };
@@ -403,7 +403,7 @@ function crayon(c, o) {
     else { c.lineWidth = 4; c.strokeStyle = sleeve; c.stroke(); } };
   if (pz.behind) { arm(-52, hp[0]); arm(52, hp[1]); circ(c, hp[0][0], hp[0][1], 13, skin, 3.5); circ(c, hp[1][0], hp[1][1], 13, skin, 3.5); }
   // coat skirt (trench / heavy coat) below the bean
-  if (o.trench || o.longcoat) { const col = o.trench || o.longcoat; poly(c, [[-62, -110], [62, -110], [70, -44], [8, -40], [0, -60], [-8, -40], [-70, -44]], col, 4); }
+  if (o.trench || o.longcoat) { const col = o.trench || o.longcoat; poly(c, [[-58, -112], [58, -112], [62, -58], [6, -54], [0, -70], [-6, -54], [-62, -58]], col, 4); }
   if (pose === 'hips') [[-52, hp[0], -104], [52, hp[1], 104]].forEach(([sx, h, ex]) => { c.beginPath(); c.moveTo(sx, -205); c.lineTo(ex, -170); c.lineTo(h[0], h[1]); c.lineWidth = 10; c.strokeStyle = INK; c.lineJoin = 'round'; c.stroke(); c.lineWidth = 4; c.strokeStyle = body; c.stroke(); });
   // body bean (exact bible curve)
   const bean = () => { c.beginPath(); c.moveTo(0, -88); c.bezierCurveTo(58, -90, 70, -30, 64, 20); c.bezierCurveTo(60, 74, 30, 86, 0, 86); c.bezierCurveTo(-30, 86, -60, 74, -64, 20); c.bezierCurveTo(-70, -30, -58, -90, 0, -88); c.closePath(); };
@@ -451,7 +451,7 @@ function crayon(c, o) {
   if (o.item) o.item(c, hp, t);
   if (pz.camera && o.camera !== false) pressCamera(c, (hp[0][0] + hp[1][0]) / 2 + 10, hp[0][1] + 4, .62, { flash: o.flash || 0 });
   if (!pz.behind) { if (pose !== 'hips') arm(52, hp[1]); circ(c, hp[0][0], hp[0][1], 13, skin, 3.5); circ(c, hp[1][0], hp[1][1], 13, skin, 3.5); }
-  if (pz.shush) line(c, hp[1][0] - 4, hp[1][1] - 10, hp[1][0] - 6, hp[1][1] - 34, 7);
+  if (pz.shush) { line(c, hp[1][0] - 2, hp[1][1] - 10, hp[1][0] - 4, hp[1][1] - 46, 9); line(c, hp[1][0] - 2, hp[1][1] - 10, hp[1][0] - 4, hp[1][1] - 46, 4, skin); }
   c.restore();
   const k = s, fx = o.flip ? -1 : 1, rot = pz.lean || o.leanBody || 0;
   return { lh: [o.x + hp[0][0] * k * fx, o.y + (hp[0][1] + dy) * k], rh: [o.x + hp[1][0] * k * fx, o.y + (hp[1][1] + dy) * k], head: [o.x + hx * k * fx, o.y + (hy + dy) * k] };
@@ -460,9 +460,9 @@ function crayon(c, o) {
 function shade(hex, f) { const n = parseInt(hex.slice(1), 16); let r = n >> 16, g = (n >> 8) & 255, b = n & 255; const m = v => Math.round(f < 0 ? v * (1 + f) : v + (255 - v) * f); return '#' + [m(r), m(g), m(b)].map(v => v.toString(16).padStart(2, '0')).join(''); }
 
 // GRADE: whole-frame light pass so bright crayon characters sit inside the night. Call last inside draw().
-// GRADE.night(c, lights=[[x,y,r,col]], k=.55): navy multiply + re-lit warm pools. GRADE.warm(c,k), GRADE.dawn(c,k), GRADE.flash(c,x,y,p)
+// GRADE.night(c, lights=[[x,y,r,col]], k=.3): navy multiply + re-lit warm pools. GRADE.warm(c,k), GRADE.dawn(c,k), GRADE.flash(c,x,y,p)
 const GRADE = {
-  night(c, lights = [], k = .55, col = '#1b2a4a') { c.save(); c.globalCompositeOperation = 'multiply'; c.globalAlpha = k; c.fillStyle = col; c.fillRect(-600, -400, W + 1200, H + 800); c.restore();
+  night(c, lights = [], k = .3, col = '#1b2a4a') { c.save(); c.globalCompositeOperation = 'multiply'; c.globalAlpha = k; c.fillStyle = col; c.fillRect(-600, -400, W + 1200, H + 800); c.restore();
     lights.forEach(([x, y, r, lc = '#ffb04a', a = .55]) => lightPool(c, x, y, r, lc, a)); },
   warm(c, k = .18) { c.save(); c.globalCompositeOperation = 'soft-light'; c.globalAlpha = k; c.fillStyle = '#ffb35c'; c.fillRect(-600, -400, W + 1200, H + 800); c.restore(); },
   dawn(c, k = .25) { c.save(); c.globalCompositeOperation = 'soft-light'; c.globalAlpha = k; const g = c.createLinearGradient(0, 0, 0, H); g.addColorStop(0, '#ffb98a'); g.addColorStop(1, '#6a8fc0'); c.fillStyle = g; c.fillRect(-600, -400, W + 1200, H + 800); c.restore(); },

@@ -3,9 +3,10 @@ const { chromium } = require('playwright'); const path = require('path'); const 
 (async () => { const b = await chromium.launch(); const p = await b.newPage({ viewport: { width: 1920, height: 1080 } });
   await p.goto('file://' + path.join(__dirname, 'web/index.html')); await p.evaluate(() => window.READY);
   const out = path.join(__dirname, 'contact'); fs.mkdirSync(out, { recursive: true });
-  const pages = await p.evaluate(() => {
-    const cols = 4, rows = 4, tw = 470, th = 264, pad = 10, lh = 64;
-    const sheets = []; const shots = TL.shots; const per = cols * rows;
+  const FILT = process.argv[2] || ''; const TAG = process.argv[3] || 'sheet';
+  const pages = await p.evaluate((FILT) => {
+    const cols = 3, rows = 3, tw = 640, th = 360, pad = 10, lh = 64;
+    const sheets = []; const re = FILT ? new RegExp('^(' + FILT + ')\\d') : null; const shots = TL.shots.filter(s => !re || re.test(s.line)); const per = cols * rows;
     for (let pg = 0; pg * per < shots.length; pg++) {
       const sc = document.createElement('canvas'); sc.width = cols * (tw + pad) + pad; sc.height = rows * (th + lh + pad) + pad; const x = sc.getContext('2d');
       x.fillStyle = '#111'; x.fillRect(0, 0, sc.width, sc.height);
@@ -18,6 +19,6 @@ const { chromium } = require('playwright'); const path = require('path'); const 
         x.fillStyle = '#ddd'; x.font = '14px sans-serif'; const t1 = ws.slice(0, 62), t2 = ws.slice(62, 124); x.fillText(t1, cx, cy + th + 38); x.fillText(t2, cx, cy + th + 56);
       });
       sheets.push(sc.toDataURL('image/jpeg', .85));
-    } return sheets; });
-  pages.forEach((d, i) => fs.writeFileSync(path.join(out, `sheet_${String(i + 1).padStart(2, '0')}.jpg`), Buffer.from(d.split(',')[1], 'base64')));
+    } return sheets; }, FILT);
+  pages.forEach((d, i) => fs.writeFileSync(path.join(out, `${TAG}_${String(i + 1).padStart(2, '0')}.jpg`), Buffer.from(d.split(',')[1], 'base64')));
   console.log(pages.length, 'sheets'); await b.close(); })();
