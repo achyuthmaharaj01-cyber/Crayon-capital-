@@ -52,7 +52,7 @@ function caseForm(c, x, y, rows, o = {}) { const w = 1040, h = 640; c.save(); c.
     if (v) label(c, v, -w / 2 + 360, ry, 46, '#1f2a44', { stroke: false, align: 'left' }); if (red != null) redact(c, -w / 2 + 344, ry - 30, w / 2 - 70 - (-w / 2 + 344), 62, red); });
   c.restore(); }
 // small typed paper coming out of a typewriter
-function typedPaper(c, x, y, lines, n) { box(c, x - 210, y - 330, 420, 340, 3, '#f6f1e2'); let k = n; lines.forEach((l, i) => { const m = Math.max(0, Math.min(l.length, k)); k -= l.length; if (m > 0) label(c, l.slice(0, m), x - 180, y - 280 + i * 64, i === lines.length - 1 ? 52 : 30, i === lines.length - 1 ? '#b8322a' : INK, { stroke: false, align: 'left', raw: false }); }); }
+function typedPaper(c, x, y, lines, n) { box(c, x - 210, y - 330, 420, 340, 3, '#f6f1e2'); reg(c, x - 210, y - 330, x + 210, y + 10); let k = n; lines.forEach((l, i) => { const m = Math.max(0, Math.min(l.length, k)); k -= l.length; if (m > 0) label(c, l.slice(0, m), x - 180, y - 270 + i * 80, i === lines.length - 1 ? 60 : 38, i === lines.length - 1 ? '#b8322a' : INK, { stroke: false, align: 'left', raw: false }); }); }
 function factorySil(c, x, y, s) { c.save(); c.translate(x, y); c.scale(s, s); poly(c, [[-160, 0], [-160, -120], [-110, -170], [-110, -120], [-60, -170], [-60, -120], [-10, -170], [-10, -120], [40, -120], [40, -260], [80, -260], [80, -120], [160, -120], [160, 0]], '#3a3f46', 4); label(c, '?', 0, -60, 90, '#ffcf3f', { stroke: false }); c.restore(); }
 // copied stencil markings: generic strokes and boxes, nothing readable presented as real
 function marking(c, x, y, i, p) { if (p <= 0) return; c.save(); c.translate(x, y); c.globalAlpha = clamp(p * 2); const R = rand(i + 11); const k = easeOut(p);
@@ -70,14 +70,14 @@ S('F1.1', { cams: [[900, 520, 1.12]], draw(c, T) {
 } });
 S('F2.0', { cams: [[960, 520, 1.06]], sfx: [['pop', 'stop', -12]], draw(c, T) {
   SET.grid(c, T.t);
-  worldMap(c, 960, 520, 1500, 800, { stops: [[.12, .36, ''], [.46, .3, ''], [.5, .22, ''], [.62, .28, ''], [.19, .44, '']], p: 1 });
-  const p = pop(T, 'stop', .5); if (p > 0) { const px = 960 - 750 + .19 * 1500, py = 520 - 400 + .44 * 800; circ(c, px, py - (1 - easeOut(p)) * 80, 20, GOLD, 4); label(c, 'ONE STOP ON THE TOUR', px + 40, py - 70, 44, '#fff', { align: 'left' }); }
-  label(c, 'THE SOVIET EXHIBITION TOUR, 1959', 960, 980, 40, '#e8f1ff', { stroke: false });
+  worldMap(c, 960, 520, 1500, 800, { stops: [[.12, .36, ''], [.46, .3, ''], [.5, .22, ''], [.62, .28, ''], [.8, .3, '']], p: 1 });
+  const p = pop(T, 'stop', .5); if (p > 0) { const px = 960 - 750 + .5 * 1500, py = 520 - 400 + .22 * 800, dy = (1 - easeOut(p)) * 80; circ(c, px, py - dy, 28, GOLD, 4); label(c, '?', px, py - dy, 40, INK, { stroke: false }); }
+  arrive(c, p, 960, 975, () => label(c, 'ONE STOP ON THE TOUR', 0, 0, 52, '#fff'));
 } });
-S('F2.1', { cams: [[960, 540, 1.0], [820, 600, 1.12]], sfx: [['switch', 'closed', -8], ['steps', 0, -18, { len: 2.2 }]], draw(c, T) {
+S('F2.1', { handheld: .8, cams: [[960, 540, 1.0], [820, 600, 1.12]], sfx: [['switch', 'closed', -8], ['steps', 0, -18, { len: 2.2 }]], draw(c, T) {
   if (T.sub === 0) {
     SET.exhibitHall(c, T.t); lunikExhibit(c, 960, 860, 720, { t: T.t });
-    const lv = clamp(T.lt / 1.6); P('visitor1', { x: lerp(1200, 2000, lv), y: 960, s: .8, t: T.t, walk: lv < 1, pose: 'idle' }); P('visitor3', { x: lerp(1380, 2200, lv), y: 980, s: .85, t: T.t + 1, walk: lv < 1 });
+    const lv = clamp(T.lt / 1.6); P('visitor1', { x: lerp(520, -200, lv), y: 960, s: .8, t: T.t, walk: lv < 1, flip: true }); P('visitor3', { x: lerp(330, -420, lv), y: 980, s: .85, t: T.t + 1, walk: lv < 1, flip: true });
     // door with a swinging CLOSED sign
     box(c, 1640, 520, 220, 300, 6, '#4a3424'); const sp = T.since('closed'); const sw = sp > 0 ? Math.sin(sp * 9) * .5 * Math.exp(-sp * 2.2) : 0;
     c.save(); c.translate(1750, 560); c.rotate(sw); line(c, -40, 0, -50, 40, 3); line(c, 40, 0, 50, 40, 3); box(c, -90, 40, 180, 70, 6, sp > 0 ? '#b8322a' : '#2f7a4a', 3.5); label(c, sp > 0 ? 'CLOSED' : 'OPEN', 0, 76, 40, '#fff', { stroke: false }); c.restore();
@@ -87,7 +87,7 @@ S('F2.1', { cams: [[960, 540, 1.0], [820, 600, 1.12]], sfx: [['switch', 'closed'
   } else {
     const L = SET.hallNight(c, T.t); lunikExhibit(c, 1180, 860, 720, { t: T.t });
     const k = easeOut(clamp(T.lt / 1.9));
-    [[0, 560], [1, 400], [2, 250], [3, 110]].forEach(([i, tx], j) => { const x = lerp(-260 - j * 120, tx, k); officer(i, { x, y: 960 - (j % 2) * 30, s: .82, t: T.t + j, pose: i === 0 && T.since('quietly') > 0 ? 'shush' : 'sneak', walk: k < 1, expr: 'focus' }); });
+    [[0, 640], [1, 450], [2, 260], [3, 80]].forEach(([i, tx], j) => { const x = lerp(-260 - j * 160, tx, k); officer(i, { x, y: 990 - (j % 2) * 50, s: .82, t: T.t + j, pose: i === 0 && T.since('quietly') > 0 ? 'shush' : 'sneak', walk: k < 1, expr: 'focus' }); });
     torch(c, lerp(-200, 610, k), 760, -1.15, 640, .2); torch(c, lerp(-340, 300, k), 740, -1.25, 840, .16);
     GRADE.night(c, L, .25);
   }
@@ -146,17 +146,17 @@ S('F4.0', { cams: [[930, 520, 1.0], [1000, 520, 1.12]], shakes: [['removed']], s
   label(c, 'ENGINE', ex - 50, cy - 200, 40, pe > .05 ? '#ff8a7a' : '#e8f1ff', { stroke: false });
   // electronics racks: solid until 'electronics', then dashed outlines
   const pr = T.at('electronics', .5);
-  [[cx + 130, cy - 95], [cx + 130, cy + 45], [cx - 270, cy - 125]].forEach(([x, y], i) => { c.save(); c.setLineDash(pr > 0 ? [10, 8] : []); c.lineWidth = 3.5; c.strokeStyle = pr > 0 ? '#ff8a7a' : '#e8f1ff'; c.strokeRect(x, y, 90, 70); if (pr < 1) { c.globalAlpha = 1 - pr; for (let k = 0; k < 3; k++) line(c, x + 12, y + 16 + k * 18, x + 78, y + 16 + k * 18, 3, '#e8f1ff'); } c.restore(); });
-  label(c, 'ELECTRONICS', cx + 175, cy - 150, 34, pr > 0 ? '#ff8a7a' : '#e8f1ff', { stroke: false });
+  [[cx + 45, cy - 120], [cx + 45, cy + 50]].forEach(([x, y], i) => { c.save(); c.setLineDash(pr > 0 ? [10, 8] : []); c.lineWidth = 3.5; c.strokeStyle = pr > 0 ? '#ff8a7a' : '#e8f1ff'; c.strokeRect(x, y, 80, 70); if (pr < 1) { c.globalAlpha = 1 - pr; for (let k = 0; k < 3; k++) line(c, x + 12, y + 16 + k * 18, x + 68, y + 16 + k * 18, 3, '#e8f1ff'); } c.restore(); });
+  label(c, 'ELECTRONICS', cx + 85, cy - 205, 34, pr > 0 ? '#ff8a7a' : '#e8f1ff', { stroke: false });
   stamp(c, ex - 50, cy + 230, 'REMOVED', T.at('removed', .3), '#ff5a4a', { w: 300, h: 80, rot: -.12 });
   stamp(c, cx + 200, cy + 230, 'REMOVED', T.at('removed', .3, .2), '#ff5a4a', { w: 300, h: 80, rot: .08 });
 } });
-S('F5.0', { cams: [[960, 500, 1.05]], shakes: [['prop']], sfx: [['stamp', 'prop', -3], ['paper', 'remained', -14]], draw(c, T) {
+S('F5.0', { move: ['snap', 'prop', 1.2, [1060, 600]], cams: [[960, 500, 1.05]], shakes: [['prop']], sfx: [['stamp', 'prop', -3], ['paper', 'remained', -14]], draw(c, T) {
   const L = SET.hallNight(c, T.t); lunikExhibit(c, 960, 900, 980, { t: T.t, glow: 1 });
   // the analysts' assumption hangs off the nose, then falls when the stamp lands
   const tp = T.at('remained', .5), fall = clamp(T.since('prop') / .9);
   if (tp > 0 && fall < 1) { c.save(); c.translate(1380, 470 + fall * fall * 500); c.rotate(.15 + fall * 1.6); c.globalAlpha = clamp(tp * 2) * (1 - fall); line(c, 0, -80, 0, 0, 3, '#ddd'); box(c, -110, 0, 220, 90, 8, '#f6f1e2', 3.5); label(c, 'MOCK-UP?', 0, 45, 40, INK, { stroke: false }); c.restore(); }
-  stamp(c, 900, 600, 'NOT A PROP', T.at('prop', .3), '#ff4a3d', { w: 560, h: 130, rot: -.1 });
+  stamp(c, 1090, 560, 'NOT A PROP', T.at('prop', .3), '#ff4a3d', { w: 520, h: 120, rot: -.12 });
   torch(c, 200, 300, -1.0, 900, .14); torch(c, 1720, 300, 1.0, 900, .14);
   GRADE.night(c, [...L, [960, 620, 600, '#fff3c8', .25]], .22);
 } });
@@ -171,7 +171,7 @@ S('F5.1', { cams: [[880, 560, 1.12], [960, 520, 1.0]], sfx: [['hammer', 'real', 
   arrive(c, pop(T, 'soviet', .4), 1220, 940, () => label(c, 'SOVIET SPACE VEHICLE', 0, 0, 50, '#ffb04a'));
   GRADE.night(c, [...L, [1060, 470, 800, '#fff3c8', .22]], .22);
 } });
-S('F6.0', { cams: [[960, 520, 1.04]], shakes: [['enough']], sfx: [['clock', 0, -14, { len: 2.2 }], ['bell', 'enough', -10]], draw(c, T) {
+S('F6.0', { move: 'drift', cams: [[960, 520, 1.04]], shakes: [['enough']], sfx: [['clock', 0, -14, { len: 2.2 }], ['bell', 'enough', -10]], draw(c, T) {
   const L = SET.hallNight(c, T.t);
   const e = T.cue('enough'), rem = 1 - clamp((T.t - T.shot.start) / Math.max(.3, e - T.shot.start)); const wob = T.since('enough') > 0 ? Math.sin(T.since('enough') * 40) * .08 * Math.exp(-T.since('enough') * 3) : 0;
   c.save(); c.translate(960, 380); c.rotate(wob); const r = 230; circ(c, 0, 0, r * 1.07, '#2b2f36'); circ(c, 0, 0, r, '#f6f0dc');
@@ -208,18 +208,18 @@ S('F8.0', { cams: [[960, 540, 1.0], [1000, 600, 1.1]], sfx: [['inflate', 'longer
     const g = easeOut(T.at('longer', 1.1)), w = lerp(200, 1080, g); box(c, 700, 615, w, 70, 10, '#e0b13e'); if (g > .9) label(c, 'MUCH LONGER', 700 + w / 2, 650, 40, INK, { stroke: false }); });
   P('analyst', { x: 1660, y: 1010, s: .82, t: T.t, pose: 'point', flip: true, expr: T.since('longer') > 0 ? 'focus' : 'neutral' });
 } });
-S('F8.1', { cams: [[900, 560, 1.06]], sfx: [['hit', 'watching', -12]], draw(c, T) {
+S('F8.1', { move: ['snap', 'watching', 1.15, [600, 600]], handheld: 1, cams: [[900, 560, 1.06]], sfx: [['hit', 'watching', -12]], draw(c, T) {
   const L = SET.hallNight(c, T.t); lunikExhibit(c, 1120, 880, 760, { t: T.t, glow: 1 });
   const g = P('guard', { x: 380, y: 980, s: 1.15, t: T.t, expr: 'stern' });
   GRADE.night(c, L, .3); GRADE.dark(c, .55);
   cone(c, 1120, -60, 140, 700, 1000, '#fff2cc', .22); lightPool(c, 1120, 640, 520, '#fff2cc', .35);
   const e = easeOut(T.at('watching', .35)); if (e > 0) { const hy = 980 - 300 * 1.15, hx = 380; [-26, 26].forEach(d => { c.save(); c.shadowColor = '#ff4a3d'; c.shadowBlur = 24; ell(c, hx + d, hy, 13, 11 * e, '#ff6a5a', 0); c.restore(); }); }
-  label(c, 'NEXT TIME, THE SOVIETS WOULD BE WATCHING', 1120, 1000, 40, '#c9b9a8', { stroke: false });
+  label(c, 'NEXT TIME, THE SOVIETS WOULD BE WATCHING', 840, 990, 40, '#c9b9a8', { stroke: false });
 } });
 
 // ======================= FOLLOW THE PAPERWORK =======================
 chap('P1.0', 4, 'Follow the Paperwork');
-const PAPERS = [[520, 360, -.18, 'r'], [1360, 330, .14, 'r'], [760, 720, .08, 'm'], [1180, 760, -.1, 'r'], [600, 560, .22, 'n'], [1420, 600, -.2, 'r'], [960, 420, -.05, 'r'], [940, 640, .06, 'm']];
+const PAPERS = [[520, 360, -.18, 'r'], [1360, 330, .14, 'r'], [760, 720, .08, 'm'], [1180, 760, -.1, 'r'], [600, 560, .22, 'r'], [1420, 600, -.2, 'r'], [960, 420, -.05, 'r'], [940, 640, .06, 'm']];
 S('P1.1', { cams: [[960, 540, 1.0], [1000, 600, 1.15]], sfx: [['paper', 0, -14], ['page', 'paperwork', -12]], draw(c, T) {
   SET.desk(c, T.t, { lx: 960, ly: 520 }); const t0 = T.line.words[0].s + .9;
   PAPERS.forEach(([x, y, r, k], i) => { const p = clamp((T.t - t0 - i * .2) / .3); if (p <= 0) return; c.save(); c.translate(0, -(1 - easeOut(p)) * 60); c.globalAlpha = clamp(p * 3);
@@ -231,7 +231,7 @@ S('P1.1', { cams: [[960, 540, 1.0], [1000, 600, 1.15]], sfx: [['paper', 0, -14],
 } });
 S('P2.0', { cams: [[960, 520, 1.06]], shakes: [['intercepted']], sfx: [['stamp', 'intercepted', -4]], draw(c, T) {
   SET.desk(c, T.t, { lx: 960, ly: 500 }); manifest(c, 960, 540, 820, 680, {});
-  stamp(c, 1180, 300, 'INTERCEPTED', T.at('intercepted', .3), '#d9342b', { w: 520, h: 110, rot: .12 });
+  stamp(c, 1150, 760, 'INTERCEPTED', T.at('intercepted', .3), '#d9342b', { w: 520, h: 110, rot: .12 });
 } });
 S('P2.1', { cams: [[960, 540, 1.1]], sfx: [['slide', 'models', -10, { len: 1 }]], draw(c, T) {
   SET.desk(c, T.t, { lx: 960, ly: 560 }); const hl = T.at('models', 1.3);
@@ -241,12 +241,12 @@ S('P2.1', { cams: [[960, 540, 1.1]], sfx: [['slide', 'models', -10, { len: 1 }]]
 } });
 S('P2.2', { cams: [[960, 520, 1.06]], sfx: [['switch', 'identical', -8]], draw(c, T) {
   SET.grid(c, T.t, { title: 'MANIFEST vs LUNIK', sub: 'DIMENSIONS' }); lunik(c, 960, 520, 1100, { blueprint: true });
-  label(c, 'LUNIK', 960, 290, 40, '#e8f1ff', { stroke: false });
+  label(c, 'LUNIK', 960, 770, 40, '#e8f1ff', { stroke: false });
   const m = easeOut(clamp(T.since('dimensions') / Math.max(.4, T.cue('identical') - T.cue('dimensions'))));
   const tx = 960, ty = 520, tw = 1200, th = 400; const x = lerp(1380, tx, m), y = lerp(240, ty, m), w = lerp(820, tw, m), h = lerp(260, th, m);
   c.save(); c.setLineDash([18, 12]); c.lineWidth = 6; c.strokeStyle = '#ffb04a'; c.strokeRect(x - w / 2, y - h / 2, w, h); c.restore();
   label(c, 'CRATE, PER THE MANIFEST', x, y - h / 2 - 34, 38, '#ffb04a', { stroke: false });
-  const ok = pop(T, 'identical', .4); arrive(c, ok, 960, 860, () => label(c, 'ALMOST IDENTICAL', 0, 0, 70, '#7fe08a', { glow: '#3ee07a' }));
+  const ok = pop(T, 'identical', .4); arrive(c, ok, 960, 900, () => label(c, 'ALMOST IDENTICAL', 0, 0, 70, '#7fe08a', { glow: '#3ee07a' }));
 } });
 S('P3.0', { cams: [[960, 540, 1.0]], sfx: [['typewriter', 0, -14, { len: 2.3 }], ['bell', 'ready', -10]], draw(c, T) {
   SET.spot(c, T.t, { x: 520 });
@@ -277,9 +277,9 @@ S('P5.1', { cams: [[960, 540, 1.0], [1060, 660, 1.3]], sfx: [['pop', 'mexico', -
   const p = pop(T, 'mexico', .45); const [mx, my] = pos.city;
   if (p <= 0) label(c, 'WHERE?', 960, 980, 54, '#e8f1ff', { stroke: false });
   if (p > 0) { const dy = (1 - easeOut(p)) * 120; c.save(); c.translate(mx, my - dy); poly(c, [[0, 0], [-26, -50], [26, -50]], '#d9342b', 4); circ(c, 0, -62, 30, '#d9342b', 4); circ(c, 0, -62, 11, '#fff', 0); c.restore();
-    label(c, 'MEXICO CITY', mx, my + 50, 56, '#fff'); tag(c, 'PER MAYSH', mx + 230, my - 70, clamp(p * 1.5 - .3)); }
+    label(c, 'MEXICO CITY', mx, my + 50, 56, '#fff'); tag(c, 'PER MAYSH', mx + 250, my - 150, clamp(p * 1.5 - .3)); }
 } });
-S('P6.0', { cams: [[900, 560, 1.08]], sfx: [['crickets', 0, -22, { len: 2 }]], draw(c, T) {
+S('P6.0', { move: 'pull', push: .08, cams: [[900, 560, 1.08]], sfx: [['crickets', 0, -22, { len: 2 }]], draw(c, T) {
   NIGHT_SKY(c, T.t, '#2a3a5e', '#d98a5a', 8); skyline(c, 760, '#24304a', null, 5, .8); FLOOR(c, 860, '#4a4540');
   embassyFacade(c, 860, 860, 900, { t: T.t }); palm(c, 1520, 870, .95, T.t); palm(c, 230, 880, .8, T.t + 2); sodiumLamp(c, 1300, 880, 380, .7);
   GRADE.warm(c, .2);
@@ -349,7 +349,7 @@ S('P9.2', { cams: [[960, 520, 1.04]], sfx: [['hit', 'warned', -16]], draw(c, T) 
   P('silveti', { x: 640, y: 1100, s: 1.4, t: T.t + 3, pose: 'idle', expr: w > .4 ? 'shock' : 'neutral', hat: 'none', look: 1, sweat: w > .6 });
   tag(c, "SILVETI'S ACCOUNT", 960, 120, 1);
 } });
-S('P9.3', { cams: [[960, 500, 1.08]], shakes: [['world']], sfx: [['crumble', 'world', -8], ['elec', 'war', -12]], draw(c, T) {
+S('P9.3', { move: ['snap', 'world', 1.2, [960, 520]], cams: [[960, 500, 1.08]], shakes: [['world']], sfx: [['crumble', 'world', -8], ['elec', 'war', -12]], draw(c, T) {
   SET.embassyOffice(c, T.t, { night: true, noDesk: true });
   box(c, 300, 760, 1320, 40, 8, '#6d4428'); box(c, 320, 800, 1280, 300, 6, '#5a3820');
   line(c, 960, 760, 960, 680, 14, '#8a6a40'); ell(c, 960, 760, 110, 22, '#6a4a30', 4); c.beginPath(); c.arc(960, 470, 250, Math.PI * .6, Math.PI * 1.6); c.lineWidth = 10; c.strokeStyle = '#c9a14a'; c.stroke();
@@ -358,8 +358,8 @@ S('P9.3', { cams: [[960, 500, 1.08]], shakes: [['world']], sfx: [['crumble', 'wo
     if (cp > .5) { line(c, 900, 410, 820, 450, 5); line(c, 980, 470, 1080, 430, 5); } c.restore(); }
   const flick = T.since('world') > 0 && T.since('world') < 1.1 ? (Math.sin(T.since('world') * 47) > .2 ? .45 : 0) : 0;
   lightPool(c, 960, 470, 520, '#ffd27a', .25); GRADE.dark(c, .2 + flick);
-  arrive(c, pop(T, 'world', .4), 960, 930, () => label(c, 'COULD START WORLD WAR III', 0, 0, 62, '#ff6a5a', { glow: '#d9342b' }));
-  tag(c, "SILVETI'S ACCOUNT", 300, 120, 1);
+  arrive(c, pop(T, 'world', .4), 960, 870, () => label(c, 'COULD START WORLD WAR III', 0, 0, 62, '#ff6a5a', { glow: '#d9342b' }));
+  tag(c, "SILVETI'S ACCOUNT", 440, 190, 1);
 } });
 S('P10.0', { cams: [[960, 520, 1.06], [1000, 540, 1.0]], sfx: [['page', 'november', -12], ['pencil', '19th', -10]], draw(c, T) {
   if (T.sub === 0) { SET.desk(c, T.t, { lx: 960, ly: 520 }); calendar(c, 960, 520, 560, 520, 'NOV 1959', '19', { circle: T.at('19th', .6) }); }
@@ -372,7 +372,7 @@ S('P10.1', { cams: [[760, 540, 1.1]], sfx: [['paper', 'deputy', -10]], draw(c, T
   SET.desk(c, T.t, { lx: 800, ly: 520 });
   dossier(c, 760, 540, 960, { who: 'dean', name: T.since('dean') > 0 ? 'WARREN DEAN' : 'WARREN ...', role: ["SCOTT'S DEPUTY"], p: pop(T, 'deputy', .35), t: T.t });
 } });
-S('P10.2', { cams: [[960, 540, 1.0]], sfx: [['paper', 'robert', -10], ['whoosh1', 'reportedly', -16]], draw(c, T) {
+S('P10.2', { handheld: .7, cams: [[960, 540, 1.0]], sfx: [['paper', 'robert', -10], ['whoosh1', 'reportedly', -16]], draw(c, T) {
   const cut = T.t >= T.cue('reportedly') - .06;
   if (!cut) { SET.desk(c, T.t, { lx: 960, ly: 520 });
     dossier(c, 560, 540, 760, { who: 'dean', name: 'WARREN DEAN', role: ["SCOTT'S DEPUTY"], p: 1, t: T.t, rot: -.04 });
@@ -399,12 +399,12 @@ S('P11.0', { cams: [[960, 560, 1.0], [1000, 600, 1.0]], sfx: [['train', 'train',
     arrive(c, pop(T, 'guard', .4), 910, 430, () => label(c, 'UNDER GUARD', 0, 0, 64, '#ffb04a'));
     GRADE.night(c, L, .3);
   } else {
-    SET.grid(c, T.t); const k = clamp(T.lt / Math.max(.5, T.cue('capital') - T.shot.start + .2)); mapMexico(c, 960, 520, 1300, 840, { p: k, cityLabel: 'THE CAPITAL' });
-    const w = 1300, h = 840, T_ = [w * .63, h * .52], M_ = [w * .55, h * .72], u = k; const hx = 960 - w / 2 + lerp(T_[0], M_[0], u) + Math.sin(u * Math.PI) * w * .04, hy = 520 - h / 2 + lerp(T_[1], M_[1], u);
+    SET.grid(c, T.t); const k = clamp(T.lt / Math.max(.5, T.cue('capital') - T.shot.start + .2)); const pos = mapMexico(c, 960, 520, 1300, 840, { p: k, cityLabel: 'THE CAPITAL' });
+    const u = k, hx = lerp(pos.tampico[0], pos.city[0], u) - Math.sin(u * Math.PI) * 1300 * .015, hy = lerp(pos.tampico[1], pos.city[1], u);
     box(c, hx - 30, hy - 50, 60, 36, 6, '#2c2f33', 3); circ(c, hx - 16, hy - 10, 8, '#1f2226', 2); circ(c, hx + 16, hy - 10, 8, '#1f2226', 2);
   }
 } });
-S('P12.0', { cams: [[960, 520, 1.08]], sfx: [['page', 'later', -10], ['pencil', '21st', -10]], draw(c, T) {
+S('P12.0', { trans: 'fade', cams: [[960, 520, 1.08]], sfx: [['page', 'later', -10], ['pencil', '21st', -10]], draw(c, T) {
   SET.desk(c, T.t, { lx: 960, ly: 520 });
   const a = T.since('later'), b = a - .4, big = a < 0 ? '19' : b < 0 ? '20' : '21';
   calendar(c, 960, 540, 560, 520, 'NOV 1959', big, { circle: T.at('21st', .5) });
@@ -439,14 +439,14 @@ S('P15.0', { cams: [[960, 560, 1.0]], shakes: [['guards']], sfx: [['steps', 0, -
   const k = easeOut(clamp((T.t - T.shot.start) / Math.max(.3, T.cue('guards') - T.shot.start)));
   P('guard', { x: lerp(-150, 500, k), y: 1000, s: 1.05, t: T.t, walk: k < 1, expr: 'stern' }); P('guard', { x: lerp(2070, 1420, k), y: 1000, s: 1.05, t: T.t + 1, walk: k < 1, expr: 'stern', flip: true });
 } });
-S('P15.1', { cams: [[960, 560, 1.0]], sfx: [['clock', 0, -16, { len: 2.3 }]], draw(c, T) {
+S('P15.1', { move: 'hold', cams: [[960, 560, 1.0]], sfx: [['clock', 0, -16, { len: 2.3 }]], draw(c, T) {
   SET.exhibitHall(c, T.t); lunikExhibit(c, 960, 860, 640, { t: 0 });
   const cyc = .5 + .5 * Math.sin(T.lt * TAU * 1.4 - Math.PI / 2); GRADE.dark(c, .7 * cyc);
   P('guard', { x: 500, y: 1000, s: 1.05, t: 0, expr: 'stern' }); P('guard', { x: 1420, y: 1000, s: 1.05, t: 0, expr: 'stern', flip: true });
   clock(c, 1740, 180, 100, (T.lt * 24) % 12, (T.lt * 1440) % 60);
   arrive(c, pop(T, '24', .4), 960, 230, () => label(c, '24 HOURS A DAY', 0, 0, 80, '#fff', { glow: '#b8322a' }));
 } });
-S('P16.0', { cams: [[1000, 560, 1.06]], sfx: [['steps', 0, -18, { len: 2.6 }]], draw(c, T) {
+S('P16.0', { move: ['pan', [1180, 560, 1.12], [900, 560, 1.12]], cams: [[1000, 560, 1.06]], sfx: [['steps', 0, -18, { len: 2.6 }]], draw(c, T) {
   const L = SET.hallNight(c, T.t); lunikExhibit(c, 960, 840, 640, { t: T.t, glow: 1 });
   P('guard', { x: 300, y: 980, s: .9, t: T.t, expr: 'stern' }); P('guard', { x: 1640, y: 980, s: .9, t: T.t + 1, expr: 'stern', flip: true });
   const k = clamp(T.lt / T.d); P('kolomyakov', { x: lerp(1420, 1000, k), y: 1020, s: 1.1, t: T.t, walk: true, pose: 'handsBack', expr: 'smug', flip: true });
@@ -459,10 +459,9 @@ S('P16.1', { cams: [[880, 540, 1.04], [880, 480, 1.16]], sfx: [['paper', 0, -12]
   const nm = T.since('kolom') > 0 ? 'BORIS KOLOMYAKOV' : T.since('boris') > 0 ? 'BORIS ...' : '';
   dossier(c, 880, 560, 1080, { who: 'kolomyakov', name: nm, role: T.since('diplomat') > 0 ? ['SOVIET DIPLOMAT'] : [''], source: 'REPORTEDLY', p: clamp(T.lt / .35 + (T.sub ? 1 : 0)), t: T.t });
 } });
-S('P16.2', { cams: [[960, 560, 1.12]], shakes: [['kgb']], sfx: [['stamp', 'kgb', -3], ['hit', 'kgb', -14]], draw(c, T) {
+S('P16.2', { move: ['snap', 'kgb', 1.18, [1000, 640]], cams: [[960, 560, 1.12]], shakes: [['kgb']], sfx: [['stamp', 'kgb', -3], ['hit', 'kgb', -14]], draw(c, T) {
   SET.desk(c, T.t, { lx: 880, ly: 520 });
   dossier(c, 880, 560, 1080, { who: 'kolomyakov', expr: T.since('kgb') > 0 ? 'smug' : 'stern', name: 'BORIS KOLOMYAKOV', role: ['SOVIET DIPLOMAT'], source: T.since('maich') > 0 ? 'PER MAYSH' : 'REPORTEDLY', stamp: 'ALSO KGB', sp: T.at('kgb', .3), t: T.t });
   GRADE.dark(c, .18 * clamp(T.since('kgb') / .4));
-  tag(c, 'PER MAYSH', 1560, 300, pop(T, 'maich', .4), { size: 38 });
 } });
 })();

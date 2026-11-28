@@ -507,7 +507,7 @@ S('G6.0', { cams: [[960, 520, 1.1], [1060, 300, 1.6]], sfx: [['carengine', 0, -2
   if (T.since('escorting') > 0) label(c, 'ANY ESCORT?', 960, 470, 60, '#fff');
 } });
 S('G7.0', { focus: [1100, 600, 1.15], noWhoosh: true, sfx: [['crickets', 0, -22, { len: 1.6 }]], draw(c, T) {
-  const L = SET.road(c, T.t, { dusk: .2, sign: ' ' });
+  const L = SET.road(c, T.t, { dusk: .2 });
   GRADE.night(c, L, .35);
   const k = T.at('werent', .8); if (k > 0) { c.save(); c.globalAlpha = k; label(c, 'no escort.', 760, 420, 70, '#fff', { stroke: false, raw: true }); c.restore(); }
 } });
@@ -644,3 +644,13 @@ S('G15.0', { cams: [[960, 600, 1.1], [1060, 560, 1.4]], sfx: [['crickets2', 0, -
   if (T.since('hands') > 0) label(c, 'IN AMERICAN HANDS', 960, 260, 66, '#fff');
 }, overlay: (c, T) => nightClockOverlay(c, 19, 0, { sub: 'EARLY EVENING' }) });
 card('G15.1', 'And no one on the Soviet side knew it was missing.');
+
+// ----- builder's camera intent (cameraman may override in cams.js) -----
+const B3CAM = {
+  'W1.1': { move: 'hold', handheld: 1 }, 'W3.0': { move: ['snap', 'weak', 1.25, [1560, 600]] }, 'W9.0': { move: ['snap', 'truck', 1.3, [1000, 480]] },
+  'W12.2': { move: 'pull' }, 'M4.0': { move: ['snap', '29', 1.3, [960, 640]] }, 'G4.0': { moves: ['push', ['snap', 'disputed', 1.25, [1150, 680]]] },
+  'G6.0': { handheld: 1.2 }, 'G7.0': { move: 'drift' }, 'G8.1': { handheld: 1.3 }, 'G9.0': { handheld: 1 }, 'G10.0': { moves: ['drift', ['snap', 'borrowed', 1.3, [960, 520]]] },
+  'G11.0': { handheld: 1.2 }, 'G11.1': { move: ['pan', [700, 640, 1.25], [1220, 640, 1.25]] }, 'G12.1': { moves: ['push', 'pull'] }, 'G13.1': { trans: 'fade' }, 'G13.2': { trans: 'fade' },
+  'G14.0': { handheld: .8, trans: 'fade' }, 'G15.0': { move: 'drift' },
+};
+Object.entries(B3CAM).forEach(([k, v]) => SHOTS[k] && Object.assign(SHOTS[k], v));

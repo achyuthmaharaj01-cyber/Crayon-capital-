@@ -302,7 +302,7 @@ function stamp(c, x, y, txt, p, col = RED, o = {}) { // p: 0..1 slam progress
 }
 function arrow(c, x1, y1, x2, y2, col = RED, w = 26) { const a = Math.atan2(y2 - y1, x2 - x1), L = Math.hypot(x2 - x1, y2 - y1); c.save(); c.translate(x1, y1); c.rotate(a); poly(c, [[0, -w / 2], [L - w * 1.4, -w / 2], [L - w * 1.4, -w * 1.2], [L, 0], [L - w * 1.4, w * 1.2], [L - w * 1.4, w / 2], [0, w / 2]], col); c.restore(); }
 function crowd(c, x, y, w, rows, s, t, seed = 1, o = {}) { // tiny people heads/bodies
-  const R = rand(seed); const cols = ['#e8553c', '#3a7bd5', '#f2b134', '#5ab65a', '#9b59b6', '#e67e22', '#16a085', '#d35400', '#2c3e50'];
+  const R = rand(seed); const cols = ['#e8553c', '#3a7bd5', '#f2b134', '#5ab65a', '#3d8b8b', '#e67e22', '#16a085', '#d35400', '#2c3e50'];
   for (let r = 0; r < rows; r++) { const n = Math.floor(w / (46 * s)); for (let i = 0; i < n; i++) {
     const px = x - w / 2 + (i + .5 + (r % 2) * .5) * (w / n) + (R() - .5) * 10, py = y + r * 40 * s; const bob = o.cheer ? Math.abs(Math.sin(t * 6 + i + r)) * 10 * s : Math.sin(t * 2 + i) * 1.5;
     const col = cols[Math.floor(R() * cols.length)], sk = SKIN[Math.floor(R() * SKIN.length)];

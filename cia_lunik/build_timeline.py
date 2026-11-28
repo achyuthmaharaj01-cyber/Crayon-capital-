@@ -2,7 +2,7 @@
 voice/lines.json + storyboard.CHAPTERS -> web/timeline.js, shots.md"""
 import json
 from storyboard import CHAPTERS
-L = json.load(open("voice/lines.json")); DUR = L["duration"]; lines = L["lines"]
+L = json.load(open("voice/lines.json")); DUR = round(L["duration"] + 3.0, 3); lines = L["lines"]  # 3 s tail after the last word for the end card
 desc = {lid: shots for _, _, ls in CHAPTERS for lid, _, shots in ls}
 MAXH, MINP, CARD = 3.3, 1.3, 1.7
 shots = []

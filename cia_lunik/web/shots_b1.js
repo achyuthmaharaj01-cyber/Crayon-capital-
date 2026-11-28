@@ -45,7 +45,7 @@ function teleprinter(c, x, y, s = 1, o = {}) { c.save(); c.translate(x, y); c.sc
   box(c, -130, -206, 260, 12, 3, '#2b2f36', 0); c.restore(); }
 
 // =============================== COLD OPEN ===============================
-S('C1.0', { cams: [[900, 600, 1.06]], noWhoosh: true, sfx: [['night', 0, -24, { len: 2.6 }], ['truck2', .1, -15, { len: 6 }]], draw(c, T) {
+S('C1.0', { cams: [[900, 600, 1.06]], move: 'drift', noWhoosh: true, sfx: [['night', 0, -24, { len: 2.6 }], ['truck2', .1, -15, { len: 6 }]], draw(c, T) {
   const L = SET.nightStreet(c, T.t, { dusk: 1, traffic: T.t });
   car59(c, 2000 - T.lt * 760, 905, .5, { flip: true, lights: 1, moving: 1, t: T.t, col: '#6a4a3a' });
   // lamps coming on: the middle lamp sputters once, the far lamp catches late
@@ -65,7 +65,7 @@ S('C1.1', { cams: [[960, 560, 1.0]], push: .04, sfx: [['typewriter', .45, -14, {
   c.restore();
   GRADE.night(c, L, .4);
 } });
-S('C1.2', { cams: [[960, 560, 1.12]], sfx: [['ding', 'mexico', -16]],
+S('C1.2', { cams: [[960, 560, 1.12]], move: 'pull', sfx: [['ding', 'mexico', -16]],
   overlay: (c, T) => tag(c, 'Mexico City', '(most likely)', T.at('mexico', .5), T.at('city', .5)),
   draw(c, T) {
   // aerial: the city grid at night, the truck a pair of headlights on the boulevard
@@ -116,24 +116,24 @@ function cab(c, T, o) {
   c.save(); rr(c, 60, 180, 760, 440, 50); c.clip(); bg(c, '#0d1a30', '#1a2c48'); for (let i = 0; i < 3; i++) { const k = (T.t * .6 + i / 3) % 1, lx = lerp(900, -100, k); line(c, lx, 260, lx, 640, 10, '#1a2230'); lightPool(c, lx, 260, 140, '#ffb04a', .8); } c.restore(); rr(c, 60, 180, 760, 440, 50); fs(c, null, 8);
   // dashboard + radio glow
   box(c, 860, 690, 1200, 420, 30, '#3a2a20'); circ(c, 1180, 790, 46, '#1b2a20', 4); circ(c, 1300, 790, 46, '#1b2a20', 4); box(c, 1430, 760, 200, 60, 8, '#2b2016', 3); lightPool(c, 1530, 790, 180, '#ffcf7a', .5); c.fillStyle = '#ffcf7a'; c.fillRect(1450, 780, 160, 6);
-  P('driver', { x: 700, y: 1230, s: 1.55, t: T.t, pose: 'drive', expr: o.expr });
+  P('driver', { x: 600, y: 1330, s: 2.1, t: T.t, pose: 'drive', expr: o.expr });
   if (o.sweep > 0 && o.sweep < 1) lightPool(c, lerp(1100, 300, o.sweep), 700, 500, '#fff3c0', .5 * Math.sin(o.sweep * Math.PI));
   GRADE.night(c, [[1530, 790, 300, '#ffcf7a', .4], [700, 600, 500, '#ffb04a', .15]], .32);
 }
 function yardDream(c, cx, cy) { bg(c, '#bcd3e6', '#e9dcc0'); line(c, cx - 260, cy + 60, cx + 260, cy + 60, 5, '#5b5048'); line(c, cx - 260, cy + 80, cx + 260, cy + 80, 5, '#5b5048'); freightTrain(c, cx + 140, cy + 60, .3, { cars: ['box', 'box'] }); sign(c, cx - 120, cy - 70, 210, 50, 'RAIL YARD', { bg: '#e9e4d6', size: 28 }); }
 S('C3.0', { cams: [[1000, 560, 1.0]], sfx: [['whistle', 'thought', -20, { len: 1.4 }], ['pop', 'thought', -16]], draw(c, T) {
-  cab(c, T, { expr: 'grin' }); notes(c, 860, 480, T.t, 1);
+  cab(c, T, { expr: 'grin' }); notes(c, 820, 470, T.t, 1);
   const p = T.at('thought', .4); bubble(c, 1360, 330, 330, 190, 900, 500, () => yardDream(c, 1360, 330), 1, back(p));
 } });
-S('C3.1', { cams: [[1200, 420, 1.15], [760, 620, 1.35]], sfx: [['pop', 'never', -10], ['carengine', 'got', -18]], draw(c, T) {
-  const n = T.since('never'); cab(c, T, { expr: n > 0 ? (n > .6 ? 'worried' : 'neutral') : 'grin', sweep: clamp((n - .2) / 1.2) }); notes(c, 860, 480, T.t, clamp(1 - n * 4));
+S('C3.1', { cams: [[1200, 420, 1.15], [700, 600, 1.3]], moves: ['push', ['snap', 'never', 1.25, [640, 640]]], sfx: [['pop', 'never', -10], ['carengine', 'got', -18]], draw(c, T) {
+  const n = T.since('never'); cab(c, T, { expr: n > 0 ? (n > .6 ? 'worried' : 'neutral') : 'grin', sweep: clamp((n - .2) / 1.2) }); notes(c, 820, 470, T.t, clamp(1 - n * 4));
   const burst = clamp(n / .25); bubble(c, 1360, 330, 330, 190, 900, 500, () => yardDream(c, 1360, 330), 1 - burst, 1 + burst * .25);
   if (burst > 0 && burst < 1) for (let i = 0; i < 10; i++) { const a = i / 10 * TAU; circ(c, 1360 + Math.cos(a) * (300 + burst * 140), 330 + Math.sin(a) * (180 + burst * 90), 12 * (1 - burst), '#fff', 3); }
 } });
 // route map: main road to the rail yard, side road = the last turn-off
-const RA = [180, 930], RB = [1560, 250], TO = .7, SR = [1560, 700];
+const RA = [180, 930], RB = [1420, 330], TO = .7, SR = [1560, 700];
 const onMain = u => [lerp(RA[0], RB[0], u), lerp(RA[1], RB[1], u)];
-S('C4.0', { cams: [[960, 560, 1.05]], sfx: [['truck', 0, -20], ['creak', 'pulled', -10]], draw(c, T) {
+S('C4.0', { cams: [[960, 560, 1.05]], handheld: .7, sfx: [['truck', 0, -20], ['creak', 'pulled', -10]], draw(c, T) {
   bg(c, '#102036', '#0b1828'); c.lineWidth = 1.2; c.strokeStyle = 'rgba(200,225,255,.08)'; for (let x = 0; x < W; x += 60) { c.beginPath(); c.moveTo(x, 0); c.lineTo(x, H); c.stroke(); } for (let y = 0; y < H; y += 60) { c.beginPath(); c.moveTo(0, y); c.lineTo(W, y); c.stroke(); }
   const R = rand(2); for (let i = 0; i < 16; i++) box(c, 100 + R() * 1700, 80 + R() * 900, 80 + R() * 160, 60 + R() * 110, 6, 'rgba(255,255,255,.04)', 0);
   const T0 = onMain(TO);
@@ -143,7 +143,7 @@ S('C4.0', { cams: [[960, 560, 1.05]], sfx: [['truck', 0, -20], ['creak', 'pulled
   box(c, RB[0] - 40, RB[1] - 120, 300, 160, 10, '#2b3a50', 4); for (let k = 0; k < 4; k++) line(c, RB[0] - 20, RB[1] - 90 + k * 34, RB[0] + 240, RB[1] - 90 + k * 34, 4, '#9aa1a8'); label(c, 'RAIL YARD', RB[0] + 110, RB[1] - 160, 44, '#fff');
   // the remaining dotted route to the yard (never driven)
   const pr = T.at('pulled', .6); c.save(); c.globalAlpha = 1 - pr * .7; c.setLineDash([16, 12]); line(c, T0[0], T0[1], RB[0] - 40, RB[1] + 20, 6, '#d9342b'); c.restore();
-  const lt = T.at(['last', 'turnoff'], .5); arrive(c, lt, T0[0] + 220, T0[1] + 120, () => { hand(c, 'the last turn-off', -40, 0, 54, '#ffcf7a', { rot: .3 }); });
+  const lt = T.at(['last', 'turnoff'], .5); arrive(c, lt, T0[0] - 120, T0[1] + 300, () => { hand(c, 'the last turn-off', -40, 0, 58, '#ffcf7a', { rot: -.1 }); line(c, 120, -40, 170, -250, 4, '#ffcf7a'); });
   // the truck token: along the main road to the turn-off, then into the side road, stop on 'pulled'
   const tp = T.cue('pulled'), u1 = easeOut(clamp((T.t - T.shot.start) / (T.cue('turnoff') + .7 - T.shot.start)));
   let pos, ang; if (T.t < T.cue('turnoff') + .7) { pos = onMain(lerp(.12, TO, u1)); ang = Math.atan2(RB[1] - RA[1], RB[0] - RA[0]); }
@@ -151,7 +151,7 @@ S('C4.0', { cams: [[960, 560, 1.05]], sfx: [['truck', 0, -20], ['creak', 'pulled
   c.save(); c.translate(pos[0], pos[1]); c.rotate(ang); box(c, -70, -18, 100, 36, 4, '#b9874d', 3); box(c, 34, -16, 36, 32, 8, '#4f6d5a', 3);
   if (pr > 0) { lightPool(c, -72, -12, 50, '#ff3020', .9 * pr); lightPool(c, -72, 12, 50, '#ff3020', .9 * pr); circ(c, -72, -12, 5, '#ff5040', 0); circ(c, -72, 12, 5, '#ff5040', 0); } c.restore();
 } });
-S('C5.0', { cams: [[720, 700, 1.15]], sfx: [['whoosh2', 'canvas', -8], ['creak', 'crate', -14], ['crickets', 0, -24, { len: 3 }]], draw(c, T) {
+S('C5.0', { cams: [[720, 700, 1.15]], handheld: 1, sfx: [['whoosh2', 'canvas', -8], ['creak', 'crate', -14], ['crickets', 0, -24, { len: 3 }]], draw(c, T) {
   const L = SET.road(c, T.t, { dusk: 0 });
   const cv = T.at('canvas', 1.0);
   truck59(c, 980, 1000, 1.05, { crate: { canvas: cv }, tail: true, t: T.t });
@@ -160,7 +160,7 @@ S('C5.0', { cams: [[720, 700, 1.15]], sfx: [['whoosh2', 'canvas', -8], ['creak',
   lightPool(c, 980 - 518 * 1.05, 1000 - 150 * 1.05, 120, '#ff3020', .5);
   GRADE.night(c, L, .5);
 } });
-S('C5.1', { cams: [[880, 640, 1.08]], sfx: [['steps', 'new', -18, { len: .9 }], ['door', 'climbed', -8]], draw(c, T) {
+S('C5.1', { cams: [[880, 640, 1.08]], handheld: .8, sfx: [['steps', 'new', -18, { len: .9 }], ['door', 'climbed', -8]], draw(c, T) {
   const L = SET.road(c, T.t, { dusk: 0 });
   const inCab = T.since('behind') > 0;
   truck59(c, 480, 1150, 2.0, { crate: true, t: T.t, driver: inCab ? 'newdriver' : null, driverExpr: 'stern' });
@@ -173,13 +173,13 @@ S('C6.0', { cams: [[1060, 640, 1.12]], sfx: [['steps', 0, -16, { len: 2 }]], dra
   const L = SET.nightStreet(c, T.t, {});
   // hotel entrance: warm doorway + neon
   box(c, 1430, 620, 170, 220, [70, 70, 0, 0], '#ffcf7a', 4); lightPool(c, 1515, 760, 260, '#ffcf7a', .6);
-  sign(c, 1515, 540, 260, 80, 'HOTEL', { bg: '#2a1a1a', fg: '#ff8a5a', glow: '#ff6a4a', size: 54, hang: 40 });
+  sign(c, 1530, 585, 320, 100, 'HOTEL', { bg: '#2a1a1a', fg: '#ff8a5a', glow: '#ff6a4a', size: 58 });
   const k = (T.t - T.shot.start) / (T.shot.end - T.shot.start), dx = lerp(420, 1080, k);
   P('driver', { x: dx, y: 1000, s: .95, t: T.t, walk: T.t, expr: T.since('led') > 0 ? 'worried' : 'neutral' });
   P('dean', { x: dx - 210, y: 1004, s: .97, t: T.t, walk: T.t, pose: 'reach', expr: 'stern' });
   GRADE.night(c, [...L, [1515, 720, 300, '#ffcf7a', .5]], .42);
 } });
-S('C6.1', { cams: [[960, 600, 1.15]], sfx: [['door', 'night', -6]], shakes: [['night']],
+S('C6.1', { cams: [[960, 600, 1.15]], move: 'hold', handheld: .6, sfx: [['door', 'night', -6]], shakes: [['night']],
   overlay: (c, T) => { const a = T.at('night', .6, 0); if (a <= 0) return; c.save(); c.globalAlpha = a; const x = 1720, y = 120; box(c, x - 170, y - 80, 330, 160, 20, 'rgba(10,14,24,.82)', 3); nightClock(c, x - 92, y, 52, 17, 30, { label: false }); label(c, 'EVENING', x + 62, y - 8, 36, '#fff', { maxW: 160 }); label(c, 'ONE NIGHT', x + 62, y + 34, 22, '#c9d6e8', { stroke: false, maxW: 160 }); c.restore(); },
   draw(c, T) {
   const L = SET.hotel(c, T.t, {});
@@ -190,7 +190,7 @@ S('C6.1', { cams: [[960, 600, 1.15]], sfx: [['door', 'night', -6]], shakes: [['n
   box(c, 820, 380, 280, 22, 4, '#4a2e22', 3);
   GRADE.night(c, L, .3);
 } });
-S('C7.0', { cams: [[960, 560, 1.05], [1180, 520, 1.4]], shakes: [['stolen']], sfx: [['stamp', 'stolen', -4], ['paper', 'piece', -12]], draw(c, T) {
+S('C7.0', { cams: [[960, 560, 1.05], [1000, 520, 1.28]], moves: [['snap', 'stolen', 1.22, [820, 470]], 'drift'], shakes: [['stolen']], sfx: [['stamp', 'stolen', -4], ['paper', 'piece', -12]], draw(c, T) {
   SET.desk(c, T.t, { lx: 960, ly: 520 });
   c.save(); c.translate(960, 560); c.rotate(-.04);
   box(c, -470, -300, 220, 60, [14, 14, 0, 0], '#d9b97a', 4); label(c, 'LUNIK', -360, -268, 34, INK, { stroke: false });
@@ -201,7 +201,7 @@ S('C7.0', { cams: [[960, 560, 1.05], [1180, 520, 1.4]], shakes: [['stolen']], sf
   stamp(c, 820, 470, 'TOP SECRET', T.at('stolen', .3), RED, { w: 560, h: 130, rot: -.12 });
 } });
 // ---- the night in three moves: one night / take apart + photograph / put back
-S('C8.0', { cams: [[960, 500, 1.1]], sfx: [['clock', 0, -14, { len: 1.8 }]], draw(c, T) {
+S('C8.0', { cams: [[960, 500, 1.1]], move: 'pull', sfx: [['clock', 0, -14, { len: 1.8 }]], draw(c, T) {
   SET.black(c, T.t); lightPool(c, 960, 460, 700, '#24406a', .5);
   const mins = 18 * 60 + T.lt * 160; nightClock(c, 960, 430, 230, Math.floor(mins / 60), mins % 60, { label: false });
   const p = pop(T, 'one', .5); arrive(c, p, 960, 800, () => label(c, 'ONE NIGHT', 0, 0, 110, '#ffb04a', { glow: '#ffb04a' }));
@@ -222,7 +222,7 @@ S('C8.1', { cams: [[960, 540, 1.0]], sfx: [['crumble', 'apart', -16], ...[0, 1, 
   SET.grid(c, T.t, { title: 'LUNIK / UPPER STAGE', sub: 'TAKE APART' });
   const k = easeOut(T.at('apart', .8)), f0 = T.cue('photograph');
   lunikParts(c, 960, 520, 980, k, i => (T.t - f0 - i * .28) / .5);
-  const pf = T.since('photograph'); if (pf > 0 && pf < 1.8) { const i = Math.min(4, Math.floor(pf / .28)); GRADE.flash(c, 960, 520, ((pf - i * .28) / .4)); }
+  const pf = T.since('photograph'); if (pf > 0 && pf < 1.5) { const i = Math.min(4, Math.floor(pf / .28)), q = (pf - i * .28) / .28; c.save(); c.globalCompositeOperation = 'screen'; c.globalAlpha = .28 * (1 - q); c.fillStyle = '#eaf2ff'; c.fillRect(-400, -300, W + 800, H + 600); c.restore(); }
 } });
 S('C8.2', { cams: [[960, 560, 1.0]], sfx: [['slide', 'back', -12], ['hammer', 'soviet', -12]], draw(c, T) {
   SET.grid(c, T.t, { title: 'LUNIK / UPPER STAGE', sub: 'PUT BACK' });
@@ -231,7 +231,7 @@ S('C8.2', { cams: [[960, 560, 1.0]], sfx: [['slide', 'back', -12], ['hammer', 's
   if (cr > 0) { c.save(); c.globalAlpha = cr; crate(c, 960, 700, 1100, { xray: 1 - cr }); c.restore(); }
   const a = T.at('official', .5); arrive(c, a, 960, 900, () => label(c, 'BEFORE 7 A.M.', 0, 0, 64, '#ffcf3f', { glow: '#ffb04a' }));
 } });
-S('C8.3', { cams: [[1500, 640, 1.25]], sfx: [['clock', 0, -14, { len: 1 }], ['bell', '7', -12]],
+S('C8.3', { cams: [[1500, 640, 1.25]], trans: 'fade', sfx: [['clock', 0, -14, { len: 1 }], ['bell', '7', -12]],
   overlay: (c, T) => { const k = ease(T.at('7', .9)); const m = lerp(22 * 60, 31 * 60, k) % 1440; nightClockOverlay(c, Math.floor(m / 60), Math.round(m % 60) % 60, { sub: 'CHECK-IN' }); },
   draw(c, T) {
   const L = SET.railYard(c, T.t, { morning: T.at('7', .9) > .5 });
@@ -263,7 +263,7 @@ S('R2.1', { cams: [[960, 520, 1.0], [880, 520, 1.12]], sfx: [['radio', 'sputnik'
   if (T.sub === 0) {
     SET.space(c, T.t); earth(c, 960, 1750, 1050, T.t);
     const p = T.at('sputnik', .5); c.save(); c.setLineDash([12, 12]); c.globalAlpha = p; c.beginPath(); c.ellipse(960, 1750, 1300, 1260, 0, Math.PI * 1.12, Math.PI * 1.88); c.lineWidth = 4; c.strokeStyle = '#9fd1ff'; c.stroke(); c.restore();
-    const a = Math.PI * 1.25 + T.lt * .12, sx = 960 + Math.cos(a) * 1300, sy = 1750 + Math.sin(a) * 1260;
+    const a = Math.PI * 1.36 + T.lt * .1, sx = 960 + Math.cos(a) * 1300, sy = 1750 + Math.sin(a) * 1260;
     if (p > 0) { c.save(); c.translate(sx, sy); c.scale(back(p), back(p)); sputnik(c, 0, 0, 44, T.t, { beep: true }); c.restore(); }
     const lp = pop(T, 'sputnik', .5); arrive(c, lp, 960, 140, () => label(c, 'SPUTNIK', 0, 0, 80, '#fff', { glow: '#9fd1ff' }));
   } else {
@@ -311,7 +311,7 @@ S('R5.0', { cams: [[960, 540, 1.0], [1000, 480, 1.25]], sfx: [['page', 'march', 
   const tg = pop(T, 'pioneer', .4); if (tg > 0) { c.save(); c.globalAlpha = tg; label(c, 'PIONEER 4', px - 40, py + 120, 40, '#fff'); hand(c, 'USA', px - 40, py + 168, 40, '#9fc6ff', { align: 'center' }); c.restore(); }
   const cm = pop(T, 'photograph', .4); if (cm > 0) { c.save(); c.translate(px + 90, py - 90); c.scale(back(cm) * .5, back(cm) * .5); pressCamera(c, 0, 0, 1, {}); c.restore(); }
 } });
-S('R5.1', { cams: [[1260, 420, 1.1]], push: .03, sfx: [['whoosh1', 'passed', -10], ['ding', '37', -14]], draw(c, T) {
+S('R5.1', { cams: [[1260, 420, 1.1]], move: ['pan', [1100, 520, 1.1], [1380, 420, 1.15]], sfx: [['whoosh1', 'passed', -10], ['ding', '37', -14]], draw(c, T) {
   SET.space(c, T.t); moon(c, 1360, 560, 170, {});
   const u = clamp((T.t - 73.3) / 7.0), px = lerp(360, 1300, u) + (T.t > 76.8 ? (T.t - 76.8) * 260 : 0), py = lerp(760, 230, u) - (T.t > 76.8 ? (T.t - 76.8) * 40 : 0);
   c.save(); c.setLineDash([10, 12]); c.lineWidth = 4; c.strokeStyle = 'rgba(224,194,106,.7)'; c.beginPath(); c.moveTo(lerp(360, 1300, .5), lerp(760, 230, .5)); c.lineTo(px, py); c.stroke(); c.restore();
@@ -321,7 +321,7 @@ S('R5.1', { cams: [[1260, 420, 1.1]], push: .03, sfx: [['whoosh1', 'passed', -10
 } });
 S('R5.2', { cams: [[960, 540, 1.1]], sfx: [['camshutter', 'far', -8], ['sadhorn', 'work', -18]], draw(c, T) {
   SET.black(c, T.t); lightPool(c, 960, 540, 700, '#203048', .4);
-  box(c, 560, 220, 800, 560, 20, '#0a0e16', 6); viewCorners(c, 960, 500, 700, 460, '#cfe6ff'); line(c, 940, 500, 980, 500, 3, '#cfe6ff'); line(c, 960, 480, 960, 520, 3, '#cfe6ff');
+  box(c, 560, 220, 800, 560, 20, '#0a0e16', 6); viewCorners(c, 960, 500, 700, 460, '#cfe6ff'); 
   starfield(c, T.t, 7, 30, { a: .3 }); moon(c, 1240, 360, 10, {});
   const f = pop(T, 'far', .4); arrive(c, f, 960, 500, () => label(c, 'TOO FAR', 0, 0, 130, '#ff7a6a', { glow: '#ff4a3d' }));
   c.save(); c.translate(400, 880); pressCamera(c, 0, 0, 1.1, {}); c.restore(); if (T.since('too') > 0) { circ(c, 470, 760, 12, '#9fd1ff', 3); }
@@ -346,8 +346,8 @@ S('R7.0', { cams: [[960, 520, 1.0], [960, 500, 1.18]], sfx: [['pencil', 'exactly
   calendar(c, 560, 600, 420, 400, 'OCT 4', '1957', {}); calendar(c, 1360, 600, 420, 400, 'OCT 4', '1959', {});
   const p = T.at('exactly', .9); c.save(); c.setLineDash([16, 12]); c.lineWidth = 7; c.strokeStyle = '#b8322a'; c.beginPath(); for (let i = 0; i <= 40 * p; i++) { const u = i / 40; const px = lerp(560, 1360, u), py = 360 - Math.sin(u * Math.PI) * 170; i ? c.lineTo(px, py) : c.moveTo(px, py); } c.stroke(); c.restore();
   if (p > .9) hand(c, 'exactly 2 years', 960, 150, 66, '#b8322a', { align: 'center' });
-  const s = pop(T, 'sputnik', .4); arrive(c, s, 560, 900, () => { sputnik(c, -40, 0, 30, T.t, {}); label(c, 'SPUTNIK', 60, 0, 40, INK, { stroke: false }); });
-  const l = pop(T, 'luna', .4); arrive(c, l, 1360, 900, () => { lunaProbe(c, -70, 0, 30, 3, T.t); label(c, 'LUNA 3', 40, 0, 40, INK, { stroke: false }); });
+  const s = pop(T, 'sputnik', .4); arrive(c, s, 560, 900, () => { sputnik(c, -110, 0, 30, T.t, {}); label(c, 'SPUTNIK', 70, 0, 44, INK, { stroke: false }); });
+  const l = pop(T, 'luna', .4); arrive(c, l, 1360, 900, () => { lunaProbe(c, -110, 0, 30, 3, T.t); label(c, 'LUNA 3', 70, 0, 44, INK, { stroke: false }); });
 } });
 S('R7.1', { cams: [[780, 560, 1.05], [1420, 520, 1.3]], sfx: [['typewriter', 'images', -14, { len: 1.6 }], ['ding', 'far', -14]], draw(c, T) {
   SET.space(c, T.t); const mx = 760, my = 560;
@@ -375,7 +375,7 @@ function listening(c, T, o) {
   const sc = Math.cos(T.t * .7); c.save(); c.translate(420, 470); line(c, 0, 0, 0, 90, 14, '#2a3440'); c.scale(Math.max(.25, Math.abs(sc)), 1); c.rotate(-.5); ell(c, 0, -60, 150, 50, '#c9ced4', 5); line(c, 0, -60, 0, -150, 5); c.restore();
   c.restore(); rr(c, 100, 140, 660, 520, 20); fs(c, null, 8); line(c, 430, 140, 430, 660, 6);
   box(c, 860, 640, 1100, 60, 10, '#3a3f36'); box(c, 900, 470, 700, 170, 10, '#4a5248', 4); for (let i = 0; i < 5; i++) { circ(c, 980 + i * 120, 540, 34, '#1b2a20', 4); line(c, 980 + i * 120, 540, 980 + i * 120 + Math.cos(T.t * 2 + i) * 24, 540 - 20, 4, '#9fe0a0'); }
-  P('radioman', { x: 1500, y: 1040, s: 1.15, t: T.t, pose: 'radio', expr: o.expr });
+  P('radioman', { x: 1460, y: 1150, s: 1.45, t: T.t, pose: 'radio', expr: o.expr });
   // the signal: a wavy line from the dish to his headphones
   c.save(); c.lineWidth = 5; c.strokeStyle = '#9fe0a0'; c.shadowColor = '#9fe0a0'; c.shadowBlur = 16; c.beginPath(); for (let i = 0; i <= 80; i++) { const u = i / 80, x = lerp(500, 1440, u), y = lerp(380, 660, u) + Math.sin(u * 30 - T.t * 9) * 14 * Math.sin(u * Math.PI); i ? c.lineTo(x, y) : c.moveTo(x, y); } c.stroke(); c.restore();
   GRADE.night(c, [[1250, 560, 600, '#9fe0a0', .2]], .3);
@@ -429,7 +429,7 @@ S('R12.1', { cams: [[960, 540, 1.0]], sfx: [['whoosh1', 'world', -10]], draw(c, 
 
 // =============================== THE WORLD TOUR ===============================
 chap('T1.0', 2, 'The World Tour');
-S('T1.1', { cams: [[960, 520, 1.0], [960, 660, 1.3]], sfx: [['crowdtalk', 0, -18, { len: 5.5 }]],
+S('T1.1', { cams: [[960, 520, 1.0], [960, 660, 1.3]], moves: ['pull', 'drift'], sfx: [['crowdtalk', 0, -18, { len: 5.5 }]],
   overlay: (c, T) => tag(c, 'Sent from Moscow', '1959', T.at('moscow', .5), T.at('exhibition', .5)),
   draw(c, T) {
   bg(c, '#a9cbe6', '#e9e0c8'); cloud(c, 300 + T.t * 6, 160, 1.2); cloud(c, 1500 + T.t * 4, 120, .9);
@@ -462,15 +462,15 @@ S('T2.2', { cams: [[960, 540, 1.05]], sfx: [['ding', 'york', -16]],
   const R = rand(21); let x = -300; while (x < W + 300) { const w = 80 + R() * 140, h = 200 + R() * 460; box(c, x, 780 - h, w, h + 4, 3, '#4a4f5e', 0); if (R() > .8) { poly(c, [[x + w * .3, 780 - h], [x + w * .7, 780 - h], [x + w * .5, 780 - h - 120]], '#4a4f5e', 0); } x += w + 4; }
   FLOOR(c, 780, '#6b5b4b');
   box(c, 320, 820, 1280, 300, 0, '#8a6a52', 5); for (let i = 0; i < 6; i++) line(c, 320, 860 + i * 40, 1600, 860 + i * 40, 2, 'rgba(0,0,0,.15)');
-  const p = pop(T, 'version', .5); arrive(c, p, 960, 600, () => { c.rotate(-.03); box(c, -300, -220, 600, 440, 6, '#f3efe6', 5); box(c, -270, -190, 540, 120, 4, '#b8322a', 0); label(c, 'SOVIET EXHIBITION', 0, -130, 48, '#fff', { stroke: false, maxW: 510 }); lunik(c, 0, 40, 380, { rot: -.12 }); label(c, 'SUMMER 1959', 0, 170, 40, INK, { stroke: false }); });
+  const p = pop(T, 'version', .5); arrive(c, p, 960, 600, () => { c.rotate(-.03); box(c, -300, -220, 600, 440, 6, '#f3efe6', 5); box(c, -270, -190, 540, 120, 4, '#b8322a', 0); label(c, 'SOVIET EXHIBITION', 0, -130, 48, '#fff', { stroke: false, maxW: 510 }); lunik(c, 0, 40, 380, { rot: -.12 });  });
 } });
-S('T3.0', { cams: [[960, 520, 1.0], [1100, 560, 1.15]], sfx: [['crowdtalk', 0, -20, { len: 3 }], ['hit', 'sputnik', -14], ['sparkle', 'lunik', -10], ['cheer', 'lunik', -22]], draw(c, T) {
+S('T3.0', { cams: [[960, 520, 1.0], [1100, 560, 1.15]], moves: ['drift', ['pan', [640, 600, 1.2], [1200, 580, 1.08]]], sfx: [['crowdtalk', 0, -20, { len: 3 }], ['hit', 'sputnik', -14], ['sparkle', 'lunik', -10], ['cheer', 'lunik', -22]], draw(c, T) {
   bg(c, '#0e141f', '#18202c'); FLOOR(c, 860, '#161c26');
   const sp = T.at('sputnik', .4), lu = T.at('lunik', 1.0);
   // sweeping spotlights before the reveal
   [0, 1].forEach(i => { const ax = 960 + Math.sin(T.t * .9 + i * 2) * 500; cone(c, ax, -100, 80, 420, 1000, '#ffe9c0', .12 * (1 - sp)); });
   cone(c, 520, -100, 120, 460, 1000, '#ffe9c0', .3 * sp); cone(c, 1300, -100, 140, 900, 1000, '#ffe9c0', .3 * clamp(lu * 2));
-  pedestal(c, 520, 860, 260, { rope: false }); if (sp > 0) { c.save(); c.translate(520, 640); c.scale(back(sp), back(sp)); sputnik(c, 0, 0, 70, T.t, { rot: -.4 }); c.restore(); label(c, 'SPUTNIK', 520, 900, 40, '#fff'); }
+  sign(c, 960, 140, 560, 90, 'SPACE VEHICLES', { bg: '#1f2a3a', fg: '#ffe9c0', size: 50, hang: 200, glow: '#ffcf7a' }); pedestal(c, 520, 860, 260, { rope: false }); if (sp > 0) { c.save(); c.translate(520, 640); c.scale(back(sp), back(sp)); sputnik(c, 0, 0, 70, T.t, { rot: -.4 }); c.restore(); label(c, 'SPUTNIK', 520, 900, 40, '#fff'); }
   if (lu > 0) { lunikExhibit(c, lerp(2400, 1300, easeOut(lu)), 860, 820, { t: T.t }); if (lu > .8) label(c, 'LUNIK', 1300, 940, 46, '#ffcf3f'); }
   folk(c, 960, 1110, 2200, 2, 1.35, T.t, 8, { dark: true, gasp: clamp(T.since('lunik') / .8) });
 } });
@@ -506,12 +506,12 @@ S('T4.3', { cams: [[1180, 500, 1.15]], push: .08, sfx: [['hammer', 'pedestal', -
   const cues = [T.cue('three'), T.cue('small'), T.cue('windows')];
   [[.27, -.18], [.33, .02], [.27, .22]].forEach(([wx, wy], i) => { const o = clamp((T.t - cues[i]) / .3), r = h * .1; if (o < 1) circ(c, X + L * wx, Y + h * wy, r * (1.02 - o), '#e7ecef', 0); if (o > 0 && o < 1) lightPool(c, X + L * wx, Y + h * wy, 60, '#fff', 1 - o); if (o > 0) label(c, String(i + 1), X + L * wx + r * 2, Y + h * wy - r, 30, '#ffcf3f'); });
 } });
-S('T4.4', { cams: [[1000, 560, 1.15]], draw(c, T) {
+S('T4.4', { cams: [[1000, 640, 1.15]], move: 'drift', draw(c, T) {
   SET.exhibitHall(c, T.t, { banner: false });
-  lunik(c, 280, 560, 2000, { glow: 1, glint: T.t });
-  const wx = 280 + 2000 * .33, wy = 560 + 600 * .02, tip = T.at('look', .5);
-  P('visitor4', { x: wx + 150, y: 1010 - tip * 36, s: .62, t: T.t, pose: 'reach', flip: true, expr: tip > 0 ? 'grin' : 'neutral' });
-  lightPool(c, wx + 110, 560 + 600 * .02 + 40, 160, '#9fd1ff', .5 * tip);
+  lunik(c, 280, 760, 2000, { glow: 1, glint: T.t });
+  const wx = 280 + 2000 * .33, wy = 760 + 600 * .02, tip = T.at('look', .5);
+  P('visitor4', { x: wx + 95, y: 1000 - tip * 40, s: .62, t: T.t, pose: 'reach', flip: true, expr: tip > 0 ? 'grin' : 'neutral' });
+  lightPool(c, wx + 80, wy + 20, 180, '#9fd1ff', .6 * tip);
   P('visitor2', { x: 1650, y: 1060, s: .95, t: T.t, expr: 'grin', flip: true });
 } });
 S('T5.0', { cams: [[960, 560, 1.05]], sfx: [['stamp', 'mock', -6]], draw(c, T) {
@@ -522,7 +522,7 @@ S('T5.0', { cams: [[960, 560, 1.05]], sfx: [['stamp', 'mock', -6]], draw(c, T) {
 } });
 S('T6.0', { cams: [[960, 520, 1.0], [700, 700, 1.25]], sfx: [['party', 'parade', -22, { len: 2.5 }], ['whistle', 'spies', -16]], draw(c, T) {
   bg(c, '#a9cbe6', '#e9e0c8'); skyline(c, 760, '#9fb1bf', null, 12, 1); FLOOR(c, 760, '#bdb3a0');
-  const fx = lerp(-900, 1500, clamp((T.t - 156.2) / 4.1));
+  const fx = lerp(-200, 1900, clamp((T.t - 156.1) / 4.2));
   c.save(); c.translate(fx, 0); box(c, -480, 640, 960, 70, 10, '#b8322a', 5); for (let i = 0; i < 12; i++) poly(c, [[-480 + i * 80, 710], [-400 + i * 80, 710], [-440 + i * 80, 760]], i % 2 ? '#ffcf3f' : '#f3efe6', 3); [-360, 360].forEach(wx => { circ(c, wx, 740, 30, '#1f2226'); }); lunik(c, 0, 560, 820, { rot: -.08, glint: T.t }); c.restore();
   const w = T.since('spies') > 0;
   [['dean', 300, 'wave'], ['zambernardi', 620, 'hold'], ['dean', 940, 'wave'], ['zambernardi', 1260, 'hold']].forEach(([n, x, ps], i) => P(n, { x, y: 1110, s: 1.05, t: T.t, pose: w && ps === 'wave' ? 'wave' : 'holdHigh', expr: w ? 'grin' : 'focus', hatCol: ['#3a3a40', '#5a4a3a'][i % 2],

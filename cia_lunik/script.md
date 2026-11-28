@@ -143,4 +143,4 @@
 | A7 | Borrowing a Soviet rocket for a single night was bold. | 10 | 2.6 | 12:28.0 |
 | A8 | But a few years later, the CIA tried something even more extreme: it went after a sunken Soviet submarine nearly three miles beneath the Pacific. That story is next. | 29 | 11.5 | 12:30.6 |
 
-**2102 words, 12.71 min, 165 words per minute.**
+**2102 words, 12.76 min, 165 words per minute.**

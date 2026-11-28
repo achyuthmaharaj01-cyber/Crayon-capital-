@@ -13,7 +13,7 @@ const NC = (sub = 'SALVAGE YARD') => (c, T) => { const [h, m] = nightAt(T.t); ni
 const SKIN = '#f2c49b', SKIN2 = '#c98d5a', YEL = '#ffcf3f', SOD = '#ffb04a';
 function tag(c, x, y, txt, p, o = {}) { // hand-lettered manila source tag, pinned
   if (p <= 0) return; c.save(); c.translate(x, y); c.rotate(o.rot ?? -.04); const s = lerp(1.35, 1, easeOut(clamp(p * 1.6))); c.scale(s, s); c.globalAlpha = clamp(p * 3);
-  const sz = o.size || 30; c.font = `700 ${sz}px Kalam`; const w = c.measureText(String(txt).toUpperCase()).width + 48; reg(c, -w / 2, -sz, w / 2, sz);
+  const sz = Math.max(36, (o.size || 30) + 6); c.font = `700 ${sz}px Kalam`; const w = c.measureText(String(txt).toUpperCase()).width + 48; reg(c, -w / 2, -sz, w / 2, sz);
   box(c, -w / 2, -sz, w, sz * 2, 8, o.bg || '#f1dfae', 4); circ(c, -w / 2 + 16, -sz + 14, 5, o.pin || RED, 2.5);
   label(c, txt, 0, 2, sz, o.fg || '#6b2a18', { stroke: false }); c.restore(); }
 function arm(c, x0, y0, x1, y1, skin = SKIN, sleeve = '#3a4a5e') { // forearm from a sleeve to a hand
@@ -52,7 +52,7 @@ const yTruck = (c, T, crateO = {}, o = YT) => truck59(c, o.x, o.y, o.s, { crate:
 const lampFlick = (T, w) => { const s = T.since(w); if (s < 0) return 0; if (s > .5) return 1; return [1, 0, 1, .2, 1, 0, 1][Math.floor(s * 14)] ?? 1; };
 
 // =========================== THE NIGHT ===========================
-chap4('N1.0', 9, 'The Night');
+chap4('N1.0', 8, 'The Night');
 S('N1.1', { focus: [940, 600, 1.05], sfx: [['truck2', 0, -16, { len: 3.2 }], ['crickets2', 0, -28, { len: 30 }]], overlay: NC(), draw(c, T) {
   const L = SET.salvageYard(c, T.t, { lamps: 0 }); gate(c, 110, 552, 230, 330, 1);
   P('radioman', { x: 1420, y: 556, s: .5, t: T.t, expr: 'neutral', pose: 'idle', hat: 'flatcap' });
@@ -74,7 +74,7 @@ S('N2.0', { focus: [960, 520, 1.1], sfx: [['paper', 'salvage', -14], ['stamp', '
 S('N2.1', { cams: [[900, 560, 1.1], [1180, 520, 1.3]], sfx: [['page', 'silvet', -14], ['ding', 'brother', -16]], overlay: NC(), draw(c, T) {
   SET.spot(c, T.t, { x: 700, col: '#ffd27a' });
   P('silveti', { x: 640, y: 1000, s: 1.15, t: T.t, expr: T.since('brother') > 0 ? 'smug' : 'neutral', pose: 'point', talk: T.since('silvet') > 0 && T.since('law') < .3 });
-  const ph = clamp(T.at('silvet', .6)); c.save(); c.globalAlpha = ph;
+  const ph = 1; c.save(); c.globalAlpha = ph;
   photoPrint(c, 1220, 500, 520, 360, .04, () => { c.fillStyle = '#20262e'; c.fillRect(-260, -180, 520, 360); for (let i = -260; i < 260; i += 30) box(c, i, -60, 30, 220, 1, i % 60 ? '#555' : '#666', 2);
       crayon(c, { ...CAST.visitor2, x: 40, y: 160, s: .55, t: T.t, expr: 'grin', pose: 'wave', noShadow: true }); }, { caption: T.since('brother') > 0 ? "HIS BROTHER-IN-LAW'S YARD" : ' ' });
   c.restore();
@@ -86,7 +86,7 @@ S('N3.0', { cams: [[960, 520, 1.15], [960, 640, 1.05]], sfx: [['clock', '7', -12
     c.save(); c.globalAlpha = clamp(T.since('30') * 3); label(c, 'ABOUT 7:30 P.M.', 960, 850, 74, '#fff'); c.restore(); return; }
   const L = SET.salvageYard(c, T.t, { lamps: 0 }); gate(c, 110, 552, 230, 330, 1); yTruck(c, T, { state: 'canvas' }, { x: 1500, y: 1000, s: 1 });
   const who = ['finer', 'spec1', 'spec2', 'spec3'];
-  who.forEach((n, i) => { const s0 = T.since('four') - i * .28, k = easeOut(clamp(s0 / 1.1)); if (s0 < 0) return;
+  who.forEach((n, i) => { const s0 = T.since('four') + .6 - i * .3, k = easeOut(clamp(s0 / .9)); if (s0 < 0) return;
     P(n, { x: lerp(230, 520 + i * 190, k), y: 960 - i * 6, s: .88, t: T.t, expr: i === 0 ? 'focus' : 'neutral', pose: k < 1 ? 'sneak' : 'idle', walk: k < 1 }); });
   GRADE.night(c, L, .32);
   who.forEach((n, i) => { const p = T.at('four', .4) * (T.since('four') > .9 + i * .25 ? 1 : 0); if (p > 0) { circ(c, 520 + i * 190, 600, 30, YEL, 4); label(c, String(i + 1), 520 + i * 190, 602, 38, INK, { stroke: false }); } });
@@ -101,7 +101,7 @@ S('N4.0', { cams: [[960, 560, 1.1], [1150, 560, 1.2]], sfx: [['radio', 'radios',
   tag(c, 560, 560, 'SECURITY', T.at('security', .45)); tag(c, 1260, 560, 'RADIOS', T.at('radios', .45), { rot: .04 });
   if (T.sub === 0) { const p = T.at('two', .5); tag(c, 860, 200, 'ALREADY IN PLACE', p, { size: 34, bg: '#fff3c4' }); }
 } });
-S('N5.0', { cams: [[900, 640, 1.2], [960, 600, 1.02]], sfx: [['creak', 'touched', -14]], overlay: NC(), draw(c, T) {
+S('N5.0', { handheld: .8, cams: [[900, 640, 1.2], [960, 600, 1.02]], sfx: [['creak', 'touched', -14]], overlay: NC(), draw(c, T) {
   const L = SET.salvageYard(c, T.t, { lamps: 0 }); gate(c, 110, 552, 230, 330, 0); yTruck(c, T, { state: 'canvas' });
   const back = T.since('touched') > .05; const R = roofOf();
   P('spec1', { x: 560, y: 1000, s: 1, t: T.t, expr: back ? 'worried' : 'neutral', pose: back ? 'handsBack' : 'reach' });
@@ -117,10 +117,10 @@ S('N5.1', { focus: [900, 560, 1.06], sfx: [['clock', 0, -10, { len: 2.4 }]], ove
   [['finer', 640], ['spec1', 830], ['spec2', 1020], ['spec3', 1200]].forEach(([n, x], i) => P(n, { x, y: 990, s: .82, t: T.t, expr: sly ? 'worried' : 'neutral', pose: 'idle', look: lk }));
   GRADE.night(c, L, .32);
   // the half-hour wedge
-  const k = ease(clamp(T.lt / 1.5)); c.save(); c.translate(1500, 300); circ(c, 0, 0, 160, '#f6f0dc'); c.beginPath(); c.moveTo(0, 0); c.arc(0, 0, 150, -Math.PI / 2, -Math.PI / 2 + Math.PI * k); c.closePath(); c.fillStyle = 'rgba(255,176,74,.55)'; c.fill();
+  const k = ease(clamp(T.lt / 1.5)); c.save(); c.translate(1420, 380); circ(c, 0, 0, 160, '#f6f0dc'); c.beginPath(); c.moveTo(0, 0); c.arc(0, 0, 150, -Math.PI / 2, -Math.PI / 2 + Math.PI * k); c.closePath(); c.fillStyle = 'rgba(255,176,74,.55)'; c.fill();
   for (let i = 0; i < 12; i++) { const a = i * TAU / 12; line(c, Math.cos(a) * 132, Math.sin(a) * 132, Math.cos(a) * 148, Math.sin(a) * 148, 5); }
   line(c, 0, 0, Math.cos(-Math.PI / 2 + Math.PI * k) * 120, Math.sin(-Math.PI / 2 + Math.PI * k) * 120, 8); line(c, 0, 0, Math.cos(-Math.PI / 2 + (7.5 + k * .5) * TAU / 12) * 80, Math.sin(-Math.PI / 2 + (7.5 + k * .5) * TAU / 12) * 80, 10); circ(c, 0, 0, 10, INK, 0); c.restore();
-  label(c, '30 MINUTES', 1500, 510, 46, '#fff');
+  label(c, '30 MINUTES', 1420, 590, 46, '#fff');
 } });
 S('N6.0', { focus: [760, 560, 1.12], sfx: [['creak', 'climbed', -12], ['steps', 'roof', -20, { len: 1 }]], overlay: NC(), draw(c, T) {
   const L = SET.salvageYard(c, T.t, { lamps: 0, drop: 1 }); yTruck(c, T, {}); const R = roofOf();
@@ -152,7 +152,7 @@ S('N6.2', { focus: [960, 540, 1.05], sfx: [['hammer', 'five', -10]], draw(c, T) 
     const g2 = easeOut(T.at('inch', .5)); if (g2 > 0) { line(c, 1640, 270, 1640, lerp(270, 790, g2), 5, YEL); line(c, 1620, 270, 1660, 270, 5, YEL); if (g2 > .97) line(c, 1620, 790, 1660, 790, 5, YEL); label(c, '5 IN', 1760, 530, 60, YEL); } }
   label(c, 'BOARD', 640, 720, 40, '#f3d9a8', { stroke: false }); if (s5 > .5) label(c, 'SPIKE', 1500, 880, 40, '#f3d9a8', { stroke: false });
 } });
-S('N7.0', { cams: [[960, 520, 1.02], [900, 600, 1.12]], shakes: [['suddenly']], sfx: [['elec', 'suddenly', -6], ['switch', 'suddenly', -8], ['hit', 'suddenly', -14]], overlay: NC(), draw(c, T) {
+S('N7.0', { moves: ['drift', ['snap', 'suddenly', 1.22, [900, 560]]], handheld: 1.1, cams: [[960, 520, 1.02], [900, 600, 1.12]], shakes: [['suddenly']], sfx: [['elec', 'suddenly', -6], ['switch', 'suddenly', -8], ['hit', 'suddenly', -14]], overlay: NC(), draw(c, T) {
   const on = lampFlick(T, 'suddenly'); const L = SET.salvageYard(c, T.t, { lamps: on, drop: 1 }); yTruck(c, T, { planks: .45 }); const R = roofOf();
   const sh = T.since('suddenly') > .05;
   P('spec1', { x: R.left + 120, y: R.top + 4, s: .82, t: T.t, expr: sh ? 'shock' : 'focus', pose: sh ? 'armsUp' : 'wrench', legs: 'crouch' });
@@ -162,7 +162,7 @@ S('N7.0', { cams: [[960, 520, 1.02], [900, 600, 1.12]], shakes: [['suddenly']], 
   if (T.sub === 0) { [260, 980, 1700].forEach((x, i) => { const p = T.at('lamps', .4); if (p > 0 && p < 1) { c.save(); c.globalAlpha = .8 * (1 - p); circ(c, x + 71, 214, 50 + p * 30, null, 5); c.strokeStyle = YEL; c.stroke(); c.restore(); } }); }
   if (on > 0 && T.since('suddenly') < .35) { c.save(); c.globalCompositeOperation = 'screen'; c.globalAlpha = .45 * on * (1 - T.since('suddenly') / .35); c.fillStyle = SOD; c.fillRect(-600, -400, W + 1200, H + 800); c.restore(); }
 } });
-S('N8.0', { focus: [760, 560, 1.32], shakes: [['froze']], sfx: [['hit', 'froze', -8], ['hit', 'seconds', -14]], overlay: NC(), draw(c, T) {
+S('N8.0', { move: 'hold', handheld: 1.5, focus: [760, 560, 1.32], shakes: [['froze']], sfx: [['hit', 'froze', -8], ['hit', 'seconds', -14]], overlay: NC(), draw(c, T) {
   const tf = Math.min(T.t, T.cue('froze') + .1); const L = SET.salvageYard(c, tf, { lamps: 1, drop: 1 }); yTruck(c, { t: tf }, { planks: .45 }); const R = roofOf();
   P('spec1', { x: R.left + 120, y: R.top + 4, s: .82, t: tf, expr: 'shock', pose: 'armsUp', legs: 'crouch', sweat: true });
   P('finer', { x: R.cx + 40, y: R.top + 4, s: .82, t: tf, expr: 'worried', pose: 'crouch', legs: 'crouch', sweat: true });
@@ -172,16 +172,17 @@ S('N8.0', { focus: [760, 560, 1.32], shakes: [['froze']], sfx: [['hit', 'froze',
   const fz = T.since('froze'); if (fz > 0) { c.save(); c.globalCompositeOperation = 'saturation'; c.globalAlpha = clamp(fz * 3) * .7; c.fillStyle = '#888'; c.fillRect(-600, -400, W + 1200, H + 800); c.restore();
     const beat = Math.exp(-((fz % .9) * 8)); c.save(); c.globalAlpha = .25 * beat; c.fillStyle = '#b8322a'; c.fillRect(-600, -400, W + 1200, H + 800); c.restore(); }
 } });
-S('N8.1', { focus: [960, 470, 1.08], shakes: [['ambush']], sfx: [['hit', 'ambush', -6], ['static', 'looked', -22, { len: 1.6 }]], draw(c, T) {
-  NIGHT_SKY(c, T.t, '#12060a', '#2a0c10', 20); woodFence(c, -400, W + 400, 760, 520, { seed: 4 }); FLOOR(c, 760, '#1a0c0c');
+S('N8.1', { move: 'pull', handheld: 1.2, grain: .12, focus: [960, 470, 1.08], shakes: [['ambush']], sfx: [['hit', 'ambush', -6], ['static', 'looked', -22, { len: 1.6 }]], draw(c, T) {
+  NIGHT_SKY(c, T.t, '#1a080c', '#3a1016', 20); lightPool(c, 960, 300, 900, '#ff6a4a', .25);
   const k = easeOut(T.at('looked', .9)), k2 = easeOut(T.at('ambush', .45));
-  [[260, 0], [620, .15], [980, .05], [1340, .2], [1680, .1]].forEach(([x, d], i) => { const up = i % 2 ? k2 : k; const y = 760 - 520 + 150 - up * 190; c.save(); c.beginPath(); c.rect(-400, -400, W + 800, 240 + 400); c.clip();
-    P('guard', { x, y: y + 330, s: 1.05, t: T.t, expr: 'stern', pose: 'idle' }); c.restore(); });
+  [[260, 0], [620, .15], [980, .05], [1340, .2], [1680, .1]].forEach(([x, d], i) => { const up = i % 2 ? k2 : k; const fy = lerp(1000, 640, up); c.save(); c.beginPath(); c.rect(-400, -400, W + 800, 430 + 400); c.clip();
+    P('guard', { x, y: fy, s: 1.15, t: T.t, expr: 'stern', pose: i % 2 ? 'point' : 'idle' }); c.restore(); });
+  woodFence(c, -400, W + 400, 1100, 670, { seed: 4 });
   [[300, 1.6], [1500, 1.4]].forEach(([x, f]) => cone(c, x, -60, 40, 360, 900, '#ff4a3a', .14 * k2 * (.6 + .4 * Math.sin(T.t * f * 4))));
   c.save(); c.globalCompositeOperation = 'multiply'; c.globalAlpha = .55; c.fillStyle = '#c0182a'; c.fillRect(-600, -400, W + 1200, H + 800); c.restore();
-  GRADE.dark(c, .25); vignette(c, .8);
+  GRADE.dark(c, .12); vignette(c, .8);
 } });
-S('N9.0', { focus: [960, 520, 1.05], sfx: [['crickets', 'no', -20, { len: 4 }]], overlay: NC(), draw(c, T) {
+S('N9.0', { handheld: .9, focus: [960, 520, 1.05], sfx: [['crickets', 'no', -20, { len: 4 }]], overlay: NC(), draw(c, T) {
   const L = SET.salvageYard(c, T.t, { lamps: 1, drop: 1 }); gate(c, 110, 552, 230, 330, 0);
   const k = clamp(T.since('no') / 2.4); cat(c, lerp(300, 1500, k), 218, T.t, 1.2);
   const R = roofOf(); yTruck(c, T, { planks: .45 });
@@ -258,11 +259,11 @@ S('N12.0', { focus: [860, 560, 1.12], sfx: [['creak', 'stretched', -12], ['paper
   GRADE.night(c, L, .25);
   tag(c, 520, 230, 'PER MAYSH', T.at('maich', .45), { size: 34 }); tag(c, R.cx + 80, R.top - 220, 'TARP', T.at('tarp', .45), { bg: '#fff3c4' });
 } });
-S('N12.1', { cams: [[960, 560, 1.06], [960, 300, 1.2]], sfx: [['camflash2', 'flashes', -20], ['camflash2', 'light', -22], ['crickets', 0, -24, { len: 3 }]], overlay: NC(), draw(c, T) {
+S('N12.1', { moves: ['drift', ['tilt', [960, 560, 1.06], [960, 330, 1.15]]], cams: [[960, 560, 1.06], [960, 300, 1.2]], sfx: [['camflash2', 'flashes', -20], ['camflash2', 'light', -22], ['crickets', 0, -24, { len: 3 }]], overlay: NC(), draw(c, T) {
   NIGHT_SKY(c, T.t, '#050a16', '#0c1a2e', 140); skyline(c, 720, '#0c1828', 'rgba(255,200,110,.3)', 12, .8);
   const fl = [.2, .9, 1.5, 2.2, 2.8].reduce((a, s) => { const d = T.lt - s; return Math.max(a, d > 0 && d < .4 ? 1 - d / .4 : 0); }, 0);
-  const cx = 960, cy = 780; lightPool(c, cx, cy - 40, 260 + fl * 80, '#dfe8ff', .15 + fl * .4);
-  crate(c, cx, cy + 60, 760, { planks: .6, tarp: 1 }); woodFence(c, -400, W + 400, 900, 300, { seed: 9 });
+  const cx = 960, cy = 780; 
+  crate(c, cx, 700, 760, { planks: .6, tarp: 1 }); woodFence(c, -400, W + 400, 900, 300, { seed: 9 }); c.save(); c.globalCompositeOperation = 'screen'; c.globalAlpha = .15 + fl * .6; ell(c, cx, 470, 420, 70, '#cfe0ff', 0); c.restore();
   [260, 1660].forEach(x => sodiumLamp(c, x, 920, 330, 1));
   GRADE.night(c, [[331, 600, 400, SOD, .4], [1731, 600, 400, SOD, .4]], .3);
   const sky = T.since('sky'); if (sky > 0) { tag(c, 960, 200, 'SKY STAYS DARK', clamp(sky * 2), { size: 36, bg: '#fff3c4' }); }
@@ -271,7 +272,7 @@ S('N13.0', { focus: [960, 560, 1.15], sfx: [['camshutter', 'working', -10], ['po
   bg(c, '#0b1322', '#16202e'); lightPool(c, 960, 420, 700, '#ffe2a0', .4); box(c, -400, 760, W + 800, 500, 4, '#c9975a');
   pressCamera(c, 800, 700, 2.4, { flash: T.at('working', .4) });
   const k = easeOut(T.at('test', .5)); if (k > 0) filmCanister(c, lerp(900, 1360, k), lerp(640, 520, k) - Math.sin(k * Math.PI) * 120, 2.2, { label: 'TEST' });
-  arm(c, 1900, 900, lerp(1700, 1420, k), lerp(820, 560, k), SKIN, '#e9d9b2');
+  if (k > 0) arm(c, 1900, 900, lerp(1700, 1420, k), lerp(820, 560, k), SKIN, '#e9d9b2');
   GRADE.night(c, [[960, 460, 600, '#ffe2a0', .3]], .2);
   tag(c, 1360, 260, 'TEST ROLL', T.at('test', .45), { size: 38 });
 } });
@@ -285,7 +286,7 @@ S('N13.1', { focus: [960, 600, 1.05], sfx: [['carengine', 'rushed', -8], ['whoos
   if (T.lt < .9) { c.save(); c.globalAlpha = 1 - T.lt / .9; filmCanister(c, 500, 600, 1.6, { label: 'TEST' }); c.restore(); }
 } });
 S('N14.0', { focus: [960, 560, 1.12], sfx: [['paper', 'dark', -14]], overlay: NC('U.S. EMBASSY'), draw(c, T) {
-  SET.darkroom(c, T.t); const p = clamp(T.since('dark') / 1.2);
+  SET.darkroom(c, T.t); const p = .15 + .85 * clamp(T.since('went') / 1.4);
   devTray(c, 960, 760, 760, p, () => { circ(c, 0, 0, 90, '#cfd4da', 4); line(c, 90, 0, 260, 0, 8); });
   P('spec3', { x: 420, y: 1000, s: 1.0, t: T.t, expr: 'focus', pose: 'reach', hair: 'short' });
   tag(c, 960, 200, 'PER MAYSH', T.at('maich', .45), { size: 34 });
@@ -313,7 +314,7 @@ S('N15.1', { cams: [[760, 560, 1.15], [960, 560, 1.1]], sfx: [['wrench', 'base',
   bg(c, '#0b1322', '#16202e'); lightPool(c, 700, 500, 800, '#ffe2a0', .35); dropLight(c, 700, 140, 1, 200);
   if (T.sub === 0) { lunik(c, 1500, 560, 1700, { capOff: 0, paint: 'raw' });
     const tx = 1500 - 850 + 8; const p = T.at('base', .4); if (p > 0) { c.save(); c.globalAlpha = p * (.7 + .3 * Math.sin(T.t * 8)); ell(c, tx, 560, 100, 280, null, 0); c.lineWidth = 8; c.strokeStyle = YEL; c.stroke(); c.restore(); }
-    P('spec2', { x: 380, y: 1000, s: 1.05, t: T.t, expr: 'focus', pose: 'wrench', sweat: true }); P('spec3', { x: 380, y: 610, s: .8, t: T.t, expr: 'focus', pose: 'wrench', legs: 'crouch' });
+    P('spec2', { x: 380, y: 1000, s: 1.05, t: T.t, expr: 'focus', pose: 'wrench', sweat: true }); P('spec3', { x: 150, y: 1000, s: 1.0, t: T.t, expr: 'focus', pose: 'hold' });
     GRADE.night(c, [[700, 500, 700, '#ffe2a0', .35]], .22); tag(c, tx, 170, 'BASE CAP', T.at('cap', .45), { size: 36 }); return; }
   const n = num(T, '130', 130, 1.1); bolts(c, 640, 960, 520, Math.round(n));
   wrench(c, 1300, 760, 1.6, -.3 + Math.sin(T.t * 10) * .12);
@@ -336,7 +337,7 @@ S('N16.1', { cams: [[960, 560, 1.15], [1140, 560, 1.2]], sfx: [['ding', 'fuel', 
   GRADE.night(c, [[fx, 560, 260 * f, '#ffd27a', .55 * f], [ox, 560, 280 * o, '#bfe0ff', .55 * o]], .32);
   tag(c, fx, 270, 'FUEL TANK', f, { size: 34 }); tag(c, ox, 270, 'OXIDIZER TANK', o, { size: 34, bg: '#d8ecff', fg: '#1d3557' });
 } });
-S('N17.0', { focus: [960, 540, 1.18], shakes: [['problem']], sfx: [['clock', 0, -6, { len: 2.2 }], ['hit', 'problem', -10]], overlay: NC(), draw(c, T) {
+S('N17.0', { move: 'hold', handheld: 1.3, focus: [960, 540, 1.18], shakes: [['problem']], sfx: [['clock', 0, -6, { len: 2.2 }], ['hit', 'problem', -10]], overlay: NC(), draw(c, T) {
   bg(c, '#070a10', '#0d121a'); lightPool(c, 1100, 520, 500, '#ffe2a0', .25);
   line(c, 400, 560, 2000, 560, 20, '#7c858d'); seal(c, 1200, 566, 1.6, {}); circ(c, 360, 540, 170, '#aeb6bd');
   const p = T.since('problem'); const reach = easeOut(clamp(T.lt / 1.2)); const jitter = p > 0 ? Math.sin(p * 60) * Math.exp(-p * 6) * 8 : 0;
@@ -363,7 +364,7 @@ S('N19.0', { cams: [[1100, 560, 1.15], [1200, 560, 1.3]], sfx: [['creak', 'cut',
   tag(c, 760, 200, 'TO FREE THE SPHERE', T.at('free', .45), { size: 34 });
   if (T.sub === 1) tag(c, 1200, 860, 'THE WIRE MUST BE CUT', T.at('cut', .4), { size: 36, bg: '#ffd6c8' });
 } });
-S('N19.1', { cams: [[960, 560, 1.12], [760, 480, 1.2]], sfx: [['whoosh3', 0, -14]], draw(c, T) {
+S('N19.1', { grain: .14, cams: [[960, 560, 1.12], [760, 480, 1.2]], sfx: [['whoosh3', 0, -14]], draw(c, T) {
   const L = SET.railYard(c, T.t, { morning: 1 }); GRADE.dawn(c, .3);
   P('checker', { x: 620, y: 1060, s: 1.6, t: T.t, expr: T.since('notice') > 0 ? 'shock' : 'focus', pose: 'idle' });
   magnifier(c, 1260, 520, 230, () => { c.fillStyle = '#d8dde2'; c.fillRect(1030, 290, 460, 460); line(c, 1030, 520, 1490, 520, 22, '#7c858d'); seal(c, 1260, 524, 2.4, { cut: T.since('broken') > -1 }); });
@@ -390,7 +391,7 @@ S('N21.1', { cams: [[960, 560, 1.08], [1100, 560, 1.2]], sfx: [['pop', 'plastic'
   GRADE.warm(c, .15);
   if (T.sub === 1) tag(c, 960, 200, 'A DUPLICATE', T.at('before', .45), { size: 34 });
 } });
-S('N21.2', { cams: [[700, 560, 1.15], [760, 600, 1.25]], sfx: [['steps', 'duplicate', -18, { len: 1.2 }], ['paper', 'delivered', -10]], overlay: NC(), draw(c, T) {
+S('N21.2', { trans: 'fade', cams: [[700, 560, 1.15], [760, 600, 1.25]], sfx: [['steps', 'duplicate', -18, { len: 1.2 }], ['paper', 'delivered', -10]], overlay: NC(), draw(c, T) {
   const L = SET.salvageYard(c, T.t, { lamps: 1, drop: 1 }); gate(c, 380, 552, 230, 330, .35);
   const g = easeOut(T.at('delivered', .7));
   P('newdriver', { x: 440, y: 980, s: 1.0, t: T.t, expr: 'neutral', pose: 'give', hat: 'fedora', hatCol: '#3a3530', trench: '#5a5f4a', jacket: false });
@@ -399,7 +400,7 @@ S('N21.2', { cams: [[700, 560, 1.15], [760, 600, 1.25]], sfx: [['steps', 'duplic
   envelope(c, lerp(640, 900, g), lerp(740, 560, g), 200, '', -.1);
   tag(c, lerp(640, 900, g), lerp(600, 410, g), 'DUPLICATE SEAL', T.at('duplicate', .45), { size: 30 });
 } });
-S('N22.0', { cams: [[960, 560, 1.1], [1200, 560, 1.25]], sfx: [['crickets', 0, -26, { len: 3 }], ['ding', 'two', -12], ['sparkle', 'couplings', -14]], overlay: NC(), draw(c, T) {
+S('N22.0', { trans: 'fade', cams: [[960, 560, 1.1], [1200, 560, 1.25]], sfx: [['crickets', 0, -26, { len: 3 }], ['ding', 'two', -12], ['sparkle', 'couplings', -14]], overlay: NC(), draw(c, T) {
   bg(c, '#0a0e15', '#12171f'); for (let i = 0; i < 5; i++) line(c, -400, 300 + i * 160, W + 400, 280 + i * 160, 3, 'rgba(120,130,140,.18)');
   const sweep = T.since('found') > 0 ? lerp(-.05, .12, easeOut(T.since('found') / .6)) : Math.sin(T.t * 1.6) * .3 - .1;
   coupling(c, 1150, 620, 1.7, T.since('found') > 0 ? clamp(T.since('found') * 2) : 0); coupling(c, 1330, 650, 1.7, T.since('two') > 0 ? 1 : 0);
@@ -410,14 +411,14 @@ S('N22.0', { cams: [[960, 560, 1.1], [1200, 560, 1.25]], sfx: [['crickets', 0, -
 S('N22.1', { cams: [[960, 560, 1.12], [1000, 600, 1.18]], sfx: [['bag', 'bag', -10], ['stamp', 'washington', -12]], overlay: NC(), draw(c, T) {
   bg(c, '#0b1322', '#16202e'); lightPool(c, 960, 480, 700, '#ffe2a0', .4); box(c, -400, 860, W + 800, 400, 4, '#c9975a');
   const d = easeOut(T.at('bag', .55)); couplingBag(c, 960, 960, 1.6, { open: d > .9, tag: T.since('washington') > 0 ? 'WASHINGTON' : '' });
-  if (d < .95) { const y = lerp(300, 720, d); coupling(c, 900, y, 1.4, .5); coupling(c, 1040, y - 30, 1.4, .5); arm(c, 1500, 0, 1080, lerp(220, 260, d), SKIN, '#e9d9b2'); }
+  if (d < .95) { const y = lerp(300, 720, d); coupling(c, 900, y, 1.4, .5); coupling(c, 1040, y - 30, 1.4, .5); arm(c, 1900, 200, 1110, lerp(240, 300, d), SKIN, '#e9d9b2'); }
   GRADE.night(c, [[960, 520, 600, '#ffe2a0', .3]], .2);
   if (T.sub === 0) tag(c, 960, 170, 'FORGOTTEN TO REMOVE', T.at('remove', .45), { size: 34, bg: '#ffd6c8' });
   else tag(c, 960, 170, 'BOUND FOR WASHINGTON', T.at('bound', .45), { size: 36 });
 } });
 
 // =========================== PUTTING IT BACK ===========================
-chap4('B1.0', 10, 'Putting It Back');
+chap4('B1.0', 9, 'Putting It Back');
 S('B1.1', { cams: [[960, 540, 1.05], [960, 540, 1.15]], sfx: [['whoosh1', 'back', -12], ['ding', 'exactly', -14]], draw(c, T) {
   SET.grid(c, T.t, { title: 'REASSEMBLY', sub: 'AS IT WAS' });
   c.save(); c.globalAlpha = .45; c.setLineDash([12, 10]); lunik(c, 960, 560, 1400, { blueprint: true }); c.restore();
@@ -426,13 +427,14 @@ S('B1.1', { cams: [[960, 540, 1.05], [960, 540, 1.15]], sfx: [['whoosh1', 'back'
   const e = T.at('exactly', .5); if (e > 0) { [[960 - 700 + 8, 560], [960 + 1400 * .3, 560], [960, 330]].forEach(([x, y], i) => { const p = clamp(e * 3 - i * .5); if (p > 0) { circ(c, x, y - 180, 30, '#2f9e5a', 4); line(c, x - 14, y - 180, x - 3, y - 168, 6, '#fff'); line(c, x - 3, y - 168, x + 16, y - 194, 6, '#fff'); } });
     label(c, 'EXACTLY AS IT WAS', 960, 900, 56, YEL); }
 } });
-S('B2.0', { focus: [960, 560, 1.1], sfx: [['crickets2', 0, -26, { len: 12 }], ['clock', 'took', -10, { len: 1.6 }]], overlay: NC(), draw(c, T) {
+S('B2.0', { trans: 'fade', move: 'drift', focus: [1000, 440, 1.3], sfx: [['crickets2', 0, -26, { len: 12 }], ['clock', 'took', -10, { len: 1.6 }]], overlay: NC(), draw(c, T) {
   bg(c, '#0b1322', '#121a26'); dropLight(c, 960, 150, 1, 200); lightPool(c, 960, 420, 700, '#ffe2a0', .35);
-  line(c, 1240, 560, 2100, 560, 22, '#7c858d');
-  const k = ease(clamp(T.lt / (T.d + .2))); const sx = lerp(820, 1170, k), sy = lerp(700, 560, k) + Math.sin(T.t * 3) * 6;
-  circ(c, sx, sy, 150, '#c9ced4'); circ(c, sx - 50, sy - 50, 26, 'rgba(255,255,255,.8)', 0);
-  P('finer', { x: sx - 260, y: 1060, s: 1.1, t: T.t, expr: 'worried', pose: 'carry', sweat: true, shoes: '#ece6d6' });
-  P('spec1', { x: sx + 40, y: 1110, s: 1.05, t: T.t, expr: 'focus', pose: 'holdHigh', sweat: true, shoes: '#ece6d6', flip: true });
+  line(c, 1220, 450, 2100, 450, 22, '#7c858d');
+  const k = ease(clamp(T.lt / (T.d + .2))); const sx = lerp(760, 1110, k), sy = lerp(560, 450, k) + Math.sin(T.t * 3) * 6;
+  
+  P('finer', { x: sx - 135, y: sy + 120 + 340, s: 1.1, t: T.t, expr: 'worried', pose: 'holdHigh', sweat: true, shoes: '#ece6d6' });
+  P('spec1', { x: sx + 135, y: sy + 120 + 340, s: 1.1, t: T.t, expr: 'focus', pose: 'holdHigh', sweat: true, shoes: '#ece6d6', flip: true });
+  circ(c, sx, sy, 120, '#c9ced4'); circ(c, sx - 40, sy - 40, 22, 'rgba(255,255,255,.8)', 0);
   GRADE.night(c, [[960, 460, 600, '#ffe2a0', .35]], .25);
   const h = T.at('hour', .5); tag(c, 960, 180, 'NEARLY AN HOUR', h, { size: 40, bg: '#fff3c4' });
 } });
@@ -458,7 +460,7 @@ S('B3.1', { focus: [960, 560, 1.15], sfx: [['switch', 'feel', -6]], overlay: NC(
 S('B4.0', { cams: [[1000, 560, 1.15], [960, 540, 1.04]], sfx: [['creak', 'rewrapped', -16], ['stamp', 'seal', -8], ['ding', 'fitted', -14]], overlay: NC(), draw(c, T) {
   if (T.sub === 0) { bg(c, '#0b1322', '#16202e'); lightPool(c, 1000, 520, 600, '#ffe2a0', .4);
     line(c, -100, 560, 2000, 560, 22, '#7c858d'); const w = easeOut(T.at('rewrapped', .8));
-    c.beginPath(); const n = Math.floor(40 * w); for (let i = 0; i <= n; i++) { const x = 700 + i * 15, y = 560 + Math.sin(i * 1.6) * 22; i ? c.lineTo(x, y) : c.moveTo(x, y); } c.lineWidth = 7; c.strokeStyle = '#a7adb4'; c.stroke();
+    c.beginPath(); const n = Math.floor(40 * w); for (let i = 0; i <= n; i++) { const x = 640 + i * 18, y = 560 + Math.sin(i * 1.6) * 22; i ? c.lineTo(x, y) : c.moveTo(x, y); } c.lineWidth = 14; c.strokeStyle = INK; c.stroke(); c.lineWidth = 8; c.strokeStyle = '#e3e7ea'; c.stroke(); if (w > .02) seal(c, 1000, 566, 1.8, { fresh: true, keepSeal: true, cut: false });
     GRADE.night(c, [[1000, 560, 500, '#ffe2a0', .35]], .2); tag(c, 1000, 260, 'WIRE REWRAPPED', T.at('rewrapped', .45), { size: 36 }); return; }
   SET.paper(c, T.t); const f = T.at('forged', .5);
   [[560, 'ORIGINAL', { cut: true, keepSeal: true }], [1360, 'FORGED', { fresh: true }]].forEach(([x, lab, o], i) => {
@@ -490,7 +492,7 @@ S('B6.0', { cams: [[960, 560, 1.06], [860, 560, 1.18]], shakes: [['scare']], sfx
   GRADE.night(c, L, .25);
   tag(c, 960, 200, "SILVETI'S ACCOUNT", T.at('silvet', .45), { size: 36, bg: '#ffe0d0' }); if (T.sub === 1) tag(c, 1420, 400, 'ONE MORE SCARE', T.at('scare', .4), { size: 34, bg: '#ffd6c8' });
 } });
-S('B6.1', { focus: [800, 560, 1.12], shakes: [['dark']], sfx: [['elec', 'dark', -6], ['hit', 'dark', -10]], overlay: NC(), draw(c, T) {
+S('B6.1', { handheld: 1.3, focus: [800, 560, 1.12], shakes: [['dark']], sfx: [['elec', 'dark', -6], ['hit', 'dark', -10]], overlay: NC(), draw(c, T) {
   const d = T.since('dark') > 0 ? 1 : 0; const L = SET.salvageYard(c, T.t, { lamps: 1, drop: d ? 0 : 1, blackout: d }); yTruck(c, T, { planks: .2 }); const R = roofOf();
   const hs = [P('spec1', { x: R.left + 120, y: R.top + 4, s: .82, t: T.t, expr: 'bored', pose: 'wrench', legs: 'crouch' }), P('finer', { x: R.cx + 40, y: R.top + 4, s: .82, t: T.t, expr: 'focus', pose: 'crouch', legs: 'crouch' }),
     P('spec2', { x: R.right - 70, y: R.top + 4, s: .82, t: T.t, expr: 'neutral', pose: 'idle', flip: true }), P('spec3', { x: 1600, y: YT.y, s: .95, t: T.t, expr: 'neutral', pose: 'idle', flip: true })];
@@ -514,8 +516,8 @@ S('B8.0', { focus: [760, 560, 1.25], shakes: [['on']], sfx: [['hammer', 'planks'
   GRADE.night(c, L, .25); tag(c, 1200, 240, 'ROOF BACK ON', T.at('went', .45), { size: 36 });
 } });
 S('B8.1', { focus: [760, 600, 1.08], sfx: [['steps', 'specialists', -14, { len: 2 }]], overlay: NC(), draw(c, T) {
-  const L = SET.salvageYard(c, T.t, { lamps: 0, drop: 0 }); gate(c, 110, 552, 230, 330, 1); yTruck(c, T, {}, { x: 1600, y: 1000, s: .95 });
-  ['finer', 'spec1', 'spec2', 'spec3'].forEach((n, i) => { const k = clamp((T.since('specialists') - i * .2) / 1.4); P(n, { x: lerp(760 + i * 170, 120 + i * 40, ease(k)), y: 960 - i * 4, s: .85, t: T.t, expr: 'bored', pose: 'sneak', walk: true, flip: true }); });
+  const L = SET.salvageYard(c, T.t, { lamps: 0, drop: 0 }); gate(c, 110, 552, 230, 330, 1); yTruck(c, T, {}, { x: 1800, y: 1000, s: .95 });
+  ['finer', 'spec1', 'spec2', 'spec3'].forEach((n, i) => { const k = clamp((T.since('specialists') - i * .2) / 1.4); P(n, { x: lerp(600 + i * 160, 150 + i * 40, ease(k)), y: 960 - i * 4, s: .85, t: T.t, expr: 'bored', pose: 'sneak', walk: true, flip: true }); });
   GRADE.night(c, [[225, 400, 300, '#7f9ac0', .2]], .4);
   tag(c, 960, 200, 'THE SPECIALISTS LEAVE', T.at('left', .45), { size: 34 });
 } });

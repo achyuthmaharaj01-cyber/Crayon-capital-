@@ -347,4 +347,5 @@
 | 345 | A8.1 | 0 | 754.26 | 755.90 | more | Depth gauge drops to ~3 MILES on 'three miles', a dark submarine silhouette on the sea floor |
 | 346 | A8.1 | 1 | 755.90 | 757.90 | more | Depth gauge drops to ~3 MILES on 'three miles', a dark submarine silhouette on the sea floor |
 | 347 | A8.2 | 0 | 757.90 | 759.96 | nearly | End screen: frame NEXT: THE SUBMARINE, the four specialists' crayon silhouettes point at it on 'next' |
-| 348 | A8.2 | 1 | 759.96 | 762.65 | nearly | End screen: frame NEXT: THE SUBMARINE, the four specialists' crayon silhouettes point at it on 'next' |
+| 348 | A8.2 | 1 | 759.96 | 761.84 | nearly | End screen: frame NEXT: THE SUBMARINE, the four specialists' crayon silhouettes point at it on 'next' |
+| 349 | A8.2 | 2 | 761.84 | 765.65 | nearly | End screen: frame NEXT: THE SUBMARINE, the four specialists' crayon silhouettes point at it on 'next' |
