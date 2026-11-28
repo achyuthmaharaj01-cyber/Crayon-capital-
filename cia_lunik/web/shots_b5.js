@@ -189,7 +189,7 @@ S('L1.1', { cams: [[960, 560, 1.12]], sfx: [['paper', 'photographs', -12], ['pag
   if (m > 0) magnifier(c, lerp(1500, 1180, easeOut(m)), 560, 90, () => { label(c, 'CCCP', lerp(1500, 1180, easeOut(m)), 560, 40, '#b8322a', { stroke: false }); });
   GRADE.warm(c, .15);
 }, overlay: (c, T) => tag(c, 'WASHINGTON', 200, 70, 1, { bg: 'rgba(10,14,24,.82)', col: '#fff' }) });
-S('L2.0', { cams: [[960, 540, 1.0], [1180, 480, 1.22]], sfx: [['pop', 'factory', -10], ['sparkle', 'built', -18]], draw(c, T) {
+S('L2.0', { cams: [[960, 540, 1.0], [1060, 520, 1.1]], sfx: [['pop', 'factory', -10], ['sparkle', 'built', -18]], draw(c, T) {
   bg(c, '#9fc6d9', '#8ab6cc'); c.lineWidth = 1.5; c.strokeStyle = 'rgba(255,255,255,.18)'; for (let x = -400; x < W + 400; x += 80) { c.beginPath(); c.moveTo(x, -300); c.lineTo(x, H + 300); c.stroke(); } for (let y = -300; y < H + 300; y += 80) { c.beginPath(); c.moveTo(-400, y); c.lineTo(W + 400, y); c.stroke(); }
   // neighbours (Europe, China/Mongolia) pale, the USSR shaded
   poly(c, [[-100, 380], [120, 300], [290, 330], [300, 520], [400, 600], [300, 720], [120, 760], [-100, 700]], '#e9e2cc', 4);
@@ -198,7 +198,7 @@ S('L2.0', { cams: [[960, 540, 1.0], [1180, 480, 1.22]], sfx: [['pop', 'factory',
   poly(c, U, '#e7b9a4', 5); label(c, 'USSR', 1000, 380, 90, '#b8322a', { stroke: false });
   label(c, 'EUROPE', 120, 560, 30, '#8a8270', { stroke: false }); label(c, 'CHINA', 1220, 780, 30, '#8a8270', { stroke: false });
   const k = pop(T, 'factory', .45); const px = 1180, py = 470;
-  arrive(c, k, px, py, () => { box(c, -170, -190, 340, 250, 14, '#fbf8ee', 5); factoryIcon(c, 0, -40, .9, INK, '#d6dde2'); label(c, 'PROBABLE FACTORY', 0, 20, 34, INK, { stroke: false }); label(c, 'LOCATION: ?', 0, 70, 0, INK); });
+  arrive(c, k, px, py, () => { box(c, -170, -190, 340, 250, 14, '#fbf8ee', 5); factoryIcon(c, 0, -40, .9, INK, '#d6dde2'); label(c, 'PROBABLE FACTORY', 0, 20, 34, INK, { stroke: false }); });
   if (k > 0) tag(c, 'LOCATION NOT GIVEN', px, py + 120, k, { size: 26 });
   // Lunik as an inset card, linked by a dotted line on 'built'
   box(c, 120, 800, 520, 220, 14, '#123a63', 5); lunik(c, 380, 900, 420, { blueprint: true }); label(c, 'THE ROCKET STAGE', 380, 990, 26, '#e8f1ff', { stroke: false });
